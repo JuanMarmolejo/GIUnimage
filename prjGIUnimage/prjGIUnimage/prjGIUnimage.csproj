@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D2CA28C-0FFE-4B84-9C99-EAEC4CF9D8B7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>prjGIUnimage</RootNamespace>
+    <AssemblyName>prjGIUnimage</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="bus\clsCollection.cs" />
+    <Compile Include="bus\clsListProductAvailableOS.cs" />
+    <Compile Include="bus\clsListScProduct.cs" />
+    <Compile Include="bus\clsListScVorderDetail.cs" />
+    <Compile Include="bus\clsPrint.cs" />
+    <Compile Include="bus\clsProductAvailableOS.cs" />
+    <Compile Include="bus\clsProductOrdered.cs" />
+    <Compile Include="bus\clsData.cs" />
+    <Compile Include="bus\clsElement.cs" />
+    <Compile Include="bus\clsGIParameter.cs" />
+    <Compile Include="bus\clsListProductOrdered.cs" />
+    <Compile Include="bus\clsListProductEqui.cs" />
+    <Compile Include="bus\clsListScSalesHistory.cs" />
+    <Compile Include="bus\clsListCollections.cs" />
+    <Compile Include="bus\clsListData.cs" />
+    <Compile Include="bus\clsListElements.cs" />
+    <Compile Include="bus\clsListProduct.cs" />
+    <Compile Include="bus\clsListSCCollection.cs" />
+    <Compile Include="bus\clsListScenario.cs" />
+    <Compile Include="bus\clsListSeason.cs" />
+    <Compile Include="bus\clsListUser.cs" />
+    <Compile Include="bus\clsProduct.cs" />
+    <Compile Include="bus\clsProductEqui.cs" />
+    <Compile Include="bus\clsScCollection.cs" />
+    <Compile Include="bus\clsScenario.cs" />
+    <Compile Include="bus\clsScSalesHistory.cs" />
+    <Compile Include="bus\clsScVorder.cs" />
+    <Compile Include="bus\clsScVorderDetail.cs" />
+    <Compile Include="bus\clsSeason.cs" />
+    <Compile Include="bus\clsSilex.cs" />
+    <Compile Include="bus\clsGlobals.cs" />
+    <Compile Include="bus\clsUser.cs" />
+    <Compile Include="bus\clsScProduct.cs" />
+    <Compile Include="bus\clsInvFiscal.cs" />
+    <Compile Include="bus\clsListInvFiscal.cs" />
+    <Compile Include="delEquivProd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="delEquivProd.Designer.cs">
+      <DependentUpon>delEquivProd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAnalysisScenarioCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAnalysisScenarioCopy.Designer.cs">
+      <DependentUpon>frmAnalysisScenarioCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCollections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCollections.Designer.cs">
+      <DependentUpon>frmCollections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bus\clsFrmGlobals.cs" />
+    <Compile Include="data\Conexion.cs" />
+    <Compile Include="data\Gdata.cs" />
+    <Compile Include="data\SqlServer.cs" />
+    <Compile Include="frmEquivalentProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEquivalentProduct.Designer.cs">
+      <DependentUpon>frmEquivalentProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExecutionStoredProcedure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExecutionStoredProcedure.Designer.cs">
+      <DependentUpon>frmExecutionStoredProcedure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGeneralParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGeneralParameters.Designer.cs">
+      <DependentUpon>frmGeneralParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGeneratesFiscal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGeneratesFiscal.Designer.cs">
+      <DependentUpon>frmGeneratesFiscal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGroupsToWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGroupsToWork.Designer.cs">
+      <DependentUpon>frmGroupsToWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInventoryModification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInventoryModification.Designer.cs">
+      <DependentUpon>frmInventoryModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuPpal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuPpal.Designer.cs">
+      <DependentUpon>frmMenuPpal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewScenario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewScenario.Designer.cs">
+      <DependentUpon>frmNewScenario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrderProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrderProducts.Designer.cs">
+      <DependentUpon>frmOrderProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrderProductsCollections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrderProductsCollections.Designer.cs">
+      <DependentUpon>frmOrderProductsCollections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPDFPrinting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPDFPrinting.Designer.cs">
+      <DependentUpon>frmPDFPrinting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPreparationSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPreparationSession.Designer.cs">
+      <DependentUpon>frmPreparationSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPreviewVO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPreviewVO.Designer.cs">
+      <DependentUpon>frmPreviewVO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrincipal.Designer.cs">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProductColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductColor.Designer.cs">
+      <DependentUpon>frmProductColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProductsSelectedCollection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductsSelectedCollection.Designer.cs">
+      <DependentUpon>frmProductsSelectedCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProductsSelectedScenario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductsSelectedScenario.Designer.cs">
+      <DependentUpon>frmProductsSelectedScenario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSearchScenarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchScenarios.Designer.cs">
+      <DependentUpon>frmSearchScenarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSurplusParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSurplusParameters.Designer.cs">
+      <DependentUpon>frmSurplusParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTablesPermanentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTablesPermanentes.Designer.cs">
+      <DependentUpon>frmTablesPermanentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmToBeCommanded.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmToBeCommanded.Designer.cs">
+      <DependentUpon>frmToBeCommanded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVOParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVOParameters.Designer.cs">
+      <DependentUpon>frmVOParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tblGIProductAvailableOS.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="delEquivProd.resx">
+      <DependentUpon>delEquivProd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAnalysisScenarioCopy.resx">
+      <DependentUpon>frmAnalysisScenarioCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCollections.resx">
+      <DependentUpon>frmCollections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEquivalentProduct.resx">
+      <DependentUpon>frmEquivalentProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExecutionStoredProcedure.resx">
+      <DependentUpon>frmExecutionStoredProcedure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGeneralParameters.resx">
+      <DependentUpon>frmGeneralParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGeneratesFiscal.resx">
+      <DependentUpon>frmGeneratesFiscal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGroupsToWork.resx">
+      <DependentUpon>frmGroupsToWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInventoryModification.resx">
+      <DependentUpon>frmInventoryModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuPpal.resx">
+      <DependentUpon>frmMenuPpal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewScenario.resx">
+      <DependentUpon>frmNewScenario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrderProducts.resx">
+      <DependentUpon>frmOrderProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrderProductsCollections.resx">
+      <DependentUpon>frmOrderProductsCollections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPDFPrinting.resx">
+      <DependentUpon>frmPDFPrinting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPreparationSession.resx">
+      <DependentUpon>frmPreparationSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPreviewVO.resx">
+      <DependentUpon>frmPreviewVO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrincipal.resx">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductColor.resx">
+      <DependentUpon>frmProductColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductsSelectedCollection.resx">
+      <DependentUpon>frmProductsSelectedCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductsSelectedScenario.resx">
+      <DependentUpon>frmProductsSelectedScenario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchScenarios.resx">
+      <DependentUpon>frmSearchScenarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSurplusParameters.resx">
+      <DependentUpon>frmSurplusParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTablesPermanentes.resx">
+      <DependentUpon>frmTablesPermanentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmToBeCommanded.resx">
+      <DependentUpon>frmToBeCommanded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVOParameters.resx">
+      <DependentUpon>frmVOParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sxUnimageDevGIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblGIProductAvailableOS">
+          <Key>
+            <PropertyRef Name="ProductAvailableID" />
+          </Key>
+          <Property Name="ProductAvailableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScenarioID" Type="smallint" />
+          <Property Name="CollectionID" Type="int" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductColorID" Type="int" Nullable="false" />
+          <Property Name="ProductDimID" Type="int" Nullable="false" />
+          <Property Name="ProductCatID" Type="int" Nullable="false" />
+          <Property Name="SizeOrder" Type="smallint" />
+          <Property Name="ColorID" Type="int" Nullable="false" />
+          <Property Name="DimID" Type="int" Nullable="false" />
+          <Property Name="CatID" Type="int" Nullable="false" />
+          <Property Name="ProductGroupID" Type="int" />
+          <Property Name="ProductSubGroupID" Type="int" />
+          <Property Name="QtyAvailable" Type="float" Nullable="false" />
+          <Property Name="QtyOrdered" Type="float" Nullable="false" />
+          <Property Name="CreatedByUserID" Type="smallint" />
+          <Property Name="ModifiedByUserID" Type="smallint" />
+          <Property Name="DeletedByUserID" Type="smallint" />
+          <Property Name="CreatedDate" Type="smalldatetime" />
+          <Property Name="ModifiedDate" Type="smalldatetime" />
+          <Property Name="DeletedDate" Type="smalldatetime" />
+        </EntityType>
+        <EntityContainer Name="sxUnimageDevGIModelStoreContainer">
+          <EntitySet Name="tblGIProductAvailableOS" EntityType="Self.tblGIProductAvailableOS" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sxUnimageDevGIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblGIProductAvailableOS">
+          <Key>
+            <PropertyRef Name="ProductAvailableID" />
+          </Key>
+          <Property Name="ProductAvailableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScenarioID" Type="Int16" />
+          <Property Name="CollectionID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductColorID" Type="Int32" Nullable="false" />
+          <Property Name="ProductDimID" Type="Int32" Nullable="false" />
+          <Property Name="ProductCatID" Type="Int32" Nullable="false" />
+          <Property Name="SizeOrder" Type="Int16" />
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="DimID" Type="Int32" Nullable="false" />
+          <Property Name="CatID" Type="Int32" Nullable="false" />
+          <Property Name="ProductGroupID" Type="Int32" />
+          <Property Name="ProductSubGroupID" Type="Int32" />
+          <Property Name="QtyAvailable" Type="Double" Nullable="false" />
+          <Property Name="QtyOrdered" Type="Double" Nullable="false" />
+          <Property Name="CreatedByUserID" Type="Int16" />
+          <Property Name="ModifiedByUserID" Type="Int16" />
+          <Property Name="DeletedByUserID" Type="Int16" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="sxUnimageDevGIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblGIProductAvailableOS" EntityType="Self.tblGIProductAvailableOS" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sxUnimageDevGIModelStoreContainer" CdmEntityContainer="sxUnimageDevGIEntities">
+          <EntitySetMapping Name="tblGIProductAvailableOS">
+            <EntityTypeMapping TypeName="sxUnimageDevGIModel.tblGIProductAvailableOS">
+              <MappingFragment StoreEntitySet="tblGIProductAvailableOS">
+                <ScalarProperty Name="ProductAvailableID" ColumnName="ProductAvailableID" />
+                <ScalarProperty Name="ScenarioID" ColumnName="ScenarioID" />
+                <ScalarProperty Name="CollectionID" ColumnName="CollectionID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductColorID" ColumnName="ProductColorID" />
+                <ScalarProperty Name="ProductDimID" ColumnName="ProductDimID" />
+                <ScalarProperty Name="ProductCatID" ColumnName="ProductCatID" />
+                <ScalarProperty Name="SizeOrder" ColumnName="SizeOrder" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="DimID" ColumnName="DimID" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
+                <ScalarProperty Name="ProductSubGroupID" ColumnName="ProductSubGroupID" />
+                <ScalarProperty Name="QtyAvailable" ColumnName="QtyAvailable" />
+                <ScalarProperty Name="QtyOrdered" ColumnName="QtyOrdered" />
+                <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
+                <ScalarProperty Name="ModifiedByUserID" ColumnName="ModifiedByUserID" />
+                <ScalarProperty Name="DeletedByUserID" ColumnName="DeletedByUserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
