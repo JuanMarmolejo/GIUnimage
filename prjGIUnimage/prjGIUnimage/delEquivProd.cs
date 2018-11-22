@@ -51,21 +51,18 @@ namespace prjGIUnimage
 
         private void DeactivateTexts()
         {
-            //lblInfo.Visible = false;
             txtCode.ReadOnly = true;
             
             cboCurrentSaison.Enabled = false;
             btnRecord.Enabled = false;
             btnModify.Enabled = true;
-            btnNew.Enabled = true;
-            
+            btnNew.Enabled = true;   
         }
 
         private bool LoadTabletblGIScSalesHistory(int nextScenarioID, int gISeasonID)
         {
-            //clsListSeason lstSea = new clsListSeason();
             clsSeason mySea = new clsSeason();
-            //lstSea.GetAllSeasons();
+            
             mySea = lstSea.GetSeasonByID(gISeasonID);
             try
             {
@@ -85,27 +82,23 @@ namespace prjGIUnimage
             DataSet mySet = new DataSet();
             Object[] args = new Object[] { activeScenario, sXSeasonID, secondSeasonID, sXSeasonPrecID };
             Conexion.StartSession();
-            //Conexion.GDatos.ExecuteStoredProcedure(clsGlobals.Silex + "spCustomGenerateReq", args);
             mySet = Conexion.GDatos.BringDataSet(clsGlobals.Silex + "spCustomGenerateReqVirtual", args);
             Conexion.EndSession();
             myTb = mySet.Tables[0];
             dgvResult.DataSource = myTb;
-            //dgvResult.AutoResizeColumns();
             txtCode.Text = myTb.Rows.Count.ToString();
         }
 
         private void btnRecord_Click(object sender, EventArgs e)
         {
-            //lblInfo.Visible = true;
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                //DeactivateApplication();
-                //lblInfo.Visible = true;
                 clsGlobals.GIPar.GetVOParameters();
                 aDiv = TextToScenario();
                 clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
                 clsGlobals.GISeasonID = aDiv.GISeasonID;
                 clsGlobals.OriginOfStoredProc = 1;
+
                 //abre formulario de espera
                 MessageBox.Show("La création du scénario peut prendre quelques minutes...");
                 if (LoadTabletblGIScSalesHistory(clsGlobals.NextScenarioID, clsGlobals.GISeasonID))
@@ -151,21 +144,16 @@ namespace prjGIUnimage
         private void ActivateTexts()
         {
             txtCode.ReadOnly = false;
-            //cboStatus.Enabled = true;
             cboCurrentSaison.Enabled = true;
             btnRecord.Enabled = true;
             btnModify.Enabled = false;
             btnNew.Enabled = false;
-            //cboStatus.SelectedIndex = 0;
         }
 
         private void CleanControls()
         {
             txtCode.Clear();
-            
             cboCurrentSaison.SelectedIndex = -1;
-            
-            //cboStatus.SelectedIndex = -1;
         }
 
         private void btnModify_Click(object sender, EventArgs e)

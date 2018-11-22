@@ -34,9 +34,6 @@ namespace prjGIUnimage
                     }
                 }
                 LinkLists();
-                //dgvAllEle.DataSource = AllElements.Elements;
-                //dgvAllEle.AutoResizeColumns();
-                //dgvAllEle.Columns[0].Visible = false;
             }
             catch (Exception ex)
             {
@@ -52,14 +49,13 @@ namespace prjGIUnimage
         private void button1_Click(object sender, EventArgs e)
         {
             clsElement eTemp = new clsElement();
-            //if (String.IsNullOrEmpty(dgvAllEle.CurrentRow.Cells[0].Value.ToString()))
+            
             if (lstAllEle.SelectedValue == null || String.IsNullOrEmpty(lstAllEle.SelectedValue.ToString()))
             {
                 MessageBox.Show("Sélectionnez un élément de la liste");
             }
             else
             {
-                //eTemp = AllElements.ElementByID(dgvAllEle.CurrentRow.Cells[0].Value.ToString());
                 eTemp = AllElements.ElementByID(lstAllEle.SelectedValue.ToString());
                 clsGlobals.ListTemp.AddNotExist(eTemp);
                 AllElements.RemoveItem(eTemp);
@@ -73,14 +69,12 @@ namespace prjGIUnimage
             lstSelectedEle.DataSource = clsGlobals.ListTemp.Elements;
             lstSelectedEle.DisplayMember = "Full";
             lstSelectedEle.ValueMember = "ElementID";
-            //dgvSelectedEle.Columns[0].Visible = false;
-
+            
             lstAllEle.DataSource = null;
             lstAllEle.DataSource = AllElements.Elements;
             lstAllEle.DisplayMember = "Full";
             lstAllEle.ValueMember = "ElementID";
-            //dgvAllEle.Columns[0].Visible = false;
-
+            
             lstSelectedEle.Focus();
         }
 
@@ -126,28 +120,8 @@ namespace prjGIUnimage
             string myText = txtSearch.Text.Trim().ToUpper();
 
             AllElements.GetElementsGlobalRequest();
-            //AllElements.FilterGroupsToWork(myText);
             AllElements.FilterElements(myText);
             lstAllEle.DataSource = AllElements.Elements;
-
-            //clsListElements tmp = new clsListElements();
-            //if (string.IsNullOrEmpty(txtSearch.Text))
-            //{
-            //    AllElements.GetElementsGlobalRequest();
-            //    lstAllEle.DataSource = AllElements.Elements;
-            //}
-            //else
-            //{
-            //    foreach (clsElement ele in AllElements.Elements)
-            //    {
-            //        if (ele.Code.ToUpper().Contains(txtSearch.Text.ToUpper()))
-            //        {
-            //            tmp.Elements.Add(ele);
-            //        }
-            //    }
-            //    lstAllEle.DataSource = tmp.Elements;
-            //    AllElements = tmp;
-            //}
         }
 
         private void lstAllEle_SelectedIndexChanged(object sender, EventArgs e)
@@ -158,14 +132,12 @@ namespace prjGIUnimage
         private void lstAllEle_DoubleClick(object sender, EventArgs e)
         {
             clsElement eTemp = new clsElement();
-            //if (String.IsNullOrEmpty(dgvAllEle.CurrentRow.Cells[0].Value.ToString()))
             if (lstAllEle.SelectedValue == null || String.IsNullOrEmpty(lstAllEle.SelectedValue.ToString()))
             {
                 MessageBox.Show("Sélectionnez un élément de la liste");
             }
             else
             {
-                //eTemp = AllElements.ElementByID(dgvAllEle.CurrentRow.Cells[0].Value.ToString());
                 eTemp = AllElements.ElementByID(lstAllEle.SelectedValue.ToString());
                 clsGlobals.ListTemp.AddNotExist(eTemp);
                 AllElements.RemoveItem(eTemp);

@@ -95,18 +95,13 @@ namespace prjGIUnimage
             dgvProductColor.Columns[10].Visible = false;
             dgvProductColor.Columns[11].Visible = false;
             dgvProductColor.Columns[12].Visible = false;
-            //dgvProductColor.Columns[13].Visible = false;
             dgvProductColor.Columns[14].Visible = false;
-            //dgvProductColor.Columns[15].Visible = false;
             dgvProductColor.Columns[16].Visible = false;
             dgvProductColor.Columns[17].Visible = false;
             dgvProductColor.Columns[18].Visible = false;
             dgvProductColor.Columns[19].Visible = false;
             dgvProductColor.Columns[20].Visible = false;
-
             dgvProductColor.Columns[15].Width = 243;
-
-            //dgvProductColor.AutoResizeColumns();
 
             if (dgvProductColor.Rows.Count > 0)
             {
@@ -260,8 +255,6 @@ namespace prjGIUnimage
             txtSurplus.ReadOnly = true;
             txtSxStatus.ReadOnly = true;
             txtColor.ReadOnly = true;
-            //dgvColors.ReadOnly = true;
-            //dgvSizes.ReadOnly = true;
             cboStatus.Enabled = false;
             btnModify.Enabled = true;
             btnSave.Enabled = false;
@@ -301,25 +294,9 @@ namespace prjGIUnimage
             DeactivateTexts();
             ProductToText(aDiv);
             lstPro.AllProducts(txtSearch.Text, cboFilter.SelectedValue);
-            //txtSearch.Clear();
-            //txtSearch.Focus();
             dgvProductColor.Rows[dgvIndex].Selected = true;
             MessageBox.Show("Le produit a été mise à jour correctement", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
-
-        //private void button4_Click(object sender, EventArgs e)
-        //{
-        //    Modify = false;
-        //    clsProduct aDiv = new clsProduct();
-        //    aDiv = TextToDivision(Convert.ToInt32(dgvProductColor.CurrentRow.Cells[0].Value));
-        //    aDiv.UpdateGIProduct();
-        //    DeactivateTexts();
-        //    lstPro.AllProducts(txtSearch.Text, cboFilter.SelectedValue);
-        //    LinkListProducts();
-        //    txtSearch.Clear();
-        //    txtSearch.Focus();
-        //    MessageBox.Show("Le produit a été mise à jour correctement", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //}
 
         private clsProduct TextToDivision(int GIProductID)
         {
@@ -332,7 +309,6 @@ namespace prjGIUnimage
             aTemp.ProductCode = Convert.ToString(txtCode.Text);
             aTemp.ProductComment = Convert.ToString(txtComment.Text);
             aTemp.ProductDesc = Convert.ToString(txtDesc.Text);
-            //aTemp.ProductID = Convert.ToString(.Text);
             aTemp.ProductStatusDesc = Convert.ToString(txtSxStatus.Text);
             aTemp.ShortProductCode = Convert.ToString(txtShort.Text);
             aTemp.SurplusRate = Convert.ToDouble(txtSurplus.Text);

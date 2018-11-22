@@ -106,35 +106,5 @@ namespace prjGIUnimage
         {
             
         }
-
-        //private void cboUser_Validating(object sender, CancelEventArgs e)
-        //{
-        //    if (cboUser.SelectedIndex < 0)
-        //    {
-        //        e.Cancel = true;
-        //        cboUser.Focus();
-        //        errorProvider.SetError(cboUser, "Sélectionnez un utilisateur");
-        //    }
-        //    else
-        //    {
-        //        e.Cancel = false;
-        //        errorProvider.SetError(cboUser, null);
-        //    }
-        //}
-
-        //private void txtPassword_Validating(object sender, CancelEventArgs e)
-        //{
-        //    if (string.IsNullOrEmpty(txtPassword.Text))
-        //    {
-        //        e.Cancel = true;
-        //        cboUser.Focus();
-        //        errorProvider.SetError(txtPassword, "Entrez un mot de passe");
-        //    }
-        //    else
-        //    {
-        //        e.Cancel = false;
-        //        errorProvider.SetError(cboUser, null);
-        //    }
-        //}
     }
 }

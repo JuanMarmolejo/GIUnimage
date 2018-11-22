@@ -69,27 +69,11 @@ namespace prjGIUnimage
             if (mySce.Exists())
             {
                 MessageBox.Show("Attention, l'inventaire a déjà été généré", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                
-                //if (MessageBox.Show("Attention, l'inventaire a déjà été généré", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning) == DialogResult.Yes)
-                //{
-                //    clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
-                //    mySce.InsertScenarioFiscal();
-                //    GenerateFiscal();
-                //}
             }
             else
             {
                 clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
                 GenerateFiscal();
-                //mySce.InsertScenarioFiscal();
-                //if (Flag)
-                //{
-                //    CopyTableBeforeFiscal();
-                //}
-                //else
-                //{
-                //    CopyTableAfterFiscal();
-                //}
             }
             this.Close();
         }
@@ -115,6 +99,7 @@ namespace prjGIUnimage
             
             clsGlobals.GISeasonID = mySce.GISeasonID;
             clsGlobals.OriginOfStoredProc = 2;
+
             //abre formulario de espera
             if (clsFrmGlobals.frES == null)
             {

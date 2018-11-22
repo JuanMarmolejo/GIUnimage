@@ -48,11 +48,8 @@ namespace prjGIUnimage.bus
             DataSet mySet = new DataSet();
             Object[] args = new Object[] { activeScenario, sXSeasonID, secondSeasonID, sXSeasonPrecID };
             Conexion.StartSession();
-            //Conexion.GDatos.ExecuteStoredProcedure(clsGlobals.Silex + "spCustomGenerateReq", args);
             Conexion.GDatos.ExecuteStoredProcedure(clsGlobals.Silex + "spCustomGenerateReq", args);
             Conexion.GDatos.ExecuteStoredProcedure(clsGlobals.Silex + "spCustomGenerateReqVirtual", args);
-            //mySet = Conexion.GDatos.BringDataSet(clsGlobals.Silex + "spCustomGenerateReqVirtual", args);
-            //clsGlobals.reqVirtuals = mySet.Tables[0];
             Conexion.EndSession();
         }
 
@@ -71,14 +68,6 @@ namespace prjGIUnimage.bus
             tblSXProductColor = Conexion.GDatos.BringDataTableSql(sql);
             Conexion.EndSession();
         }
-
-        //internal static void RunStoredProcedure(int activeScenario, int sXSeasonPrecID, int sXSeasonID)
-        //{
-        //    Object[] args = new Object[] { activeScenario, sXSeasonPrecID, sXSeasonID };
-        //    Conexion.StartSession();
-        //    Conexion.GDatos.ExecuteStoredProcedure("spCustomGenerateReq", args);
-        //    Conexion.EndSession();
-        //}
 
         internal static void RunStoredProcedure(int gIVOID)
         {

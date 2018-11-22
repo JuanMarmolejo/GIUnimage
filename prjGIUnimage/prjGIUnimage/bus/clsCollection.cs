@@ -45,10 +45,6 @@ namespace prjGIUnimage.bus
             this.CollectionID = Convert.ToInt32(rw["CollectionID"]);
             this.GICollectionStatus = Convert.ToInt32(rw["GICollectionStatus"]);
             this.GICollectionComment = Convert.ToString(rw["GICollectionComment"]);
-            //this.SurplusRateUnique = String.IsNullOrEmpty(rw["SurplusRateUnique"].ToString()) ? clsGlobals.GIPar.SurplusRateUnique : Convert.ToDouble(rw["SurplusRateUnique"]);
-            //this.SurplusRateCommon = String.IsNullOrEmpty(rw["SurplusRateCommon"].ToString()) ? clsGlobals.GIPar.SurplusRateCommon : Convert.ToDouble(rw["SurplusRateCommon"]);
-            //this.SurplusRateIdentified = String.IsNullOrEmpty(rw["SurplusRateIdentified"].ToString()) ? clsGlobals.GIPar.SurplusRateIdentified : Convert.ToDouble(rw["SurplusRateIdentified"]);
-            //this.SurplusRateOS = String.IsNullOrEmpty(rw["SurplusRateOS"].ToString()) ? clsGlobals.GIPar.SurplusRateOS : Convert.ToDouble(rw["SurplusRateOS"]);
             this.CreatedByUserID = String.IsNullOrEmpty(rw["CreatedByUserID"].ToString()) ? 0 : Convert.ToInt32(rw["CreatedByUserID"]);
             this.ModifiedByUserID = String.IsNullOrEmpty(rw["ModifiedByUserID"].ToString()) ? 0 : Convert.ToInt32(rw["ModifiedByUserID"]);
             this.DeletedByUserID = String.IsNullOrEmpty(rw["DeletedByUserID"].ToString()) ? 0 : Convert.ToInt32(rw["DeletedByUserID"]);

@@ -103,7 +103,6 @@ namespace prjGIUnimage
 
         private void DeactivateTexts()
         {
-            //lblInfo.Visible = false;
             txtCode.ReadOnly = true;
             txtCreatedD.ReadOnly = true;
             txtCreatedU.ReadOnly = true;
@@ -125,8 +124,6 @@ namespace prjGIUnimage
                 myPequ.GetProductEquiByPColorID(clsGlobals.GIPar.ProductColorID);
                 clsGlobals.ProductEquiID = myPequ.ProductEquiID;
                 MessageBox.Show("Exite equivalencia avec " + myPequ.CodeEqui + " en " + myPequ.NameSeason);
-                //delEquivProd frPE = new delEquivProd();
-                //frPE.Show();
             }
             if (frOP == null)
             {
@@ -134,7 +131,6 @@ namespace prjGIUnimage
                 frOP.MdiParent = this.MdiParent;
                 frOP.FormClosed += new FormClosedEventHandler(frOPFromClosed);
                 frOP.Show();
-                //this.Close();
             }
         }
 

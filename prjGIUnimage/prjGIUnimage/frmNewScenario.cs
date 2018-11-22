@@ -45,20 +45,6 @@ namespace prjGIUnimage
             cboSecondSeason.DataSource = lstSecSea.Elements;
             cboSecondSeason.SelectedIndex = -1;
 
-
-
-
-            //eleSaiCur.GetElementsSaison();
-            //eleSaiPre.GetElementsSaison();
-
-            //cboCurrentSaison.DisplayMember = "Code";
-            //cboCurrentSaison.ValueMember = "ElementID";
-            //cboCurrentSaison.DataSource = eleSaiCur.Elements;
-
-            //cboPreviousSaison.DisplayMember = "Code";
-            //cboPreviousSaison.ValueMember = "ElementID";
-            //cboPreviousSaison.DataSource = eleSaiPre.Elements;
-
             cboStatus.DisplayMember = "DataDesc_fra";
             cboStatus.ValueMember = "DataValue";
             cboStatus.DataSource = lstStatus.Elements;
@@ -70,7 +56,6 @@ namespace prjGIUnimage
 
         private void DeactivateTexts()
         {
-            //lblInfo.Visible = false;
             txtCode.ReadOnly = true;
             txtCreatedD.ReadOnly = true;
             txtCreatedU.ReadOnly = true;
@@ -139,13 +124,11 @@ namespace prjGIUnimage
         {
             txtCode.ReadOnly = false;
             txtDesc.ReadOnly = false;
-            //cboStatus.Enabled = true;
             cboCurrentSaison.Enabled = true;
             btnRecord.Enabled = true;
             btnModify.Enabled = false;
             btnNew.Enabled = false;
             chkSecondSeason.Enabled = true;
-            //cboStatus.SelectedIndex = 0;
         }
 
         private void CleanControls()
@@ -159,7 +142,6 @@ namespace prjGIUnimage
             txtPreviousSeason.Clear();
             cboCurrentSaison.SelectedIndex = -1;
             cboSecondSeason.SelectedIndex = -1;
-            //cboStatus.SelectedIndex = -1;
         }
 
         private void btnModify_Click(object sender, EventArgs e)
@@ -188,16 +170,14 @@ namespace prjGIUnimage
 
         private void btnRecord_Click(object sender, EventArgs e)
         {
-            //lblInfo.Visible = true;
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                //DeactivateApplication();
-                //lblInfo.Visible = true;
                 clsGlobals.GIPar.GetVOParameters();
                 aDiv = TextToScenario();
                 clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
                 clsGlobals.GISeasonID = aDiv.GISeasonID;
                 clsGlobals.OriginOfStoredProc = 1;
+                
                 //abre formulario de espera
                 if (clsFrmGlobals.frES == null)
                 {
@@ -231,21 +211,6 @@ namespace prjGIUnimage
             LinkListScenarios();
             clsFrmGlobals.frES = null;
         }
-
-        //private void InsertVirtualProducts()
-        //{
-        //    clsScSalesHistory mySalesHistory = new clsScSalesHistory();
-        //    clsSeason mySea = new clsSeason();
-
-        //    clsGlobals.reqVirtuals = clsScSalesHistory.GetVirtualProducts(clsGlobals.NextScenarioID);
-
-        //    mySea.GetSeasonByID(clsGlobals.GISeasonID);
-        //    foreach (DataRow myRow in clsGlobals.reqVirtuals.Rows)
-        //    {
-        //        mySalesHistory.CopyVirtualDataRow(myRow);
-        //        mySalesHistory.InsertTotblGIScSalesHistory(mySea.SXSeasonID);
-        //    }
-        //}
 
         private void UpdateEquivalentProducts()
         {
@@ -299,36 +264,15 @@ namespace prjGIUnimage
 
         private void DeactivateApplication()
         {
-            //lblInfo.Visible = true;
-            //txtSearch.Visible = false;
             groupBox1.Visible = false;
             btnModify.Visible = false;
             btnNew.Visible = false;
             btnRecord.Visible = false;
-            //btnFilter.Visible = false;
             btnMenu.Visible = false;
             btnReturn.Visible = false;
             lblScenarios.Visible = false;
             lstScenarios.Visible = false;
         }
-
-        //private bool LoadTabletblGIScSalesHistory(int nextScenarioID, int gISeasonID)
-        //{
-        //    //clsListSeason lstSea = new clsListSeason();
-        //    clsSeason mySea = new clsSeason();
-        //    //lstSea.GetAllSeasons();
-        //    mySea = lstSea.GetSeasonByID(gISeasonID);
-        //    try
-        //    {
-        //        clsSilex.RunStoredProcedure(nextScenarioID, mySea.SXSeasonPrecID, mySea.SXSeasonID);
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //        return false;
-        //    }
-        //}
 
         private void GenerateProductTable()
         {

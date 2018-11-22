@@ -34,9 +34,7 @@ namespace prjGIUnimage
 
         private bool LoadTabletblGIScSalesHistory(int nextScenarioID, int gISeasonID)
         {
-            //clsListSeason lstSea = new clsListSeason();
             clsSeason mySea = new clsSeason();
-            //lstSea.GetAllSeasons();
             mySea.GetSeasonByID(gISeasonID);
             try
             {

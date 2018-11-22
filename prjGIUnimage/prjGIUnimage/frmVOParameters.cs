@@ -110,7 +110,6 @@ namespace prjGIUnimage
             cboDivision.Enabled = true;
             cboPurchaseType.Enabled = true;
             cboSeason.Enabled = true;
-            //cboWhs.Enabled = true;
             btnSave.Enabled = true;
             btnModify.Enabled = false;
         }
@@ -136,7 +135,6 @@ namespace prjGIUnimage
             myPar.DivisionID = Convert.ToInt32(cboDivision.SelectedValue);
             myPar.ExpArrivalDate = Convert.ToDateTime(dtpArrivalDate.Value);
             myPar.ExpShippingDate = Convert.ToDateTime(dtpShipDate.Value);
-            //myPar.GIParameterID = Convert.ToInt32("100");
             myPar.PurchaseTypeID = Convert.ToInt32(cboPurchaseType.SelectedValue);
             myPar.ReferenceNo1 = Convert.ToString(txtRef1.Text.Trim());
             myPar.ReferenceNo2 = Convert.ToString(txtRef2.Text.Trim());

@@ -207,8 +207,6 @@ namespace prjGIUnimage.bus
             this.QtyVOOpen2 = 0;
             this.RetailPrice = string.IsNullOrEmpty(rw["RetailPrice"].ToString()) ? 0 : Convert.ToDouble(rw["RetailPrice"]);
             this.SalesPrice = string.IsNullOrEmpty(rw["SalesPrice"].ToString()) ? 0 : Convert.ToDouble(rw["SalesPrice"]);
-            //this.ScSalesHistoryID = Convert.ToInt32(rw["ScSalesHistoryID"]);
-            //this.SeasonID = Convert.ToInt32(rw["SeasonID"]);
             this.ShortProductCode = Convert.ToString(rw["VirtualShortProductCode"]);
             this.SizeDesc = Convert.ToString(rw["SizeDesc"]);
             this.SizeOrder = Convert.ToInt32(rw["VirtualSizeOrder"]);
@@ -325,11 +323,7 @@ namespace prjGIUnimage.bus
                 "AND[ProductColorID] = " + ele.ProductColorID + " " +
                 "AND[ProductCatID] = " + ele.ProductCatID + " " +
                 "AND[SizeDesc] = '" + ele.Size + "'";
-            //string sql = "SELECT [ScSalesHistoryID] FROM " + clsGlobals.Gesin + "[tblGIScSalesHistory] " +
-            //    "WHERE[ScenarioID] = " + scenarioID + " AND[ProductID] = " + ele.ProductID + " AND[ProductColorID] = " +
-            //    ele.ProductColorID + " AND[ProductDimID] = " + ele.ProductDimID + " AND[ProductCatID] = " + ele.ProductCatID +
-            //    " AND[DimID] = " + ele.DimID + " AND[CatID] = " + ele.CatID + " AND[ProductGroupID] = " + ele.ProductGroupID +
-            //    " AND[ProductSubGroupID] = " + ele.ProductSubGroupID + " AND[ColorID] = " + ele.ColorID + " AND[SizeDesc] = '" + ele.Size + "'";
+            
             Conexion.StartSession();
             int tmpID = (int)Conexion.GDatos.BringScalarValueSql(sql);
             Conexion.EndSession();

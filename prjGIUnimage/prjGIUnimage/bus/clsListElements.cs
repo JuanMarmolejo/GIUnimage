@@ -83,9 +83,7 @@ namespace prjGIUnimage.bus
             string sql = "SELECT COUNT(DISTINCT PG.ProductGroupID)FROM " + clsGlobals.Gesin + "[tblGIScProduct] AS SC INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX " +
                 "ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXProductGroup] AS PG ON SX.ProductGroupID = PG.ProductGroupID " +
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON (GI.CollectionID = SX.CollectionID AND SC.ScenarioID = GI.ScenarioID) WHERE GI.ScenarioID = " + clsGlobals.GIPar.ScenarioID;
-            //string sql = "SELECT COUNT(DISTINCT PG.ProductGroupID)FROM [tblGIScProduct] AS SC INNER JOIN [tblSXProduct] AS SX " +
-            //    "ON SC.ProductID = SX.ProductID INNER JOIN [tblSXProductGroup] AS PG ON SX.ProductGroupID=PG.ProductGroupID WHERE SC.ScenarioID="
-            //    + clsGlobals.GIPar.ScenarioID;
+            
             Conexion.StartSession();
             int Num = Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
             Conexion.EndSession();
@@ -100,10 +98,7 @@ namespace prjGIUnimage.bus
                 "ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXProductGroup] AS PG ON SX.ProductGroupID = PG.ProductGroupID " +
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON (GI.CollectionID = SX.CollectionID AND SC.ScenarioID = GI.ScenarioID) WHERE GI.ScenarioID = " +
                 clsGlobals.GIPar.ScenarioID;
-            //string sql = "SELECT COUNT(DISTINCT SX.ShortProductCode) FROM[tblGIScProduct] AS SC INNER JOIN[tblSXProduct] AS SX " +
-            //    "ON SC.ProductID = SX.ProductID INNER JOIN[tblSXProductGroup] AS PG ON SX.ProductGroupID = PG.ProductGroupID WHERE SC.ScenarioID = "
-            //    + clsGlobals.GIPar.ScenarioID + " ";
-
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND (SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -122,9 +117,7 @@ namespace prjGIUnimage.bus
             string sql = "SELECT COUNT(DISTINCT[ColorID]) FROM " + clsGlobals.Gesin + "[tblGIScProduct] AS SC INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX " +
                 "ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON (GI.CollectionID = SX.CollectionID AND SC.ScenarioID = GI.ScenarioID) " +
                 "WHERE GI.ScenarioID = " + clsGlobals.GIPar.ScenarioID;
-            //string sql = "SELECT COUNT(DISTINCT[ColorID])FROM [tblGIScProduct] AS SC INNER JOIN [tblSXProduct] AS SX ON SC.ProductID=SX.ProductID " +
-            //    "WHERE SC.ScenarioID=" + clsGlobals.GIPar.ScenarioID + " ";
-
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND(SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -152,10 +145,7 @@ namespace prjGIUnimage.bus
                 "ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC ON SC.ProductColorID = PC.ProductColorID " +
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON (GI.CollectionID = SX.CollectionID AND SC.ScenarioID = GI.ScenarioID) WHERE GI.ScenarioID = " +
                 clsGlobals.GIPar.ScenarioID;
-            //string sql = "SELECT COUNT(DISTINCT SX.CollectionID)FROM[tblGIScProduct] AS SC INNER JOIN[tblSXProduct] AS SX " +
-            //    "ON SC.ProductID=SX.ProductID INNER JOIN [tblSXProductColor] AS PC ON SC.ProductColorID=PC.ProductColorID WHERE SC.ScenarioID = "
-            //    + clsGlobals.GIPar.ScenarioID + " ";
-
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND(SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -289,10 +279,7 @@ namespace prjGIUnimage.bus
                 "ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC ON SC.ProductColorID = PC.ProductColorID " +
                 "INNER JOIN" + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON (GI.CollectionID = SX.CollectionID AND SC.ScenarioID = GI.ScenarioID) WHERE(GI.[CollectionID] = 101) " +
                 "AND SC.ScenarioID = " + clsGlobals.GIPar.ScenarioID;
-            //string sql = "SELECT COUNT(DISTINCT[ScProductID])FROM[tblGIScProduct] AS SC INNER JOIN[tblSXProduct] AS SX ON SC.ProductID = SX.ProductID " +
-            //    "INNER JOIN [tblSXProductColor] AS PC ON SC.ProductColorID=PC.ProductColorID WHERE(SX.[CollectionID] = 101) AND SC.ScenarioID = "
-            //    + clsGlobals.GIPar.ScenarioID + " ";
-
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND(SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -336,10 +323,7 @@ namespace prjGIUnimage.bus
                 "ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC ON SC.ProductColorID = PC.ProductColorID " +
                 "INNER JOIN" + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON (GI.CollectionID = SX.CollectionID AND SC.ScenarioID = GI.ScenarioID) WHERE(GI.[CollectionID] = 101) " +
                 "AND SC.ScenarioID = " + clsGlobals.GIPar.ScenarioID;
-            //string sql = "SELECT COUNT(DISTINCT[ScProductID])FROM[tblGIScProduct] AS SC INNER JOIN[tblSXProduct] AS SX ON SC.ProductID = SX.ProductID " +
-            //    "INNER JOIN [tblSXProductColor] AS PC ON SC.ProductColorID=PC.ProductColorID WHERE(SX.[CollectionID] = 101) AND SC.ScenarioID = "
-            //    + clsGlobals.GIPar.ScenarioID + " ";
-
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND(SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -385,10 +369,7 @@ namespace prjGIUnimage.bus
                 "ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC ON SC.ProductColorID = PC.ProductColorID " +
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON (GI.CollectionID = SX.CollectionID AND SC.ScenarioID = GI.ScenarioID) WHERE(GI.[CollectionID] = 112) " +
                 "AND SC.ScenarioID = " + clsGlobals.GIPar.ScenarioID;
-            //string sql = "SELECT COUNT(DISTINCT[ScProductID])FROM[tblGIScProduct] AS SC INNER JOIN[tblSXProduct] AS SX " +
-            //    "ON SC.ProductID = SX.ProductID INNER JOIN [tblSXProductColor] AS PC ON SC.ProductColorID=PC.ProductColorID WHERE(SX.[CollectionID] = 112) " +
-            //    "AND SC.ScenarioID = " + clsGlobals.GIPar.ScenarioID + " ";
-
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND(SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -432,10 +413,7 @@ namespace prjGIUnimage.bus
                 "ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC ON SC.ProductColorID = PC.ProductColorID " +
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON (GI.CollectionID = SX.CollectionID AND SC.ScenarioID = GI.ScenarioID) WHERE(GI.[CollectionID] = 112) " +
                 "AND SC.ScenarioID = " + clsGlobals.GIPar.ScenarioID;
-            //string sql = "SELECT COUNT(DISTINCT[ScProductID])FROM[tblGIScProduct] AS SC INNER JOIN[tblSXProduct] AS SX " +
-            //    "ON SC.ProductID = SX.ProductID INNER JOIN [tblSXProductColor] AS PC ON SC.ProductColorID=PC.ProductColorID WHERE(SX.[CollectionID] = 112) " +
-            //    "AND SC.ScenarioID = " + clsGlobals.GIPar.ScenarioID + " ";
-
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND(SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -485,39 +463,11 @@ namespace prjGIUnimage.bus
             return "";
         }
 
-        //internal void FilterListBy(string text, object selectedValue)
-        //{
-        //    string sql = "SELECT [GICollectionID], [CollectionCode],[CollectionName] FROM " + clsGlobals.Gesin + "[tblGICollection] AS GI " +
-        //        "INNER JOIN " + clsGlobals.Silex + "[tblSXCollection] AS SX ON GI.CollectionID=SX.CollectionID where [CollectionCode] like '%" + text + "%' ";
-        //    if (Convert.ToInt32(selectedValue) != 2)
-        //    {
-        //        sql += "and[GICollectionStatus] = " + selectedValue + " ";
-        //    }
-        //    sql += "AND GICollectionStatus != 9 order by [CollectionCode]";
-        //    Conexion.StartSession();
-        //    DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
-        //    Conexion.EndSession();
-        //    Elements = CopyDataTable(myTb);
-        //}
-
         internal void FilterElements(string text)
         {
             List<clsElement> newList = Elements.Where(m => m.Code.ToUpper().Contains(text) || m.Name.ToUpper().Contains(text)).ToList();
             Elements = newList;
         }
-
-        //internal void FilterProduct(string text)
-        //{
-        //    List<clsElement> newList = Elements.Where(m => m.Code.Contains(text) || m.Name.ToUpper().Contains(text)).ToList();
-        //    Elements = newList;
-        //    //string sql = "SELECT [GIProductID], SX.ProductCode, CL.ColorName_fra FROM " + clsGlobals.Gesin + "[tblGIProduct] AS GI INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX " +
-        //    //    "ON GI.[ProductID]=SX.[ProductID] INNER JOIN " + clsGlobals.Silex + "[tblSXColor] AS CL ON GI.ColorID=CL.ColorID WHERE [ProductStatus] != 9 " +
-        //    //    "AND [ProductCode] LIKE '%" + text + "%' ORDER BY [ProductCode]";
-        //    //Conexion.StartSession();
-        //    //DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
-        //    //Conexion.EndSession();
-        //    //Elements = CopyDataTable(myTb);
-        //}
 
         internal void GetBillFrom()
         {
@@ -531,9 +481,6 @@ namespace prjGIUnimage.bus
 
         internal void GetCollections(int DivisionID)
         {
-            //String sql = "SELECT SX.[CollectionID],[CollectionCode],[CollectionName] FROM[tblGIScCollection] AS GI INNER JOIN[tblSXCollection] AS SX " +
-            //    "ON GI.CollectionID = SX.CollectionID WHERE GI.ScenarioID = " + clsGlobals.GIPar.ScenarioID + " AND[CollectionStatus] != 9 " +
-            //    "AND([DivisionID] = " + DivisionID + " OR SX.[CollectionID] = 1 OR SX.[CollectionID] = 50) ORDER BY[CollectionCode]";
             string sql = "SELECT [CollectionID],[CollectionCode],[CollectionName] FROM " + clsGlobals.Silex + "[tblSXCollection] WHERE[CollectionStatus] != 9 AND([DivisionID] = "
                 + DivisionID + " OR[CollectionID] = 1 OR[CollectionID] = 50) ORDER BY[CollectionCode]";
             Conexion.StartSession();
@@ -596,22 +543,9 @@ namespace prjGIUnimage.bus
             Elements = CopyDataTable(myTb);
         }
 
-        //internal void FilterSelectedProduct(string text)
-        //{
-        //    List<clsElement> newList = Elements.Where(m => m.Code.Contains(text) || m.Name.ToUpper().Contains(text)).ToList();
-        //    Elements = newList;
-        //}
-
-        //internal void FilterGroupsToWork(string text)
-        //{
-        //    List<clsElement> newList = Elements.Where(m => m.Code.Contains(text) || m.Name.ToUpper().Contains(text)).ToList();
-        //    Elements = newList;
-        //}
-
         internal void GetListCollections()
         {
             bool flag = true;
-            //2018-07-13 14:43 CAMBIO REQUET
             string sql = "SELECT [ProductColorID],[ProductCode],[ColorName_fra]" +
                 "FROM " + clsGlobals.Gesin + "[tblGIScProduct] AS SC " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX ON SC.ProductID=SX.ProductID " +
@@ -621,10 +555,7 @@ namespace prjGIUnimage.bus
                 "WHERE SC.ScenarioID=" + clsGlobals.GIPar.ScenarioID +
                 " AND SX.CollectionID!=112 AND SX.CollectionID!=101 AND CT.CollectionStatus=0 " +
                 "AND [ProductColorID] NOT IN (SELECT DISTINCT [ProductColorID] FROM " + clsGlobals.Silex + "[tblSXCostCardDetail])";
-            //string sql = "SELECT DISTINCT scSH.[ProductColorID],[ProductCode],[ColorName_eng] FROM[tblGIScSalesHistory] AS scSH " +
-            //    "INNER JOIN[tblGIScCollection] AS giCL ON(scSH.CollectionID = giCL.CollectionID AND scSH.ScenarioID = giCL.ScenarioID) " +
-            //    "INNER JOIN[tblGIScProduct] AS giPD ON(scSH.ProductID = GIPD.ProductID AND scSH.ScenarioID = giCL.ScenarioID) WHERE scSH.ScenarioID = " +
-            //    clsGlobals.GIPar.ScenarioID + " AND scSH.CollectionID!=112 AND scSH.CollectionID!=101 ";
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND (SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -663,7 +594,6 @@ namespace prjGIUnimage.bus
         internal void GetListCommons()
         {
             bool flag = true;
-            //2018-07-13 14:48 CAMBIO REQUET
             string sql = "SELECT [ProductColorID],[ProductCode],[ColorName_fra]FROM " + clsGlobals.Gesin + "[tblGIScProduct] AS SC " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX ON SC.ProductID=SX.ProductID " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXColor] AS CL ON SC.ColorID=CL.ColorID " +
@@ -671,10 +601,7 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS giCL ON(CT.CollectionID = giCL.CollectionID AND SC.ScenarioID = giCL.ScenarioID) " +
                 "WHERE SC.ScenarioID=" + clsGlobals.GIPar.ScenarioID
                 + " AND SX.CollectionID=101 ";
-            //string sql = "SELECT DISTINCT scSH.[ProductColorID],[ProductCode],[ColorName_eng] FROM[tblGIScSalesHistory] AS scSH " +
-            //    "INNER JOIN[tblGIScCollection] AS giCL ON(scSH.CollectionID = giCL.CollectionID AND scSH.ScenarioID = giCL.ScenarioID) " +
-            //    "INNER JOIN[tblGIScProduct] AS giPD ON(scSH.ProductID = GIPD.ProductID AND scSH.ScenarioID = giCL.ScenarioID) WHERE scSH.ScenarioID = " +
-            //    clsGlobals.GIPar.ScenarioID + " AND scSH.CollectionID=101 ";
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND (SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -713,7 +640,6 @@ namespace prjGIUnimage.bus
         internal void GetListUnidentified()
         {
             bool flag = true;
-            //2018-07-13 14:49 CAMBIO REQUET
             string sql = "SELECT [ProductColorID],[ProductCode],[ColorName_fra]FROM " + clsGlobals.Gesin + "[tblGIScProduct] AS SC " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX ON SC.ProductID=SX.ProductID " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXColor] AS CL ON SC.ColorID=CL.ColorID " +
@@ -721,10 +647,7 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS giCL ON(CT.CollectionID = giCL.CollectionID AND SC.ScenarioID = giCL.ScenarioID) " +
                 "WHERE SC.ScenarioID=" + clsGlobals.GIPar.ScenarioID + 
                 " AND SX.CollectionID=112 ";
-            //string sql = "SELECT DISTINCT scSH.[ProductColorID],[ProductCode],[ColorName_eng] FROM[tblGIScSalesHistory] AS scSH " +
-            //    "INNER JOIN[tblGIScCollection] AS giCL ON(scSH.CollectionID = giCL.CollectionID AND scSH.ScenarioID = giCL.ScenarioID) " +
-            //    "INNER JOIN[tblGIScProduct] AS giPD ON(scSH.ProductID = GIPD.ProductID AND scSH.ScenarioID = giCL.ScenarioID) WHERE scSH.ScenarioID = " +
-            //    clsGlobals.GIPar.ScenarioID + " AND scSH.CollectionID=112 ";
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND (SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -770,16 +693,6 @@ namespace prjGIUnimage.bus
             Elements = CopyDataTable(myTb);
         }
 
-        //internal void GetProductColor()
-        //{
-        //    string sql = "SELECT [ProductColorID], SX.ProductCode, CL.ColorName_fra FROM " + clsGlobals.Gesin + "[tblGIProduct] AS GI INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX " +
-        //        "ON GI.[ProductID]=SX.[ProductID] INNER JOIN " + clsGlobals.Silex + "[tblSXColor] AS CL ON GI.ColorID=CL.ColorID WHERE [ProductStatus] != 9 ORDER BY [ProductCode]";
-        //    Conexion.StartSession();
-        //    DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
-        //    Conexion.EndSession();
-        //    Elements = CopyDataTable(myTb);
-        //}
-
         internal void GetPurchaseType()
         {
             string sql = "SELECT [PurchaseTypeID],[PurchaseTypeName_fra],[PurchaseTypeDesc_fra] FROM " + clsGlobals.Silex + "[tblSXPurchaseType] WHERE[PurchaseTypeStatus] != 9 " +
@@ -818,30 +731,19 @@ namespace prjGIUnimage.bus
 
         internal void SelectGroups()
         {
-            //2018-07-12 12:07 Cambio de Requet
             clsGlobals.sql = "SELECT DISTINCT SX.[ProductGroupID] ,[GroupName_fra] ,[GroupDesc_fra] FROM " + clsGlobals.Gesin + "[tblGIScProduct] AS SC " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXProductGroup] AS PG " +
                 "ON SX.ProductGroupID = PG.ProductGroupID INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON GI.CollectionID=SX.CollectionID " +
                 "WHERE SC.ScenarioID=" + clsGlobals.GIPar.ScenarioID + " ORDER BY[GroupName_fra]";
-            //clsGlobals.sql = "SELECT DISTINCT scSH.[ProductGroupID] ,scSH.GroupName, sxPG.GroupDesc_fra FROM[tblGIScSalesHistory] AS scSH " +
-            //    "INNER JOIN[tblSXProductGroup] AS sxPG ON scSH.ProductGroupID=sxPG.ProductGroupID INNER JOIN[tblGIScCollection] AS giCL " +
-            //    "ON (scSH.CollectionID=giCL.CollectionID AND scSH.ScenarioID=giCL.ScenarioID)INNER JOIN[tblGIScProduct] AS giPD " +
-            //    "ON (scSH.ProductID=giPD.ProductID AND scSH.ScenarioID=giPD.ScenarioID)WHERE scSH.ScenarioID=" + clsGlobals.GIPar.ScenarioID +
-            //    " ORDER BY scSH.GroupName";
         }
 
         internal void SelectStyles()
         {
             bool flag = true;
-            //2018-07-13 9:15 cambio requet
             String sql = "SELECT DISTINCT [ShortProductCode] AS SPC, [ShortProductCode] ,[DefaultCostCardID] FROM " + clsGlobals.Gesin + "[tblGIScProduct] AS SC " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX ON SC.ProductID=SX.ProductID INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON GI.CollectionID=SX.CollectionID " +
                 "WHERE SC.ScenarioID=" + clsGlobals.GIPar.ScenarioID + " ";
-            //String sql = "SELECT DISTINCT [ShortProductCode] AS SPC, [ShortProductCode], [ShortProductCode]FROM[tblGIScSalesHistory] AS scHS " +
-            //    "INNER JOIN[tblGIScCollection] AS giCL ON (scHS.CollectionID = giCL.CollectionID AND scHS.ScenarioID=giCL.ScenarioID) " +
-            //    "INNER JOIN[tblGIScProduct] AS giPD ON(scHS.ProductID = GIPD.ProductID AND scHS.ScenarioID = giPD.ScenarioID)WHERE scHS.ScenarioID=" 
-            //    + clsGlobals.GIPar.ScenarioID + " ";
-
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND (SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -855,15 +757,11 @@ namespace prjGIUnimage.bus
         internal void SelectColors()
         {
             bool flag = true;
-            //2018-07-13 9:28 cambio requet
             string sql = "SELECT DISTINCT [ColorID], [ColorCode], [ColorName_fra]FROM " + clsGlobals.Silex + "[tblSXColor]" +
                 "WHERE [ColorID] IN (SELECT DISTINCT SC.[ColorID] FROM " + clsGlobals.Gesin + "[tblGIScProduct] AS SC " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX ON SC.ProductID=SX.ProductID INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI " +
                 "ON GI.CollectionID=SX.CollectionID WHERE GI.ScenarioID= " + clsGlobals.GIPar.ScenarioID;
-            //string sql = "SELECT DISTINCT scHS.[ColorID], [ColorCode], [ColorName_eng]FROM[tblGIScSalesHistory] AS scHS " +
-            //    "INNER JOIN[tblGIScCollection] AS giCL ON (scHS.CollectionID = giCL.CollectionID AND scHS.ScenarioID=giCL.ScenarioID)" +
-            //    "INNER JOIN[tblGIScProduct] AS giPD ON(scHS.ProductID = GIPD.ProductID AND scHS.ScenarioID = GICL.ScenarioID)WHERE scHS.ScenarioID = " + 
-            //    clsGlobals.GIPar.ScenarioID + " ";
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND (SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";
@@ -886,19 +784,12 @@ namespace prjGIUnimage.bus
         internal void SelectCollections()
         {
             bool flag = true;
-            //2018-08-14 14:05
+            
             string sql = "SELECT DISTINCT GI.[CollectionID], [CollectionCode], [CollectionDesc] FROM " + clsGlobals.Gesin + "[tblGIScCollection] AS GI " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXCollection] AS CT ON GI.CollectionID = CT.CollectionID INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX " +
                 "ON CT.CollectionID = SX.CollectionID INNER JOIN " + clsGlobals.Gesin + "[tblGIScProduct] AS SC ON SC.ProductID = SX.ProductID " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC ON SX.ProductID = PC.ProductID WHERE GI.ScenarioID = " + clsGlobals.GIPar.ScenarioID;
-            //2018-07-13 9:44 cambio requet
-            //string sql = "SELECT DISTINCT SX.[CollectionID], [CollectionCode], [CollectionDesc] FROM[tblGIScProduct] AS SC " +
-            //    "INNER JOIN[tblSXProduct] AS SX ON SC.ProductID = SX.ProductID INNER JOIN[tblSXCollection] AS CT ON SX.CollectionID = CT.CollectionID " +
-            //    "INNER JOIN[tblSXProductColor] PC ON SX.ProductID = PC.ProductID WHERE SC.ScenarioID = " + clsGlobals.GIPar.ScenarioID + " ";
-            //string sql = "SELECT DISTINCT scHS.[CollectionID], scHS.[CollectionCode], [CollectionDesc] FROM[tblGIScSalesHistory] AS scHS " +
-            //    "INNER JOIN[tblGIScCollection] AS giCL ON (scHS.CollectionID = giCL.CollectionID AND scHS.ScenarioID=giCL.ScenarioID)" +
-            //    "INNER JOIN[tblGIScProduct] AS giPD ON(scHS.ProductID = GIPD.ProductID AND scHS.ScenarioID = giPD.ScenarioID)" +
-            //    "INNER JOIN[tblSXCollection] AS CT ON scHS.CollectionID = CT.CollectionID WHERE scHS.ScenarioID=" + clsGlobals.GIPar.ScenarioID + " ";
+            
             foreach (clsElement ele in clsGlobals.ListGroups.Elements)
             {
                 sql += flag ? "AND (SX.ProductGroupID=" + ele.ElementID + " " : "OR SX.ProductGroupID=" + ele.ElementID + " ";

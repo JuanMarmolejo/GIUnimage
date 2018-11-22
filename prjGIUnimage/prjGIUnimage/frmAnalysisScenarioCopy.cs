@@ -237,10 +237,8 @@ namespace prjGIUnimage
             txtVONote.ReadOnly = false;
             cboStatus.Enabled = true;
             cboBillFrom.Enabled = true;
-            //cboDivision.Enabled = true;
             cboPurchaseType.Enabled = true;
             cboSeason.Enabled = true;
-            //cboCollection.Enabled = true;
             dtpArrivalDate.Enabled = true;
             dtpShipDate.Enabled = true;
             btnSave.Enabled = true;
@@ -272,7 +270,6 @@ namespace prjGIUnimage
             mySce.GIScenarioID = clsGlobals.GIPar.ScenarioID;
             mySce.ScenarioDesc = txtDesc.Text;
             mySce.ScenarioStatus = Convert.ToInt32(cboStatus.SelectedValue);
-
 
             mySce.CollectionID = Convert.ToInt32(cboCollection.SelectedValue);
             mySce.DefaultWarehouseID = Convert.ToInt32(cboWhs.SelectedValue); ;
@@ -374,8 +371,6 @@ namespace prjGIUnimage
 
         private void FilterQuery()
         {
-            //bool flag = true;
-            //string sql = "";
             if (dgvRes1.Rows.Count > 0)
             {
                 qtyGroups = dgvRes1.Rows.Count;
@@ -434,7 +429,6 @@ namespace prjGIUnimage
             }
             else
             {
-                //MessageBox.Show("la sélection n'a pas été implémentée.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 NewSelection();
             }
         }
@@ -462,10 +456,6 @@ namespace prjGIUnimage
             }
             else
             {
-                //sql = "SELECT DISTINCT [ShortProductCode] as spc ,[ShortProductCode] ,[ShortProductCode] " +
-                //    "FROM[sxUnimageDev].[dbo].[tblSXProduct] " +
-                //    "WHERE[VirtualStatus] = 0 AND[ProductStatus] = 0 " +
-                //    "ORDER BY spc";
                 MessageBox.Show("Un groupe doit être sélectionné.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }

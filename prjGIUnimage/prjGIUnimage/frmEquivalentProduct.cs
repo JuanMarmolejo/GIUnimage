@@ -46,11 +46,8 @@ namespace prjGIUnimage
             lstPeq.GetAllEquivalentProducts();
             dgvResult.DataSource = lstPeq.Elements;
             dgvResult.Columns[0].Visible = false;
-            //dgvResult.Columns[1].Visible = false;
             dgvResult.Columns[2].Visible = false;
             dgvResult.Columns[3].Visible = false;
-            //dgvResult.Columns[4].Visible = false;
-            //dgvResult.Columns[5].Visible = false;
             dgvResult.Columns[6].Visible = false;
             dgvResult.AutoResizeColumns();
         }
@@ -60,29 +57,8 @@ namespace prjGIUnimage
             string myText = txtSearchProduct.Text.Trim().ToUpper();
 
             Ele.GetProducts();
-            //Ele.FilterProduct(myText);
             Ele.FilterElements(myText);
             LinkListCollections();
-
-            //if (!String.IsNullOrEmpty(myText))
-            //{
-            //    Ele.GetProducts();
-            //    Ele.FilterProduct(myText);
-            //    if (Ele.Quantity > 0)
-            //    {
-            //        lstProducts.DataSource = null;
-            //        LinkListCollections();
-            //    }
-            //    else
-            //    {
-            //        LinkListCollections();
-            //    }
-            //}
-            //else
-            //{
-            //    Ele.GetProducts();
-            //    LinkListCollections();
-            //}
         }
 
         private void LinkListCollections()

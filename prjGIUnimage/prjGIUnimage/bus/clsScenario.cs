@@ -52,7 +52,6 @@ namespace prjGIUnimage.bus
             this.ScenarioDesc = Convert.ToString(rw["ScenarioDesc"]);
             this.GISeasonID = String.IsNullOrEmpty(rw["GISeasonID"].ToString()) ? 0 : Convert.ToInt32(rw["GISeasonID"]);
             this.ScenarioStatus = Convert.ToInt32(rw["ScenarioStatus"]);
-            //this.SurplusRate = Convert.ToInt32(rw["SurplusRate"]);
             this.SurplusRateUnique = Convert.ToInt32(rw["SurplusRateUnique"]);
             this.SurplusRateCommon = Convert.ToInt32(rw["SurplusRateCommon"]);
             this.SurplusRateIdentified = Convert.ToInt32(rw["SurplusRateIdentified"]);
@@ -154,9 +153,6 @@ namespace prjGIUnimage.bus
 
         internal void UpdateScenario()
         {
-            //2018-07-19 MODIFIE REQUET
-            //string sql = "UPDATE [tblGIScenario] SET [ScenarioStatus] = " + this.ScenarioStatus + ", [ScenarioDesc] = '" + this.ScenarioDesc 
-            //    + "', [ModifiedByUserID] = " + clsGlobals.ActiveUser + ", [ModifiedDate] = GETDATE() WHERE [GIScenarioID]=" + clsGlobals.ActiveScenario;
             string sql = "UPDATE " + clsGlobals.Gesin + "[tblGIScenario] SET [ScenarioDesc] = '" + ScenarioDesc + "', [ScenarioStatus] = " + ScenarioStatus +
                 ", [ReferenceNo1] = '" + ReferenceNo1 + "', [ReferenceNo2] = '" + ReferenceNo2 + "', [ExpShippingDate] = '" + 
                 ExpShippingDate.ToString("yyyy-MM-dd") + "', [ExpArrivalDate] = '" + ExpArrivalDate.ToString("yyyy-MM-dd") + "', [VendorID] = " + 

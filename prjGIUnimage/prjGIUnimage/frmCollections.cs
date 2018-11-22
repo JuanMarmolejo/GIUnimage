@@ -72,7 +72,6 @@ namespace prjGIUnimage
             {
                 cboFilter.Items.Add(ele.DataDesc_fra);
             }
-            //cboFilter.Items.Add("Tout");
             cboFilter.SelectedIndex = 3;
         }
 
@@ -83,12 +82,8 @@ namespace prjGIUnimage
                 txtStatusSX.Text = clsSilex.CollectionStatus(Col.CollectionID);
                 txtCode.Text = Col.GetCollectionCode();
                 txtComment.Text = Col.GICollectionComment;
-                //txtCommon.Text = Col.SurplusRateCommon.ToString();
-                //txtIdentified.Text = Col.SurplusRateIdentified.ToString();
                 txtModifiedD.Text = Convert.ToString(Col.ModifiedDate);
                 txtModifiedU.Text = clsUser.GetUserName(Col.ModifiedByUserID);
-                //txtOS.Text = Col.SurplusRateOS.ToString();
-                //txtUnique.Text = Col.SurplusRateUnique.ToString();
                 cboStatus.SelectedIndex = Col.GICollectionStatus < 2 ? Col.GICollectionStatus : -1;
                 txtName.Text = Col.GetCollectionName();
                 txtDesc.Text = Col.GetCollectionDesc();
@@ -104,12 +99,8 @@ namespace prjGIUnimage
         {
             txtCode.ReadOnly = true;
             txtComment.ReadOnly = true;
-            //txtCommon.ReadOnly = true;
-            //txtIdentified.ReadOnly = true;
             txtModifiedD.ReadOnly = true;
             txtModifiedU.ReadOnly = true;
-            //txtOS.ReadOnly = true;
-            //txtUnique.ReadOnly = true;
             txtDivision.ReadOnly = true;
             txtName.ReadOnly = true;
             txtDesc.ReadOnly = true;
@@ -215,7 +206,6 @@ namespace prjGIUnimage
                 current = 0;
                 if (!String.IsNullOrEmpty(txtSearch.Text))
                 {
-                    //eleCol.FilterListBy(txtSearch.Text, cboFilter.SelectedIndex);
                     eleCol.GetElementsCollection(cboFilter.SelectedIndex);
                     eleCol.FilterElements(txtSearch.Text.Trim().ToUpper());
                     if (eleCol.Quantity > 0)
@@ -244,16 +234,12 @@ namespace prjGIUnimage
         {
             txtCode.Clear();
             txtComment.Clear();
-            //txtCommon.Clear();
             txtDesc.Clear();
             txtDivision.Clear();
-            //txtIdentified.Clear();
             txtModifiedD.Clear();
             txtModifiedU.Clear();
             txtName.Clear();
             txtStatusSX.Clear();
-            //txtOS.Clear();
-            //txtUnique.Clear();
             cboStatus.SelectedIndex = -1;
         }
 
@@ -288,10 +274,6 @@ namespace prjGIUnimage
         private void ActivateTexts()
         {
             txtComment.ReadOnly = false;
-            //txtCommon.ReadOnly = false;
-            //txtIdentified.ReadOnly = false;
-            //txtOS.ReadOnly = false;
-            //txtUnique.ReadOnly = false;
             cboStatus.Enabled = true;
             btnModify.Enabled = false;
             btnSave.Enabled = true;
@@ -307,13 +289,10 @@ namespace prjGIUnimage
                 aCol = TextToCollection(Convert.ToInt32(tmpSelected));
                 aCol.UpdateGICollection();
                 DeactivateTexts();
-                //eleCol.GetElementsCollection(cboFilter.SelectedIndex);
-                //eleCol.FilterListBy(txtSearch.Text, cboFilter.SelectedIndex);
                 eleCol.GetElementsCollection(cboFilter.SelectedIndex);
                 eleCol.FilterElements(txtSearch.Text.Trim().ToUpper());
                 lstCol.AllCollections();
                 LinkListCollections();
-                //txtSearch.Text = "";
                 lstCollections.SelectedValue = tmpSelected;
                 MessageBox.Show("La collection a été mise à jour correctement", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -325,28 +304,9 @@ namespace prjGIUnimage
             aTem.GICollectionID = SelectedValue;
             aTem.GICollectionStatus = Convert.ToInt32(cboStatus.SelectedValue);
             aTem.GICollectionComment = txtComment.Text;
-            //aTem.SurplusRateCommon = Convert.ToDouble(txtCommon.Text);
-            //aTem.SurplusRateIdentified = Convert.ToDouble(txtIdentified.Text);
-            //aTem.SurplusRateOS = Convert.ToDouble(txtOS.Text);
-            //aTem.SurplusRateUnique = Convert.ToDouble(txtUnique.Text);
-
+            
             return aTem;
         }
-
-        //private void txtUnique_Validating(object sender, CancelEventArgs e)
-        //{
-        //    if (!IsNumber(txtUnique.Text))
-        //    {
-        //        e.Cancel = true;
-        //        txtUnique.Focus();
-        //        errorProvider1.SetError(txtUnique, "Entrez une valeur numérique");
-        //    }
-        //    else
-        //    {
-        //        e.Cancel = false;
-        //        errorProvider1.SetError(txtUnique, null);
-        //    }
-        //}
 
         private bool IsNumber(string text)
         {
@@ -360,50 +320,5 @@ namespace prjGIUnimage
                 return false;
             }
         }
-
-        //private void txtCommon_Validating(object sender, CancelEventArgs e)
-        //{
-        //    if (!IsNumber(txtCommon.Text))
-        //    {
-        //        e.Cancel = true;
-        //        txtCommon.Focus();
-        //        errorProvider1.SetError(txtCommon, "Entrez une valeur numérique");
-        //    }
-        //    else
-        //    {
-        //        e.Cancel = false;
-        //        errorProvider1.SetError(txtCommon, null);
-        //    }
-        //}
-
-        //private void txtIdentified_Validating(object sender, CancelEventArgs e)
-        //{
-        //    if (!IsNumber(txtIdentified.Text))
-        //    {
-        //        e.Cancel = true;
-        //        txtIdentified.Focus();
-        //        errorProvider1.SetError(txtIdentified, "Entrez une valeur numérique");
-        //    }
-        //    else
-        //    {
-        //        e.Cancel = false;
-        //        errorProvider1.SetError(txtIdentified, null);
-        //    }
-        //}
-
-        //private void txtOS_Validating(object sender, CancelEventArgs e)
-        //{
-        //    if (!IsNumber(txtOS.Text))
-        //    {
-        //        e.Cancel = true;
-        //        txtOS.Focus();
-        //        errorProvider1.SetError(txtOS, "Entrez une valeur numérique");
-        //    }
-        //    else
-        //    {
-        //        e.Cancel = false;
-        //        errorProvider1.SetError(txtOS, null);
-        //    }
-        //}
     }
 }

@@ -38,7 +38,6 @@ namespace prjGIUnimage
 
         private void dgvResult_DoubleClick(object sender, EventArgs e)
         {
-            //frOP.Close();
             clsScenario mySce = new clsScenario();
             mySce.GetScenarioByID(clsGlobals.GIPar.ScenarioID);
             clsGlobals.GIPar.ProductColorID = Convert.ToInt32(dgvResult.CurrentRow.Cells[0].Value);
@@ -51,7 +50,6 @@ namespace prjGIUnimage
                 frOP.MdiParent = this.MdiParent;
                 frOP.FormClosed += new FormClosedEventHandler(frOPFromClosed);
                 frOP.Show();
-                //this.Close();
             }
         }
 

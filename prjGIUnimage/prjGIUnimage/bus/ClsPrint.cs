@@ -39,18 +39,6 @@ namespace prjGIUnimage.bus
 
         public void PrintForm()
         {
-            ////Open the print dialog
-            //PrintDialog printDialog = new PrintDialog();
-            //printDialog.Document = _printDocument;
-            //printDialog.UseEXDialog = true;
-
-            ////Get the document
-            //if (DialogResult.OK == printDialog.ShowDialog())
-            //{
-            //    _printDocument.DocumentName = "Test Page Print";
-            //    _printDocument.Print();
-            //}
-
             //Open the print preview dialog
             PrintPreviewDialog objPPdialog = new PrintPreviewDialog();
             objPPdialog.Document = _printDocument;
@@ -59,8 +47,6 @@ namespace prjGIUnimage.bus
 
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            //try
-            //{
             //Set the left margin
             int iLeftMargin = e.MarginBounds.Left;
             //Set the top margin
@@ -192,12 +178,6 @@ namespace prjGIUnimage.bus
                 e.HasMorePages = true;
             else
                 e.HasMorePages = false;
-            //}
-            //catch (Exception exc)
-            //{
-            //    MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK,
-            //       MessageBoxIcon.Error);
-            //}
         }
 
         private void _printDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)

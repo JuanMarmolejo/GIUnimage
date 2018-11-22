@@ -115,7 +115,6 @@ namespace prjGIUnimage
             cboWhs.DataSource = lstWhs.Elements;
 
             lstDivisions.GetDivisions();
-            //lstDivisions.GetDivisions(clsGlobals.GIPar.ProductColorID);
             cboDivision.DisplayMember = "Code";
             cboDivision.ValueMember = "ElementID";
             cboDivision.DataSource = lstDivisions.Elements;
@@ -130,16 +129,6 @@ namespace prjGIUnimage
             cboSeason.DisplayMember = "SeasonName";
             cboSeason.ValueMember = "GISeasonID";
             cboSeason.DataSource = lstSeasons.Elements;
-
-            //lstSea.GetAllSeasons();
-            //cboCurrentSaison.DisplayMember = "SeasonName";
-            //cboCurrentSaison.ValueMember = "GISeasonID";
-            //cboCurrentSaison.DataSource = lstSea.Elements;
-
-            //lstStatus.DataByGroup(102);
-            //cboStatus.DisplayMember = "DataDesc_fra";
-            //cboStatus.ValueMember = "DataValue";
-            //cboStatus.DataSource = lstStatus.Elements;
         }
 
         private void cboDivision_SelectedIndexChanged(object sender, EventArgs e)

@@ -31,7 +31,6 @@ namespace prjGIUnimage
             txtCommon.Text = myPar.SurplusRateCommon.ToString();
             txtIdentified.Text = myPar.SurplusRateIdentified.ToString();
             txtOS.Text = myPar.SurplusRateOS.ToString();
-            //txtSurplus.Text = myPar.SurplusRate.ToString();
             txtUnique.Text = myPar.SurplusRateUnique.ToString();
         }
 
@@ -40,7 +39,6 @@ namespace prjGIUnimage
             txtCommon.ReadOnly = true;
             txtIdentified.ReadOnly = true;
             txtOS.ReadOnly = true;
-            //txtSurplus.ReadOnly = true;
             txtUnique.ReadOnly = true;
             btnModify.Enabled = true;
             btnSave.Enabled = false;
@@ -87,7 +85,6 @@ namespace prjGIUnimage
         {
             clsGIParameter myPar = new clsGIParameter();
 
-            //myPar.SurplusRate = Convert.ToInt32(txtSurplus.Text);
             myPar.SurplusRateCommon = Convert.ToInt32(txtCommon.Text);
             myPar.SurplusRateIdentified = Convert.ToInt32(txtIdentified.Text);
             myPar.SurplusRateOS = Convert.ToInt32(txtOS.Text);

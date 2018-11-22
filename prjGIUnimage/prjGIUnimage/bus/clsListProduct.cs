@@ -123,9 +123,7 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC ON P.ProductID=PC.ProductID " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXColor] AS C ON PC.[ColorID]= C.[ColorID] " +
                 "WHERE[ProductStatus]!=9 AND[VirtualStatus]= 0 AND[ProductColorStatus]!=9";
-            //string sql = "SELECT P.[ProductID],C.[ColorID],[ProductColorStatus] FROM " + clsGlobals.Silex + "[tblSXProduct] AS P " +
-            //    "INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC ON P.ProductID=PC.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXColor] AS C ON PC.[ColorID]=C.[ColorID] " +
-            //    "WHERE [ProductStatus]!=9 AND [VirtualStatus]=0 AND [ProductColorStatus]!=9";
+            
             Conexion.StartSession();
             DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
             Conexion.EndSession();

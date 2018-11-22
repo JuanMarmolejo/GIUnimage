@@ -39,17 +39,6 @@ namespace prjGIUnimage
             {
                 Application.Exit();
             }
-            //if (MessageBox.Show("", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-            //{
-
-            //}
-            //else
-            //{
-            //    clsFrmGlobals.frMP = new frmMenuPpal();
-            //    clsFrmGlobals.frMP.MdiParent = this;
-            //    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPClosed);
-            //    clsFrmGlobals.frMP.Show();
-            //}
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

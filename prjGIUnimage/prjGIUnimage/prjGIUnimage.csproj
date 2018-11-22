@@ -142,12 +142,6 @@
     <Compile Include="frmGroupsToWork.Designer.cs">
       <DependentUpon>frmGroupsToWork.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInventoryModification.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInventoryModification.Designer.cs">
-      <DependentUpon>frmInventoryModification.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,9 +287,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGroupsToWork.resx">
       <DependentUpon>frmGroupsToWork.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInventoryModification.resx">
-      <DependentUpon>frmInventoryModification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

@@ -96,7 +96,6 @@ namespace prjGIUnimage
             cboWhs.ValueMember = "ElementID";
             cboWhs.DataSource = lstWhs.Elements;
 
-            //lstDivisions.GetDivisions();
             lstDivisions.GetDivisions(clsGlobals.GIPar.ProductColorID);
             cboDivision.DisplayMember = "Code";
             cboDivision.ValueMember = "ElementID";
@@ -155,8 +154,6 @@ namespace prjGIUnimage
 
         private void GenerateListOrderedProducts(int v)
         {
-            //lstProOrd.GetParametersVO(myPar);
-            //lstProOrd.GetParametersID(lstSCSales.Elements[0]);
             lstProOrd = new clsListProductOrdered();
 
             foreach (clsScSalesHistory ele in lstSCSales.Elements)
@@ -202,8 +199,6 @@ namespace prjGIUnimage
                 txtVOMessage.Text = myScP.VOMessage;
                 txtVONote.Text = myScP.VONote;
                 cboBillFrom.SelectedValue = myScP.VendorID.ToString();
-                //cboDivision.SelectedValue = mySce.DivisionID.ToString();
-                //cboCollection.SelectedValue = mySce.CollectionID.ToString();
                 cboPurchaseType.SelectedValue = myScP.PurchaseTypeID.ToString();
                 cboSeason.SelectedValue = myScP.VOSeasonID;
                 cboWhs.SelectedValue = myScP.DefaultWarehouseID.ToString();
@@ -250,8 +245,6 @@ namespace prjGIUnimage
                 txtVOMessage.Text = mySce.VOMessage;
                 txtVONote.Text = mySce.VONote;
                 cboBillFrom.SelectedValue = mySce.VendorID.ToString();
-                //cboDivision.SelectedValue = mySce.DivisionID.ToString();
-                //cboCollection.SelectedValue = mySce.CollectionID.ToString();
                 cboPurchaseType.SelectedValue = mySce.PurchaseTypeID.ToString();
                 cboSeason.SelectedValue = mySce.GISeasonID;
                 cboWhs.SelectedValue = mySce.DefaultWarehouseID.ToString();
@@ -346,11 +339,8 @@ namespace prjGIUnimage
         {
             dgvResult.DataSource = null;
             dgvResult.DataSource = lstProOrd.Elements;
-
-
             dgvResult.Columns["ProductID"].Visible = false;
             dgvResult.Columns["ProductColorID"].Visible = false;
-
             dgvResult.Columns["ProductDimID"].Visible = false;
             dgvResult.Columns["ProductCatID"].Visible = false;
             dgvResult.Columns["SizeOrder"].Visible = false;
@@ -359,15 +349,7 @@ namespace prjGIUnimage
             dgvResult.Columns["CatID"].Visible = false;
             dgvResult.Columns["ProductGroupID"].Visible = false;
             dgvResult.Columns["ProductSubGroupID"].Visible = false;
-            //dgvResult.Columns["Available"].Visible = true;
-            //if (clsGlobals.AvaibleFlag && clsGlobals.CollectionsFlag)
-            //{
-            //    dgvResult.Columns["Available"].Visible = true;
-            //}
-            //else
-            //{
-            //    dgvResult.Columns["Available"].Visible = false;
-            //}
+            
             SetDataGridViewResult();
             dgvResult.AutoResizeColumns();
         }
@@ -399,17 +381,7 @@ namespace prjGIUnimage
             dgvTotals.Columns["CatID"].Visible = false;
             dgvTotals.Columns["ProductGroupID"].Visible = false;
             dgvTotals.Columns["ProductSubGroupID"].Visible = false;
-            //dgvTotals.Columns["Available"].Visible = true;
-            //if (clsGlobals.AvaibleFlag && clsGlobals.CollectionsFlag)
-            //{
-            //    dgvTotals.Columns["Available"].Visible = true;
-            //    nPord.Available = SumOfColumnsAva("Available");
-            //}
-            //else
-            //{
-            //    dgvTotals.Columns["Available"].Visible = false;
-            //}
-
+            
             nPord.ACH = SumOfColumns("ACH");
             nPord.Besoin = SumOfColumns("Besoin");
             nPord.CMD = SumOfColumns("CMD");
@@ -421,7 +393,6 @@ namespace prjGIUnimage
             nPord.VTEM = SumOfColumns("VTEM");
             nPord.RP1 = SumOfColumns("RP1");
             nPord.RP2 = SumOfColumns("RP2");
-            //nPord.SizeOrder = SumOfColumns("SizeOrder");
             nPord.SizeOrder = 0;
             nPord.VP1 = SumOfColumns("VP1");
             nPord.VP2 = SumOfColumns("VP2");
@@ -429,8 +400,6 @@ namespace prjGIUnimage
             nPord.Var = SumOfColumns("Var");
             nPord.Available = SumOfColumnsAva("Available");
 
-            //nPord.Dim = "TOTAUX PAR ";
-            //nPord.Size = "COLONNES";
             lblInfo.Text = SumOfColumnsBesoin("Besoin");
             if (lstTotals.Quantity > 0)
             {
@@ -523,18 +492,10 @@ namespace prjGIUnimage
 
         private void ActivateControls()
         {
-            //txtOrderNumber.ReadOnly = true;
             txtRef1.ReadOnly = false;
             txtRef2.ReadOnly = false;
-            //txtShipFrom.ReadOnly = true;
             txtVONote.ReadOnly = false;
             txtVOMessage.ReadOnly = false;
-            //txtProductCode.ReadOnly = true;
-            //txtProductDescription.ReadOnly = true;
-            //txtColorCode.ReadOnly = true;
-            //txtColorName.ReadOnly = true;
-            //txtSxStatus.ReadOnly = true;
-            //txtGIStatus.ReadOnly = true;
             txtSurplus.ReadOnly = false;
             txtProductComment.ReadOnly = false;
             dtpArrivalDate.Enabled = true;
@@ -589,11 +550,8 @@ namespace prjGIUnimage
 
             //Actualiza las modificaciones en el Scenario
             clsScenario.UpdateModifiedByUser(clsGlobals.GIPar.ScenarioID);
-            //GenerateOrderedProductsList();
             DeactivateControls();
-
             ConfigureDataView();
-
             MessageBox.Show("Les données ont été enregistrées correctement.");
         }
 
@@ -650,8 +608,6 @@ namespace prjGIUnimage
             dgv.Columns["IC"].ReadOnly = true;
             dgv.Columns["Besoin"].ReadOnly = true;
             dgv.Columns["Available"].ReadOnly = true;
-            //dgv.Columns["Qty"].DefaultCellStyle.BackColor = Color.LightYellow;
-
             dgv.Columns["RP1"].DefaultCellStyle.BackColor = Color.LightBlue;
             dgv.Columns["VP1"].DefaultCellStyle.BackColor = Color.LightBlue;
             dgv.Columns["RP2"].DefaultCellStyle.BackColor = Color.LightGreen;
@@ -666,15 +622,12 @@ namespace prjGIUnimage
             dgv.Columns["IAF"].DefaultCellStyle.BackColor = Color.LightSeaGreen;
             dgv.Columns["IC"].DefaultCellStyle.BackColor = Color.LightSkyBlue;
             dgv.Columns["Available"].DefaultCellStyle.BackColor = Color.LightYellow;
-            //dgv.Columns["Besoin"].DefaultCellStyle.BackColor = Color.LightSteelBlue;
-            //dgv.Columns["Qty"].DefaultCellStyle.BackColor = Color.LightYellow;
-
+            
             //Texto en negrita - Bold Text
             DataGridViewCellStyle style = new DataGridViewCellStyle();
             style.Font = new Font("Verdana", 10, FontStyle.Bold);
             dgvTotals.DefaultCellStyle = style;
-            //dgvResult.Rows[0].DefaultCellStyle = style;
-
+            
             if (dgv.Columns[e.ColumnIndex].Name == "Besoin")
             {
                 if (Convert.ToInt32(e.Value) > 0)
@@ -715,8 +668,7 @@ namespace prjGIUnimage
                 myVO.VONote = myScP.VONote;
 
                 clsListScVorderDetail lstVoDet = new clsListScVorderDetail();
-                //bool flag = true;
-
+                
                 foreach (DataGridViewRow dgRow in dgvResult.Rows)
                 {
                     clsScVorderDetail myVODetails = new clsScVorderDetail();
@@ -724,8 +676,6 @@ namespace prjGIUnimage
                     myVODetails.CatID = Convert.ToInt32(dgRow.Cells["CatID"].Value);
                     myVODetails.ColorID = Convert.ToInt32(dgRow.Cells["ColorID"].Value);
                     myVODetails.DimID = Convert.ToInt32(dgRow.Cells["DimID"].Value);
-                    //myVODetails.GIVODetailID = Convert.ToInt32(dgRow.Cells["GIVODetailID"].Value);
-                    //myVODetails.GIVOID = Convert.ToInt32(dgRow.Cells["GIVOID"].Value);
                     myVODetails.OrderQty = Convert.ToInt32(dgRow.Cells["QVO"].Value);
                     myVO.OrderTotalQty += myVODetails.OrderQty;
                     myVODetails.ProductCatID = Convert.ToInt32(dgRow.Cells["ProductCatID"].Value);
@@ -735,14 +685,11 @@ namespace prjGIUnimage
                     myVODetails.ProductID = Convert.ToInt32(dgRow.Cells["ProductID"].Value);
                     myVODetails.ProductSubGroupID = Convert.ToInt32(dgRow.Cells["ProductSubGroupID"].Value);
                     myVODetails.ProductWarehouseID = clsScVorderDetail.GetProductWarehouseID(myVODetails.ProductID, myVO.DefaultWarehouseID);
-                    //myVODetails.SeasonID = Convert.ToInt32(dgRow.Cells["SeasonID"].Value);
                     myVODetails.SizeOrder = Convert.ToInt32(dgRow.Cells["SizeOrder"].Value);
                     myVODetails.Dim = Convert.ToString(dgRow.Cells["Dim"].Value);
                     myVODetails.Size = Convert.ToString(dgRow.Cells["Size"].Value);
                     myVODetails.VODetailDesc = myScP.GetProductDesc();
-                    //myVODetails.VODetailNote = Convert.ToString(dgRow.Cells["VODetailNote"].Value);
-                    //myVODetails.VODetailStatus = Convert.ToInt32(dgRow.Cells["VODetailStatus"].Value);
-
+                    
                     lstVoDet.AddScVorderDetail(myVODetails);
                 }
 
@@ -755,7 +702,6 @@ namespace prjGIUnimage
                     clsFrmGlobals.frPV.MdiParent = this.MdiParent;
                     clsFrmGlobals.frPV.FormClosed += new FormClosedEventHandler(frPVFromClosed);
                     clsFrmGlobals.frPV.Show();
-                    //this.Close();
                 }
             }
         }

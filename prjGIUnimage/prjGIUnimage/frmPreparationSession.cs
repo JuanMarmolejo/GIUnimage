@@ -83,13 +83,11 @@ namespace prjGIUnimage
 
         private void frGFBFromClosed(object sender, FormClosedEventArgs e)
         {
-            //CopyTableBeforeFiscal();
             clsFrmGlobals.frGF = null;
         }
 
         private void frGFAFromClosed(object sender, FormClosedEventArgs e)
         {
-            //CopyTableAfterFiscal();
             clsFrmGlobals.frGF = null;
         }
     }

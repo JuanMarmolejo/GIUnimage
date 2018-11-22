@@ -45,25 +45,8 @@ namespace prjGIUnimage
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //if (clsFrmGlobals.frMP == null)
-            //{
-            //    clsFrmGlobals.frMP = new frmMenuPpal();
-            //    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-            //    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-            //    clsFrmGlobals.frMP.Show();
-            //    this.Close();
-            //}
+            
         }
-
-        //private void frMPFromClosed(object sender, FormClosedEventArgs e)
-        //{
-        //    clsFrmGlobals.frMP = null;
-        //    clsGlobals.GIPar.UpdateIDVariables();
-        //    if (Application.OpenForms.Count == 1)
-        //    {
-        //        Application.Exit();
-        //    }
-        //}
 
         private void dgvResult_DoubleClick(object sender, EventArgs e)
         {
@@ -83,7 +66,6 @@ namespace prjGIUnimage
                 frOP.MdiParent = this.MdiParent;
                 frOP.FormClosed += new FormClosedEventHandler(frOPFromClosed);
                 frOP.Show();
-                //this.Close();
             }
         }
 
@@ -107,7 +89,6 @@ namespace prjGIUnimage
             string myText = txtSearch.Text.Trim().ToUpper();
 
             AllElements.GetElementsGlobalRequest();
-            //AllElements.FilterSelectedProduct(myText);
             AllElements.FilterElements(myText);
             dgvResult.DataSource = AllElements.Elements;
             dgvResult.Columns[0].Visible = false;

@@ -69,8 +69,7 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXColor] AS CL " +
                 "ON GI.ColorID= CL.ColorID " +
                 "WHERE GI.GIProductID= " + productID;
-            //string sql = "SELECT SX.ProductCode FROM " + clsGlobals.Gesin + "[tblGIProduct] AS GI INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX ON GI.ProductID=SX.ProductID " +
-            //    "WHERE GI.GIProductID=" + productID;
+            
             Conexion.StartSession();
             string vRes = (string)Conexion.GDatos.BringScalarValueSql(sql);
 

@@ -25,25 +25,6 @@ namespace prjGIUnimage.data
             CadenaConexion = cadenaConexion;
         }// end DatosSQLServer
 
-        //public override sealed string CadenaConexion
-        //{
-        //    get
-        //    {
-        //        if (MCadenaConexion.Length == 0)
-        //        {
-        //            var sCadena = System.Configuration.ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
-                    
-
-        //                return sCadena.ToString();
-                    
-        //        }
-        //        return MCadenaConexion = CadenaConexion;
-
-        //    }// end get
-        //    set
-        //    { MCadenaConexion = value; } // end set
-        //}
-
         /* 
          * Then we will implement CreateConnection, where a new instance of the SqlClient Connection object is simply returned, 
          * using the connection string of the object.
