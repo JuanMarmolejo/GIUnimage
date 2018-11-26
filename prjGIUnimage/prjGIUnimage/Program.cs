@@ -34,7 +34,7 @@ namespace prjGIUnimage
             //If the user is valid, enter the main form.
             if (frlog.DialogResult == DialogResult.OK)
             {
-                Application.Run(new delEquivProd());
+                Application.Run(new frmPrincipal());
             }
             
         }

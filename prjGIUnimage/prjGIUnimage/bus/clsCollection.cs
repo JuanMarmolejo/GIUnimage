@@ -99,18 +99,9 @@ namespace prjGIUnimage.bus
         internal void InsertGICollection()
         {
             Conexion.StartSession();
-            string sql = "INSERT INTO " + clsGlobals.Gesin + "tblGICollection ( " +
-                "[CollectionID] " +
-                ",[GICollectionStatus] " +
-                ",[GICollectionComment] " +
-                ",[CreatedByUserID] " +
-                ",[CreatedDate]" +
-                ") VALUES( " +
-                this.CollectionID+ ", " +
-                "2" + ", '" +
-                this.GICollectionComment + "', " +
-                + clsGlobals.GIPar.UserID + ", GETDATE()" +
-                ")";
+            string sql = "INSERT INTO " + clsGlobals.Gesin + "tblGICollection ([CollectionID], [GICollectionStatus], [GICollectionComment] " +
+                ",[CreatedByUserID], [CreatedDate]) VALUES( " + this.CollectionID + ", " + "2" + ", '" + this.GICollectionComment + "', " +
+                +clsGlobals.GIPar.UserID + ", GETDATE()" + ")";
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
