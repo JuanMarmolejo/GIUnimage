@@ -23,59 +23,89 @@ namespace prjGIUnimage
 
         private void frmGeneratesFiscal_Load(object sender, EventArgs e)
         {
-            if (Flag == true)
+            try
             {
-                lblAvant.Visible = true;
-                lblBefore.Visible = false;
-                txtCode.Text = "Avant Fiscal";
-                txtCode.ReadOnly = true;
-                txtPreviousSeason.ReadOnly = true;
-                cboCurrentSaison.SelectedIndex = -1;
-                lstSea.GetNotGeneratedBefiscal();
-            }
+                if (Flag == true)
+                {
+                    lblAvant.Visible = true;
+                    lblBefore.Visible = false;
+                    txtCode.Text = "Avant Fiscal";
+                    txtCode.ReadOnly = true;
+                    txtPreviousSeason.ReadOnly = true;
+                    cboCurrentSaison.SelectedIndex = -1;
+                    lstSea.GetNotGeneratedBefiscal();
+                }
 
-            if (Flag == false)
-            {
-                lblAvant.Visible = false;
-                lblBefore.Visible = true;
-                txtCode.Text = "Après Fiscal";
-                txtCode.ReadOnly = true;
-                txtPreviousSeason.ReadOnly = true;
-                cboCurrentSaison.SelectedIndex = -1;
-                lstSea.GetNotGeneratedAfiscal();
+                if (Flag == false)
+                {
+                    lblAvant.Visible = false;
+                    lblBefore.Visible = true;
+                    txtCode.Text = "Après Fiscal";
+                    txtCode.ReadOnly = true;
+                    txtPreviousSeason.ReadOnly = true;
+                    cboCurrentSaison.SelectedIndex = -1;
+                    lstSea.GetNotGeneratedAfiscal();
+                }
+                cboCurrentSaison.DisplayMember = "SeasonName";
+                cboCurrentSaison.ValueMember = "GISeasonID";
+                cboCurrentSaison.DataSource = lstSea.Elements;
+                btnRun.Enabled = lstSea.Quantity > 0 ? true : false;
             }
-            cboCurrentSaison.DisplayMember = "SeasonName";
-            cboCurrentSaison.ValueMember = "GISeasonID";
-            cboCurrentSaison.DataSource = lstSea.Elements;
-            btnRun.Enabled = lstSea.Quantity > 0 ? true : false;
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cboCurrentSaison_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtPreviousSeason.Text = lstSea.PreviousSeason(Convert.ToInt32(cboCurrentSaison.SelectedValue));
+            try
+            {
+                txtPreviousSeason.Text = lstSea.PreviousSeason(Convert.ToInt32(cboCurrentSaison.SelectedValue));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            mySce.ScenarioCode = txtCode.Text;
-            mySce.GISeasonID = Convert.ToInt32(cboCurrentSaison.SelectedValue);
-            mySce.ScenarioStatus = 2;
-            if (mySce.Exists())
+            try
             {
-                MessageBox.Show("Attention, l'inventaire a déjà été généré", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mySce.ScenarioCode = txtCode.Text;
+                mySce.GISeasonID = Convert.ToInt32(cboCurrentSaison.SelectedValue);
+                mySce.ScenarioStatus = 2;
+                if (mySce.Exists())
+                {
+                    MessageBox.Show("Attention, l'inventaire a déjà été généré", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
+                    GenerateFiscal();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
-                GenerateFiscal();
+                MessageBox.Show(ex.Message);
             }
-            this.Close();
+            finally
+            {
+                this.Close();
+            }
         }
 
         private void frESFromClosed(object sender, FormClosedEventArgs e)

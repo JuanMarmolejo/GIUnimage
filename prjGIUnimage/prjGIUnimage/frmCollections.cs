@@ -141,30 +141,44 @@ namespace prjGIUnimage
 
         private void lstCollections_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Modify)
+            try
             {
-                MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                CleanControls();
-                if (lstCollections.SelectedIndex >= 0 && lstCol.Quantity > 0)
+                if (Modify)
                 {
-                    current = Convert.ToInt32(lstCollections.SelectedValue);
-                    CollectionTotext(lstCol.CollectionByID(current));
+                    MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+                else
+                {
+                    CleanControls();
+                    if (lstCollections.SelectedIndex >= 0 && lstCol.Quantity > 0)
+                    {
+                        current = Convert.ToInt32(lstCollections.SelectedValue);
+                        CollectionTotext(lstCol.CollectionByID(current));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -180,13 +194,20 @@ namespace prjGIUnimage
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frTP == null)
+            try
             {
-                clsFrmGlobals.frTP = new frmTablesPermanentes();
-                clsFrmGlobals.frTP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPFromClosed);
-                clsFrmGlobals.frTP.Show();
-                this.Close();
+                if (clsFrmGlobals.frTP == null)
+                {
+                    clsFrmGlobals.frTP = new frmTablesPermanentes();
+                    clsFrmGlobals.frTP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPFromClosed);
+                    clsFrmGlobals.frTP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -197,37 +218,43 @@ namespace prjGIUnimage
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (Modify)
+            try
             {
-                MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                current = 0;
-                if (!String.IsNullOrEmpty(txtSearch.Text))
+                if (Modify)
                 {
-                    eleCol.GetElementsCollection(cboFilter.SelectedIndex);
-                    eleCol.FilterElements(txtSearch.Text.Trim().ToUpper());
-                    if (eleCol.Quantity > 0)
-                    {
-                        CollectionTotext(lstCol.CollectionByID(current));
-                        lstCollections.DataSource = null;
-                        LinkListCollections();
-                    }
-                    else
-                    {
-                        LinkListCollections();
-                        CleanControls();
-                    }
+                    MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    eleCol.GetElementsCollection(cboFilter.SelectedIndex);
-                    LinkListCollections();
-                    CollectionTotext(lstCol.CollectionByID(current));
+                    current = 0;
+                    if (!String.IsNullOrEmpty(txtSearch.Text))
+                    {
+                        eleCol.GetElementsCollection(cboFilter.SelectedIndex);
+                        eleCol.FilterElements(txtSearch.Text.Trim().ToUpper());
+                        if (eleCol.Quantity > 0)
+                        {
+                            CollectionTotext(lstCol.CollectionByID(current));
+                            lstCollections.DataSource = null;
+                            LinkListCollections();
+                        }
+                        else
+                        {
+                            LinkListCollections();
+                            CleanControls();
+                        }
+                    }
+                    else
+                    {
+                        eleCol.GetElementsCollection(cboFilter.SelectedIndex);
+                        LinkListCollections();
+                        CollectionTotext(lstCol.CollectionByID(current));
+                    }
                 }
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void CleanControls()
@@ -245,30 +272,44 @@ namespace prjGIUnimage
 
         private void cboFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Modify)
+            try
             {
-                MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                eleCol.GetElementsCollection(cboFilter.SelectedIndex);
-                LinkListCollections();
-                if (eleCol.Quantity > 0 && lstCol.Quantity > 0)
+                if (Modify)
                 {
-                    CollectionTotext(lstCol.CollectionByID(current));
+                    MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    CleanControls();
+                    eleCol.GetElementsCollection(cboFilter.SelectedIndex);
+                    LinkListCollections();
+                    if (eleCol.Quantity > 0 && lstCol.Quantity > 0)
+                    {
+                        CollectionTotext(lstCol.CollectionByID(current));
+                    }
+                    else
+                    {
+                        CleanControls();
+                    }
+                    txtSearch.Text = "";
                 }
-                txtSearch.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Modify = true;
-            ActivateTexts();
+            try
+            {
+                Modify = true;
+                ActivateTexts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ActivateTexts()
@@ -281,20 +322,27 @@ namespace prjGIUnimage
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
+            try
             {
-                Modify = false;
-                clsCollection aCol = new clsCollection();
-                var tmpSelected = lstCollections.SelectedValue;
-                aCol = TextToCollection(Convert.ToInt32(tmpSelected));
-                aCol.UpdateGICollection();
-                DeactivateTexts();
-                eleCol.GetElementsCollection(cboFilter.SelectedIndex);
-                eleCol.FilterElements(txtSearch.Text.Trim().ToUpper());
-                lstCol.AllCollections();
-                LinkListCollections();
-                lstCollections.SelectedValue = tmpSelected;
-                MessageBox.Show("La collection a été mise à jour correctement", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (ValidateChildren(ValidationConstraints.Enabled))
+                {
+                    Modify = false;
+                    clsCollection aCol = new clsCollection();
+                    var tmpSelected = lstCollections.SelectedValue;
+                    aCol = TextToCollection(Convert.ToInt32(tmpSelected));
+                    aCol.UpdateGICollection();
+                    DeactivateTexts();
+                    eleCol.GetElementsCollection(cboFilter.SelectedIndex);
+                    eleCol.FilterElements(txtSearch.Text.Trim().ToUpper());
+                    lstCol.AllCollections();
+                    LinkListCollections();
+                    lstCollections.SelectedValue = tmpSelected;
+                    MessageBox.Show("La collection a été mise à jour correctement", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

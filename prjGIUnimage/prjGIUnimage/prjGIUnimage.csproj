@@ -232,12 +232,6 @@
     <Compile Include="frmTablesPermanentes.Designer.cs">
       <DependentUpon>frmTablesPermanentes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmToBeCommanded.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmToBeCommanded.Designer.cs">
-      <DependentUpon>frmToBeCommanded.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmVOParameters.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -332,9 +326,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTablesPermanentes.resx">
       <DependentUpon>frmTablesPermanentes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmToBeCommanded.resx">
-      <DependentUpon>frmToBeCommanded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVOParameters.resx">
       <DependentUpon>frmVOParameters.cs</DependentUpon>

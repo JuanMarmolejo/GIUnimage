@@ -24,13 +24,20 @@ namespace prjGIUnimage
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frTP == null)
+            try
             {
-                clsFrmGlobals.frTP = new frmTablesPermanentes();
-                clsFrmGlobals.frTP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPClosed);
-                clsFrmGlobals.frTP.Show();
-                this.Close();
+                if (clsFrmGlobals.frTP == null)
+                {
+                    clsFrmGlobals.frTP = new frmTablesPermanentes();
+                    clsFrmGlobals.frTP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPClosed);
+                    clsFrmGlobals.frTP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -41,13 +48,20 @@ namespace prjGIUnimage
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frPS == null)
+            try
             {
-                clsFrmGlobals.frPS = new frmPreparationSession();
-                clsFrmGlobals.frPS.MdiParent = this.MdiParent;
-                clsFrmGlobals.frPS.FormClosed += new FormClosedEventHandler(frPSFromClosed);
-                clsFrmGlobals.frPS.Show();
-                this.Close();
+                if (clsFrmGlobals.frPS == null)
+                {
+                    clsFrmGlobals.frPS = new frmPreparationSession();
+                    clsFrmGlobals.frPS.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frPS.FormClosed += new FormClosedEventHandler(frPSFromClosed);
+                    clsFrmGlobals.frPS.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -58,13 +72,20 @@ namespace prjGIUnimage
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frNS == null)
+            try
             {
-                clsFrmGlobals.frNS = new frmNewScenario();
-                clsFrmGlobals.frNS.MdiParent = this.MdiParent;
-                clsFrmGlobals.frNS.FormClosed += new FormClosedEventHandler(frNSFromClosed);
-                clsFrmGlobals.frNS.Show();
-                this.Close();
+                if (clsFrmGlobals.frNS == null)
+                {
+                    clsFrmGlobals.frNS = new frmNewScenario();
+                    clsFrmGlobals.frNS.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frNS.FormClosed += new FormClosedEventHandler(frNSFromClosed);
+                    clsFrmGlobals.frNS.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -75,13 +96,20 @@ namespace prjGIUnimage
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frPDF == null)
+            try
             {
-                clsFrmGlobals.frPDF = new frmPDFPrinting();
-                clsFrmGlobals.frPDF.MdiParent = this.MdiParent;
-                clsFrmGlobals.frPDF.FormClosed += new FormClosedEventHandler(frPDFFromClosed);
-                clsFrmGlobals.frPDF.Show();
-                this.Close();
+                if (clsFrmGlobals.frPDF == null)
+                {
+                    clsFrmGlobals.frPDF = new frmPDFPrinting();
+                    clsFrmGlobals.frPDF.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frPDF.FormClosed += new FormClosedEventHandler(frPDFFromClosed);
+                    clsFrmGlobals.frPDF.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -92,13 +120,20 @@ namespace prjGIUnimage
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frSSc == null)
+            try
             {
-                clsFrmGlobals.frSSc = new frmSearchScenarios();
-                clsFrmGlobals.frSSc.MdiParent = this.MdiParent;
-                clsFrmGlobals.frSSc.FormClosed += new FormClosedEventHandler(frSScFromClosed);
-                clsFrmGlobals.frSSc.Show();
-                this.Close();
+                if (clsFrmGlobals.frSSc == null)
+                {
+                    clsFrmGlobals.frSSc = new frmSearchScenarios();
+                    clsFrmGlobals.frSSc.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frSSc.FormClosed += new FormClosedEventHandler(frSScFromClosed);
+                    clsFrmGlobals.frSSc.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

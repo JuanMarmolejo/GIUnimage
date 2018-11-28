@@ -27,35 +27,42 @@ namespace prjGIUnimage
 
         private void frmPreviewVO_Load(object sender, EventArgs e)
         {
-            LoadComboBoxes();
-            DeactivateControls();
+            try
+            {
+                LoadComboBoxes();
+                DeactivateControls();
 
-            txtColorCode.Text = clsSilex.GetColorCode(clsGlobals.VorderDetail.Elements[0].ColorID);
-            txtColorName.Text = clsSilex.GetColorName(clsGlobals.VorderDetail.Elements[0].ColorID);
-            txtOrderNumber.Text = "VO-????";
-            txtProductCode.Text = clsSilex.GetProductCode(clsGlobals.VorderDetail.Elements[0].ProductID);
-            txtProductDescription.Text = clsSilex.GetProductDesc(clsGlobals.VorderDetail.Elements[0].ProductID);
-            txtRef1.Text = clsGlobals.Vorder.ReferenceNo1;
-            txtRef2.Text = clsGlobals.Vorder.ReferenceNo2;
-            txtVOMessage.Text = clsGlobals.Vorder.VOMessage;
-            txtVONote.Text = clsGlobals.Vorder.VONote;
+                txtColorCode.Text = clsSilex.GetColorCode(clsGlobals.VorderDetail.Elements[0].ColorID);
+                txtColorName.Text = clsSilex.GetColorName(clsGlobals.VorderDetail.Elements[0].ColorID);
+                txtOrderNumber.Text = "VO-????";
+                txtProductCode.Text = clsSilex.GetProductCode(clsGlobals.VorderDetail.Elements[0].ProductID);
+                txtProductDescription.Text = clsSilex.GetProductDesc(clsGlobals.VorderDetail.Elements[0].ProductID);
+                txtRef1.Text = clsGlobals.Vorder.ReferenceNo1;
+                txtRef2.Text = clsGlobals.Vorder.ReferenceNo2;
+                txtVOMessage.Text = clsGlobals.Vorder.VOMessage;
+                txtVONote.Text = clsGlobals.Vorder.VONote;
 
-            dtpArrivalDate.Value = clsGlobals.Vorder.ExpArrivalDate;
-            dtpShipDate.Value = clsGlobals.Vorder.ExpShippingDate;
+                dtpArrivalDate.Value = clsGlobals.Vorder.ExpArrivalDate;
+                dtpShipDate.Value = clsGlobals.Vorder.ExpShippingDate;
 
-            cboBillFrom.SelectedValue = clsGlobals.Vorder.VendorID.ToString();
-            cboCollection.SelectedValue = clsGlobals.Vorder.CollectionID.ToString();
-            cboDivision.SelectedValue = clsGlobals.Vorder.DivisionID.ToString();
-            cboPurchaseType.SelectedValue = clsGlobals.Vorder.PurchaseTypeID.ToString();
-            cboSeason.SelectedValue = clsGlobals.Vorder.SeasonID;
-            cboWhs.SelectedValue = clsGlobals.Vorder.DefaultWarehouseID.ToString();
+                cboBillFrom.SelectedValue = clsGlobals.Vorder.VendorID.ToString();
+                cboCollection.SelectedValue = clsGlobals.Vorder.CollectionID.ToString();
+                cboDivision.SelectedValue = clsGlobals.Vorder.DivisionID.ToString();
+                cboPurchaseType.SelectedValue = clsGlobals.Vorder.PurchaseTypeID.ToString();
+                cboSeason.SelectedValue = clsGlobals.Vorder.SeasonID;
+                cboWhs.SelectedValue = clsGlobals.Vorder.DefaultWarehouseID.ToString();
 
-            dgvResult.DataSource = DebugList(clsGlobals.VorderDetail.Elements);
-            dgvResult.Columns["ElementID"].HeaderText = "Dim";
-            dgvResult.Columns["Code"].HeaderText = "Size";
-            dgvResult.Columns["Name"].HeaderText = "QVO";
-            dgvResult.Columns["Full"].Visible = false;
-            dgvResult.AutoResizeColumns();
+                dgvResult.DataSource = DebugList(clsGlobals.VorderDetail.Elements);
+                dgvResult.Columns["ElementID"].HeaderText = "Dim";
+                dgvResult.Columns["Code"].HeaderText = "Size";
+                dgvResult.Columns["Name"].HeaderText = "QVO";
+                dgvResult.Columns["Full"].Visible = false;
+                dgvResult.AutoResizeColumns();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void DeactivateControls()
@@ -133,28 +140,49 @@ namespace prjGIUnimage
 
         private void cboDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDivision.SelectedIndex >= 0)
+            try
             {
-                lstCollections.GetCollections(Convert.ToInt32(cboDivision.SelectedValue));
-                cboCollection.DisplayMember = "Full";
-                cboCollection.ValueMember = "ElementID";
-                cboCollection.DataSource = lstCollections.Elements;
-                cboCollection.SelectedValue = clsGlobals.Vorder.CollectionID.ToString();
+                if (cboDivision.SelectedIndex >= 0)
+                {
+                    lstCollections.GetCollections(Convert.ToInt32(cboDivision.SelectedValue));
+                    cboCollection.DisplayMember = "Full";
+                    cboCollection.ValueMember = "ElementID";
+                    cboCollection.DataSource = lstCollections.Elements;
+                    cboCollection.SelectedValue = clsGlobals.Vorder.CollectionID.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void cboBillFrom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboBillFrom.SelectedIndex > 0)
+            try
             {
-                eleShip.GetShipFrom(Convert.ToInt32(cboBillFrom.SelectedValue));
-                txtShipFrom.Text = eleShip.Full;
+                if (cboBillFrom.SelectedIndex > 0)
+                {
+                    eleShip.GetShipFrom(Convert.ToInt32(cboBillFrom.SelectedValue));
+                    txtShipFrom.Text = eleShip.Full;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

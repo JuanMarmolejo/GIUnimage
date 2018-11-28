@@ -29,19 +29,26 @@ namespace prjGIUnimage
 
         private void delEquivProd_Load(object sender, EventArgs e)
         {
-            DeactivateTexts();
+            try
+            {
+                DeactivateTexts();
 
-            lstStatus.DataByGroup(102);
-            lstSea.GetAllSeasons();
-            lstSecSea.GetAllSeasons();
+                lstStatus.DataByGroup(102);
+                lstSea.GetAllSeasons();
+                lstSecSea.GetAllSeasons();
 
-            cboCurrentSaison.DisplayMember = "SeasonName";
-            cboCurrentSaison.ValueMember = "GISeasonID";
-            cboCurrentSaison.DataSource = lstSea.Elements;
-            cboCurrentSaison.SelectedIndex = -1;
+                cboCurrentSaison.DisplayMember = "SeasonName";
+                cboCurrentSaison.ValueMember = "GISeasonID";
+                cboCurrentSaison.DataSource = lstSea.Elements;
+                cboCurrentSaison.SelectedIndex = -1;
 
-            lstScn.AllScenarios();
-            LinkListScenarios();
+                lstScn.AllScenarios();
+                LinkListScenarios();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void LinkListScenarios()
@@ -91,24 +98,31 @@ namespace prjGIUnimage
 
         private void btnRecord_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
+            try
             {
-                clsGlobals.GIPar.GetVOParameters();
-                aDiv = TextToScenario();
-                clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
-                clsGlobals.GISeasonID = aDiv.GISeasonID;
-                clsGlobals.OriginOfStoredProc = 1;
+                if (ValidateChildren(ValidationConstraints.Enabled))
+                {
+                    clsGlobals.GIPar.GetVOParameters();
+                    aDiv = TextToScenario();
+                    clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
+                    clsGlobals.GISeasonID = aDiv.GISeasonID;
+                    clsGlobals.OriginOfStoredProc = 1;
 
-                //abre formulario de espera
-                MessageBox.Show("La création du scénario peut prendre quelques minutes...");
-                if (LoadTabletblGIScSalesHistory(clsGlobals.NextScenarioID, clsGlobals.GISeasonID))
-                {
-                    clsGlobals.Flag = true;
+                    //abre formulario de espera
+                    MessageBox.Show("La création du scénario peut prendre quelques minutes...");
+                    if (LoadTabletblGIScSalesHistory(clsGlobals.NextScenarioID, clsGlobals.GISeasonID))
+                    {
+                        clsGlobals.Flag = true;
+                    }
+                    else
+                    {
+                        clsGlobals.Flag = false;
+                    }
                 }
-                else
-                {
-                    clsGlobals.Flag = false;
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -136,9 +150,16 @@ namespace prjGIUnimage
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            ActivateTexts();
-            CleanControls();
-            //flagNew = true;
+            try
+            {
+                ActivateTexts();
+                CleanControls();
+                //flagNew = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ActivateTexts()
@@ -158,18 +179,25 @@ namespace prjGIUnimage
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            copyAlltoClipboard();
-            Microsoft.Office.Interop.Excel.Application xlexcel;
-            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
-            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
-            xlexcel = new Microsoft.Office.Interop.Excel.Application();
-            xlexcel.Visible = true;
-            xlWorkBook = xlexcel.Workbooks.Add(misValue);
-            xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            Microsoft.Office.Interop.Excel.Range CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[1, 1];
-            CR.Select();
-            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+            try
+            {
+                copyAlltoClipboard();
+                Microsoft.Office.Interop.Excel.Application xlexcel;
+                Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+                Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+                object misValue = System.Reflection.Missing.Value;
+                xlexcel = new Microsoft.Office.Interop.Excel.Application();
+                xlexcel.Visible = true;
+                xlWorkBook = xlexcel.Workbooks.Add(misValue);
+                xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                Microsoft.Office.Interop.Excel.Range CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[1, 1];
+                CR.Select();
+                xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void copyAlltoClipboard()

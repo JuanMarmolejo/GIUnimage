@@ -21,12 +21,19 @@ namespace prjGIUnimage
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPClosed);
-                clsFrmGlobals.frMP.Show();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPClosed);
+                    clsFrmGlobals.frMP.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -49,12 +56,19 @@ namespace prjGIUnimage
 
         private void menuPrincipalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPClosed);
-                clsFrmGlobals.frMP.Show();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPClosed);
+                    clsFrmGlobals.frMP.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

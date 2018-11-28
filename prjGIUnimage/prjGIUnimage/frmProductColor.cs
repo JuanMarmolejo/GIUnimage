@@ -25,36 +25,36 @@ namespace prjGIUnimage
 
         private void frmProductColor_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = txtSearch;
-            clsSilex.UpDateProduct();
             try
             {
+                this.ActiveControl = txtSearch;
+                clsSilex.UpDateProduct();
                 UpdateTableProducts();
+
+                DeactivateTexts();
+                stPro.DataByGroup(101);
+                stPro.RemoveLastItem();
+                stPro.RemoveLastItem();
+                stPro.RemoveLastItem();
+                stFil.DataByGroup(101);
+
+                cboStatus.DisplayMember = "DataDesc_fra";
+                cboStatus.ValueMember = "DataValue";
+                cboStatus.DataSource = stPro.Elements;
+
+                cboFilter.DisplayMember = "DataDesc_fra";
+                cboFilter.ValueMember = "DataValue";
+                cboFilter.DataSource = stFil.Elements;
+
+                lstPro.AllProducts(txtSearch.Text, cboFilter.SelectedValue);
+                LinkListProducts();
+
+                cboFilter.SelectedIndex = 5;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            DeactivateTexts();
-            stPro.DataByGroup(101);
-            stPro.RemoveLastItem();
-            stPro.RemoveLastItem();
-            stPro.RemoveLastItem();
-            stFil.DataByGroup(101);
-
-            cboStatus.DisplayMember = "DataDesc_fra";
-            cboStatus.ValueMember = "DataValue";
-            cboStatus.DataSource = stPro.Elements;
-
-            cboFilter.DisplayMember = "DataDesc_fra";
-            cboFilter.ValueMember = "DataValue";
-            cboFilter.DataSource = stFil.Elements;
-
-            lstPro.AllProducts(txtSearch.Text, cboFilter.SelectedValue);
-            LinkListProducts();
-
-            cboFilter.SelectedIndex = 5;
         }
 
         private void UpdateTableProducts()
@@ -133,16 +133,23 @@ namespace prjGIUnimage
 
         private void dgvProductColor_SelectionChanged(object sender, EventArgs e)
         {
-            if (Modify)
+            try
             {
-                MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                if (dgvProductColor.CurrentRow != null)
+                if (Modify)
                 {
-                    ProductToText(lstPro.ElementByID(Convert.ToInt32(dgvProductColor.CurrentRow.Cells[0].Value)));
+                    MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+                else
+                {
+                    if (dgvProductColor.CurrentRow != null)
+                    {
+                        ProductToText(lstPro.ElementByID(Convert.ToInt32(dgvProductColor.CurrentRow.Cells[0].Value)));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -164,39 +171,60 @@ namespace prjGIUnimage
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (Modify)
+            try
             {
-                MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Modify)
+                {
+                    MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    lstPro.AllProducts(txtSearch.Text, cboFilter.SelectedValue);
+                    LinkListProducts();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lstPro.AllProducts(txtSearch.Text, cboFilter.SelectedValue);
-                LinkListProducts();
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void cboFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Modify)
+            try
             {
-                MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Modify)
+                {
+                    MessageBox.Show("Enregistrez les modifications ou cliquez sur le bouton \"Retour\" pour annuler .....", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    lstPro.AllProducts(txtSearch.Text, cboFilter.SelectedValue);
+                    LinkListProducts();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lstPro.AllProducts(txtSearch.Text, cboFilter.SelectedValue);
-                LinkListProducts();
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frTP == null)
+            try
             {
-                clsFrmGlobals.frTP = new frmTablesPermanentes();
-                clsFrmGlobals.frTP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPFromClosed);
-                clsFrmGlobals.frTP.Show();
-                this.Close();
+                if (clsFrmGlobals.frTP == null)
+                {
+                    clsFrmGlobals.frTP = new frmTablesPermanentes();
+                    clsFrmGlobals.frTP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPFromClosed);
+                    clsFrmGlobals.frTP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -207,13 +235,20 @@ namespace prjGIUnimage
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -229,8 +264,15 @@ namespace prjGIUnimage
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ActivateTexts();
-            Modify = true;
+            try
+            {
+                ActivateTexts();
+                Modify = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ActivateTexts()
@@ -262,23 +304,30 @@ namespace prjGIUnimage
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
+            try
             {
-                if (Convert.ToInt32(txtSurplus.Text) > 100)
+                if (ValidateChildren(ValidationConstraints.Enabled))
                 {
-                    if(MessageBox.Show("Vous êtes sûr d'utiliser un surplus supérieur à 100%", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (Convert.ToInt32(txtSurplus.Text) > 100)
                     {
-                        RegisterChanges();
+                        if (MessageBox.Show("Vous êtes sûr d'utiliser un surplus supérieur à 100%", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            RegisterChanges();
+                        }
+                        else
+                        {
+                            txtSurplus.Focus();
+                        }
                     }
                     else
                     {
-                        txtSurplus.Focus();
+                        RegisterChanges();
                     }
                 }
-                else
-                {
-                    RegisterChanges();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

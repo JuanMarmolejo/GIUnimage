@@ -23,33 +23,54 @@ namespace prjGIUnimage
 
         private void frmProductsSelectedCollection_Load(object sender, EventArgs e)
         {
-            btnMenu.Enabled = false;
-            AllElements.GetElementsGlobalRequest();
-            dgvResult.DataSource = AllElements.Elements;
-            dgvResult.Columns[0].Visible = false;
-            dgvResult.Columns[3].Visible = false;
-            dgvResult.AutoResizeColumns();
+            try
+            {
+                btnMenu.Enabled = false;
+                AllElements.GetElementsGlobalRequest();
+                dgvResult.DataSource = AllElements.Elements;
+                dgvResult.Columns[0].Visible = false;
+                dgvResult.Columns[3].Visible = false;
+                dgvResult.AutoResizeColumns();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void dgvResult_DoubleClick(object sender, EventArgs e)
         {
-            clsScenario mySce = new clsScenario();
-            mySce.GetScenarioByID(clsGlobals.GIPar.ScenarioID);
-            clsGlobals.GIPar.ProductColorID = Convert.ToInt32(dgvResult.CurrentRow.Cells[0].Value);
-            clsGlobals.ActiveRatio = mySce.SurplusRateIdentified;
-            clsGlobals.BkRatio = mySce.SurplusRateIdentified;
-            clsGlobals.CollectionsFlag = true;
-            if (frOP == null)
+            try
             {
-                frOP = new frmOrderProductsCollections();
-                frOP.MdiParent = this.MdiParent;
-                frOP.FormClosed += new FormClosedEventHandler(frOPFromClosed);
-                frOP.Show();
+                clsScenario mySce = new clsScenario();
+                mySce.GetScenarioByID(clsGlobals.GIPar.ScenarioID);
+                clsGlobals.GIPar.ProductColorID = Convert.ToInt32(dgvResult.CurrentRow.Cells[0].Value);
+                clsGlobals.ActiveRatio = mySce.SurplusRateIdentified;
+                clsGlobals.BkRatio = mySce.SurplusRateIdentified;
+                clsGlobals.CollectionsFlag = true;
+                if (frOP == null)
+                {
+                    frOP = new frmOrderProductsCollections();
+                    frOP.MdiParent = this.MdiParent;
+                    frOP.FormClosed += new FormClosedEventHandler(frOPFromClosed);
+                    frOP.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

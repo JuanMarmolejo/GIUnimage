@@ -34,6 +34,7 @@ namespace prjGIUnimage
         clsListElements lstWhs = new clsListElements();
         clsListSeason lstSeasons = new clsListSeason();
         clsListElements lstCollections = new clsListElements();
+
         public frmAnalysisScenarioCopy()
         {
             InitializeComponent();
@@ -42,12 +43,19 @@ namespace prjGIUnimage
 
         private void frmAnalysisScenarioCopy_Load(object sender, EventArgs e)
         {
-            LoadComboBoxes();
-            DeactivateControls();
-            LoadScenarioInformation();
-            InitializeGlobalLists();
-            StatisticsWithoutSelection();
-            DisplayStats();
+            try
+            {
+                LoadComboBoxes();
+                DeactivateControls();
+                LoadScenarioInformation();
+                InitializeGlobalLists();
+                StatisticsWithoutSelection();
+                DisplayStats();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void LoadComboBoxes()
@@ -186,13 +194,20 @@ namespace prjGIUnimage
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -208,13 +223,20 @@ namespace prjGIUnimage
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frNS == null)
+            try
             {
-                clsFrmGlobals.frNS = new frmNewScenario();
-                clsFrmGlobals.frNS.MdiParent = this.MdiParent;
-                clsFrmGlobals.frNS.FormClosed += new FormClosedEventHandler(frNSFromClosed);
-                clsFrmGlobals.frNS.Show();
-                this.Close();
+                if (clsFrmGlobals.frNS == null)
+                {
+                    clsFrmGlobals.frNS = new frmNewScenario();
+                    clsFrmGlobals.frNS.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frNS.FormClosed += new FormClosedEventHandler(frNSFromClosed);
+                    clsFrmGlobals.frNS.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -225,7 +247,14 @@ namespace prjGIUnimage
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            ActivateControls();
+            try
+            {
+                ActivateControls();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ActivateControls()
@@ -255,12 +284,19 @@ namespace prjGIUnimage
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            clsScenario mySce = new clsScenario();
-            mySce = TextToScenario();
-            mySce.UpdateScenario();
-            MessageBox.Show("Les modifications ont été enregistrées");
-            LoadScenarioInformation();
-            DeactivateControls();
+            try
+            {
+                clsScenario mySce = new clsScenario();
+                mySce = TextToScenario();
+                mySce.UpdateScenario();
+                MessageBox.Show("Les modifications ont été enregistrées");
+                LoadScenarioInformation();
+                DeactivateControls();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private clsScenario TextToScenario()
@@ -292,7 +328,14 @@ namespace prjGIUnimage
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            NewSelection();
+            try
+            {
+                NewSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void NewSelection()
@@ -311,24 +354,31 @@ namespace prjGIUnimage
 
         private void btnRes1_Click(object sender, EventArgs e)
         {
-            if (dgvRes1.Rows.Count > 0)
+            try
             {
-                clsGlobals.lstBackUp = DataGridToList(dgvRes1);
+                if (dgvRes1.Rows.Count > 0)
+                {
+                    clsGlobals.lstBackUp = DataGridToList(dgvRes1);
+                }
+                else
+                {
+                    clsGlobals.lstBackUp = new clsListElements();
+                }
+                dgvRes1.DataSource = null;
+                clsGlobals.ListGroups = new clsListElements();
+                dgvRes2.DataSource = null;
+                clsGlobals.ListStyles = new clsListElements();
+                dgvRes3.DataSource = null;
+                clsGlobals.ListColors = new clsListElements();
+                dgvRes4.DataSource = null;
+                clsGlobals.ListCollections = new clsListElements();
+                clsGlobals.ListGroups.SelectGroups();
+                AddGroups();
             }
-            else
+            catch (Exception ex)
             {
-                clsGlobals.lstBackUp = new clsListElements();
+                MessageBox.Show(ex.Message);
             }
-            dgvRes1.DataSource = null;
-            clsGlobals.ListGroups = new clsListElements();
-            dgvRes2.DataSource = null;
-            clsGlobals.ListStyles = new clsListElements();
-            dgvRes3.DataSource = null;
-            clsGlobals.ListColors = new clsListElements();
-            dgvRes4.DataSource = null;
-            clsGlobals.ListCollections = new clsListElements();
-            clsGlobals.ListGroups.SelectGroups();
-            AddGroups();
         }
 
         private clsListElements DataGridToList(DataGridView dgvResjcm)
@@ -435,28 +485,35 @@ namespace prjGIUnimage
 
         private void btnRes2_Click(object sender, EventArgs e)
         {
-            if (dgvRes2.Rows.Count > 0)
+            try
             {
-                clsGlobals.lstBackUp = DataGridToList(dgvRes2);
+                if (dgvRes2.Rows.Count > 0)
+                {
+                    clsGlobals.lstBackUp = DataGridToList(dgvRes2);
+                }
+                else
+                {
+                    clsGlobals.lstBackUp = new clsListElements();
+                }
+                dgvRes2.DataSource = null;
+                clsGlobals.ListStyles = new clsListElements();
+                dgvRes3.DataSource = null;
+                clsGlobals.ListColors = new clsListElements();
+                dgvRes4.DataSource = null;
+                clsGlobals.ListCollections = new clsListElements();
+                if (dgvRes1.Rows.Count > 0)
+                {
+                    clsGlobals.ListStyles.SelectStyles();
+                    AddStyles();
+                }
+                else
+                {
+                    MessageBox.Show("Un groupe doit être sélectionné.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                clsGlobals.lstBackUp = new clsListElements();
-            }
-            dgvRes2.DataSource = null;
-            clsGlobals.ListStyles = new clsListElements();
-            dgvRes3.DataSource = null;
-            clsGlobals.ListColors = new clsListElements();
-            dgvRes4.DataSource = null;
-            clsGlobals.ListCollections = new clsListElements();
-            if (dgvRes1.Rows.Count > 0)
-            {
-                clsGlobals.ListStyles.SelectStyles();
-                AddStyles();
-            }
-            else
-            {
-                MessageBox.Show("Un groupe doit être sélectionné.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -486,26 +543,33 @@ namespace prjGIUnimage
 
         private void btnRes3_Click(object sender, EventArgs e)
         {
-            if (dgvRes3.Rows.Count > 0)
+            try
             {
-                clsGlobals.lstBackUp = DataGridToList(dgvRes3);
+                if (dgvRes3.Rows.Count > 0)
+                {
+                    clsGlobals.lstBackUp = DataGridToList(dgvRes3);
+                }
+                else
+                {
+                    clsGlobals.lstBackUp = new clsListElements();
+                }
+                dgvRes3.DataSource = null;
+                clsGlobals.ListColors = new clsListElements();
+                dgvRes4.DataSource = null;
+                clsGlobals.ListCollections = new clsListElements();
+                if (dgvRes2.Rows.Count > 0)
+                {
+                    clsGlobals.ListColors.SelectColors();
+                    AddColors();
+                }
+                else
+                {
+                    MessageBox.Show("Un style doit être sélectionné.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                clsGlobals.lstBackUp = new clsListElements();
-            }
-            dgvRes3.DataSource = null;
-            clsGlobals.ListColors = new clsListElements();
-            dgvRes4.DataSource = null;
-            clsGlobals.ListCollections = new clsListElements();
-            if (dgvRes2.Rows.Count > 0)
-            {
-                clsGlobals.ListColors.SelectColors();
-                AddColors();
-            }
-            else
-            {
-                MessageBox.Show("Un style doit être sélectionné.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -535,24 +599,31 @@ namespace prjGIUnimage
 
         private void btnRes4_Click(object sender, EventArgs e)
         {
-            if (dgvRes4.Rows.Count > 0)
+            try
             {
-                clsGlobals.lstBackUp = DataGridToList(dgvRes4);
+                if (dgvRes4.Rows.Count > 0)
+                {
+                    clsGlobals.lstBackUp = DataGridToList(dgvRes4);
+                }
+                else
+                {
+                    clsGlobals.lstBackUp = new clsListElements();
+                }
+                dgvRes4.DataSource = null;
+                clsGlobals.ListCollections = new clsListElements();
+                if (dgvRes3.Rows.Count > 0)
+                {
+                    clsGlobals.ListCollections.SelectCollections();
+                    AddCollections();
+                }
+                else
+                {
+                    MessageBox.Show("Une couleur doit être sélectionnée.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                clsGlobals.lstBackUp = new clsListElements();
-            }
-            dgvRes4.DataSource = null;
-            clsGlobals.ListCollections = new clsListElements();
-            if (dgvRes3.Rows.Count > 0)
-            {
-                clsGlobals.ListCollections.SelectCollections();
-                AddCollections();
-            }
-            else
-            {
-                MessageBox.Show("Une couleur doit être sélectionnée.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -582,15 +653,22 @@ namespace prjGIUnimage
 
         private void btnCommand1_Click(object sender, EventArgs e)
         {
-            clsGlobals.ListCollections.GetListCollections();
-            clsGlobals.ActiveRatio = mySce.SurplusRateUnique;
-            clsGlobals.BkRatio = mySce.SurplusRateUnique;
-            if (clsFrmGlobals.frSS == null)
+            try
             {
-                clsFrmGlobals.frSS = new frmProductsSelectedScenario();
-                clsFrmGlobals.frSS.MdiParent = this.MdiParent;
-                clsFrmGlobals.frSS.FormClosed += new FormClosedEventHandler(frSSFormClosed);
-                clsFrmGlobals.frSS.Show();
+                clsGlobals.ListCollections.GetListCollections();
+                clsGlobals.ActiveRatio = mySce.SurplusRateUnique;
+                clsGlobals.BkRatio = mySce.SurplusRateUnique;
+                if (clsFrmGlobals.frSS == null)
+                {
+                    clsFrmGlobals.frSS = new frmProductsSelectedScenario();
+                    clsFrmGlobals.frSS.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frSS.FormClosed += new FormClosedEventHandler(frSSFormClosed);
+                    clsFrmGlobals.frSS.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -603,50 +681,78 @@ namespace prjGIUnimage
 
         private void btnCommand2_Click(object sender, EventArgs e)
         {
-            clsGlobals.ListCollections.GetListCommons();
-            clsGlobals.ActiveRatio = mySce.SurplusRateCommon;
-            clsGlobals.BkRatio = mySce.SurplusRateCommon;
-            if (clsFrmGlobals.frSS == null)
+            try
             {
-                clsFrmGlobals.frSS = new frmProductsSelectedScenario();
-                clsFrmGlobals.frSS.MdiParent = this.MdiParent;
-                clsFrmGlobals.frSS.FormClosed += new FormClosedEventHandler(frSSFormClosed);
-                clsFrmGlobals.frSS.Show();
+                clsGlobals.ListCollections.GetListCommons();
+                clsGlobals.ActiveRatio = mySce.SurplusRateCommon;
+                clsGlobals.BkRatio = mySce.SurplusRateCommon;
+                if (clsFrmGlobals.frSS == null)
+                {
+                    clsFrmGlobals.frSS = new frmProductsSelectedScenario();
+                    clsFrmGlobals.frSS.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frSS.FormClosed += new FormClosedEventHandler(frSSFormClosed);
+                    clsFrmGlobals.frSS.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnCommand3_Click(object sender, EventArgs e)
         {
-            clsGlobals.ListCollections.GetListUnidentified();
-            clsGlobals.ActiveRatio = mySce.SurplusRateOS;
-            clsGlobals.BkRatio = mySce.SurplusRateOS;
-            clsGlobals.AvaibleFlag = true;
-            if (clsFrmGlobals.frSS == null)
+            try
             {
-                clsFrmGlobals.frSS = new frmProductsSelectedScenario();
-                clsFrmGlobals.frSS.MdiParent = this.MdiParent;
-                clsFrmGlobals.frSS.FormClosed += new FormClosedEventHandler(frSSFormClosed);
-                clsFrmGlobals.frSS.Show();
+                clsGlobals.ListCollections.GetListUnidentified();
+                clsGlobals.ActiveRatio = mySce.SurplusRateOS;
+                clsGlobals.BkRatio = mySce.SurplusRateOS;
+                clsGlobals.AvaibleFlag = true;
+                if (clsFrmGlobals.frSS == null)
+                {
+                    clsFrmGlobals.frSS = new frmProductsSelectedScenario();
+                    clsFrmGlobals.frSS.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frSS.FormClosed += new FormClosedEventHandler(frSSFormClosed);
+                    clsFrmGlobals.frSS.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void cboDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDivision.SelectedIndex >= 0)
+            try
             {
-                lstCollections.GetCollections(Convert.ToInt32(cboDivision.SelectedValue));
-                cboCollection.DisplayMember = "Full";
-                cboCollection.ValueMember = "ElementID";
-                cboCollection.DataSource = lstCollections.Elements;
+                if (cboDivision.SelectedIndex >= 0)
+                {
+                    lstCollections.GetCollections(Convert.ToInt32(cboDivision.SelectedValue));
+                    cboCollection.DisplayMember = "Full";
+                    cboCollection.ValueMember = "ElementID";
+                    cboCollection.DataSource = lstCollections.Elements;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void cboBillFrom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboBillFrom.SelectedIndex > 0)
+            try
             {
-                eleShip.GetShipFrom(Convert.ToInt32(cboBillFrom.SelectedValue));
-                txtShipFrom.Text = eleShip.Full;
+                if (cboBillFrom.SelectedIndex > 0)
+                {
+                    eleShip.GetShipFrom(Convert.ToInt32(cboBillFrom.SelectedValue));
+                    txtShipFrom.Text = eleShip.Full;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

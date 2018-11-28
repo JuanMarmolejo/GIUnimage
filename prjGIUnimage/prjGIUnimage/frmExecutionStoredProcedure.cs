@@ -20,15 +20,22 @@ namespace prjGIUnimage
 
         private void frmExecutionStoredProcedure_Load(object sender, EventArgs e)
         {
-            if (clsGlobals.OriginOfStoredProc == 1)
+            try
             {
-                lblInventory.Visible = false;
-                lblScenarios.Visible = true;
+                if (clsGlobals.OriginOfStoredProc == 1)
+                {
+                    lblInventory.Visible = false;
+                    lblScenarios.Visible = true;
+                }
+                if (clsGlobals.OriginOfStoredProc == 2)
+                {
+                    lblInventory.Visible = true;
+                    lblScenarios.Visible = false;
+                }
             }
-            if (clsGlobals.OriginOfStoredProc == 2)
+            catch (Exception ex)
             {
-                lblInventory.Visible = true;
-                lblScenarios.Visible = false;
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -51,25 +58,34 @@ namespace prjGIUnimage
                 clsSilex.RunStoredProcedure(nextScenarioID, mySea.SXSeasonID, clsGlobals.SecondSeasonID, mySea.SXSeasonPrecID);
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
                 return false;
             }
         }
 
         private void frmExecutionStoredProcedure_Shown(object sender, EventArgs e)
         {
-            MessageBox.Show("La création du scénario peut prendre quelques minutes...");
-            if (LoadTabletblGIScSalesHistory(clsGlobals.NextScenarioID, clsGlobals.GISeasonID))
+            try
             {
-                clsGlobals.Flag = true;
+                MessageBox.Show("La création du scénario peut prendre quelques minutes...");
+                if (LoadTabletblGIScSalesHistory(clsGlobals.NextScenarioID, clsGlobals.GISeasonID))
+                {
+                    clsGlobals.Flag = true;
+                }
+                else
+                {
+                    clsGlobals.Flag = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                clsGlobals.Flag = false;
+                MessageBox.Show(ex.Message);
             }
-            this.Close();
+            finally
+            {
+                this.Close();
+            }
         }
     }
 }

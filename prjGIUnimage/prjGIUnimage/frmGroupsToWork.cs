@@ -43,23 +43,37 @@ namespace prjGIUnimage
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            clsElement eTemp = new clsElement();
-            
-            if (lstAllEle.SelectedValue == null || String.IsNullOrEmpty(lstAllEle.SelectedValue.ToString()))
+            try
             {
-                MessageBox.Show("Sélectionnez un élément de la liste");
+                clsElement eTemp = new clsElement();
+
+                if (lstAllEle.SelectedValue == null || String.IsNullOrEmpty(lstAllEle.SelectedValue.ToString()))
+                {
+                    MessageBox.Show("Sélectionnez un élément de la liste");
+                }
+                else
+                {
+                    eTemp = AllElements.ElementByID(lstAllEle.SelectedValue.ToString());
+                    clsGlobals.ListTemp.AddNotExist(eTemp);
+                    AllElements.RemoveItem(eTemp);
+                    LinkLists();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                eTemp = AllElements.ElementByID(lstAllEle.SelectedValue.ToString());
-                clsGlobals.ListTemp.AddNotExist(eTemp);
-                AllElements.RemoveItem(eTemp);
-                LinkLists();
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -80,48 +94,75 @@ namespace prjGIUnimage
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (AllElements.Quantity > 0)
+            try
             {
-                clsGlobals.ListTemp = AllElements;
-                AllElements = new clsListElements();
-                LinkLists();
+                if (AllElements.Quantity > 0)
+                {
+                    clsGlobals.ListTemp = AllElements;
+                    AllElements = new clsListElements();
+                    LinkLists();
+                }
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            AllElements.GetElementsGlobalRequest();
-            clsGlobals.ListTemp = new clsListElements();
-            LinkLists();
+            try
+            {
+                AllElements.GetElementsGlobalRequest();
+                clsGlobals.ListTemp = new clsListElements();
+                LinkLists();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            clsElement eTemp = new clsElement();
-            string index = "";
+            try
+            {
+                clsElement eTemp = new clsElement();
+                string index = "";
 
-            if (lstSelectedEle.SelectedValue == null || String.IsNullOrEmpty(lstSelectedEle.SelectedValue.ToString()))
-            {
-                MessageBox.Show("Sélectionnez un élément de la liste");
+                if (lstSelectedEle.SelectedValue == null || String.IsNullOrEmpty(lstSelectedEle.SelectedValue.ToString()))
+                {
+                    MessageBox.Show("Sélectionnez un élément de la liste");
+                }
+                else
+                {
+                    index = lstSelectedEle.SelectedValue.ToString();
+                    eTemp = clsGlobals.ListTemp.ElementByID(index);
+                    AllElements.AddNotExist(eTemp);
+                    clsGlobals.ListTemp.RemoveItem(eTemp);
+                    LinkLists();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                index = lstSelectedEle.SelectedValue.ToString();
-                eTemp = clsGlobals.ListTemp.ElementByID(index);
-                AllElements.AddNotExist(eTemp);
-                clsGlobals.ListTemp.RemoveItem(eTemp);
-                LinkLists();
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string myText = txtSearch.Text.Trim().ToUpper();
+            try
+            {
+                string myText = txtSearch.Text.Trim().ToUpper();
 
-            AllElements.GetElementsGlobalRequest();
-            AllElements.FilterElements(myText);
-            lstAllEle.DataSource = AllElements.Elements;
+                AllElements.GetElementsGlobalRequest();
+                AllElements.FilterElements(myText);
+                lstAllEle.DataSource = AllElements.Elements;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void lstAllEle_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,36 +172,50 @@ namespace prjGIUnimage
 
         private void lstAllEle_DoubleClick(object sender, EventArgs e)
         {
-            clsElement eTemp = new clsElement();
-            if (lstAllEle.SelectedValue == null || String.IsNullOrEmpty(lstAllEle.SelectedValue.ToString()))
+            try
             {
-                MessageBox.Show("Sélectionnez un élément de la liste");
+                clsElement eTemp = new clsElement();
+                if (lstAllEle.SelectedValue == null || String.IsNullOrEmpty(lstAllEle.SelectedValue.ToString()))
+                {
+                    MessageBox.Show("Sélectionnez un élément de la liste");
+                }
+                else
+                {
+                    eTemp = AllElements.ElementByID(lstAllEle.SelectedValue.ToString());
+                    clsGlobals.ListTemp.AddNotExist(eTemp);
+                    AllElements.RemoveItem(eTemp);
+                    LinkLists();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                eTemp = AllElements.ElementByID(lstAllEle.SelectedValue.ToString());
-                clsGlobals.ListTemp.AddNotExist(eTemp);
-                AllElements.RemoveItem(eTemp);
-                LinkLists();
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void lstSelectedEle_DoubleClick(object sender, EventArgs e)
         {
-            clsElement eTemp = new clsElement();
-            string index = "";
+            try
+            {
+                clsElement eTemp = new clsElement();
+                string index = "";
 
-            if (lstSelectedEle.SelectedValue == null || String.IsNullOrEmpty(lstSelectedEle.SelectedValue.ToString()))
-            {
-                MessageBox.Show("Sélectionnez un élément de la liste");
+                if (lstSelectedEle.SelectedValue == null || String.IsNullOrEmpty(lstSelectedEle.SelectedValue.ToString()))
+                {
+                    MessageBox.Show("Sélectionnez un élément de la liste");
+                }
+                else
+                {
+                    index = lstSelectedEle.SelectedValue.ToString();
+                    eTemp = clsGlobals.ListTemp.ElementByID(index);
+                    AllElements.AddNotExist(eTemp);
+                    clsGlobals.ListTemp.RemoveItem(eTemp);
+                    LinkLists();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                index = lstSelectedEle.SelectedValue.ToString();
-                eTemp = clsGlobals.ListTemp.ElementByID(index);
-                AllElements.AddNotExist(eTemp);
-                clsGlobals.ListTemp.RemoveItem(eTemp);
-                LinkLists();
+                MessageBox.Show(ex.Message);
             }
         }
 

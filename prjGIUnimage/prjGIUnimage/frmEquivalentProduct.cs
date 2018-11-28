@@ -24,21 +24,28 @@ namespace prjGIUnimage
 
         private void frmEquivalentProduct_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = txtSearchProduct;
-            radNew.Checked = true;
-            txtEquivalentProduct.ReadOnly = true;
-            txtNewProduct.ReadOnly = true;
-            Ele.GetProducts();
-            lstSea.GetAllSeasons();
+            try
+            {
+                this.ActiveControl = txtSearchProduct;
+                radNew.Checked = true;
+                txtEquivalentProduct.ReadOnly = true;
+                txtNewProduct.ReadOnly = true;
+                Ele.GetProducts();
+                lstSea.GetAllSeasons();
 
-            cboSeason.DisplayMember = "SeasonName";
-            cboSeason.ValueMember = "GISeasonID";
-            cboSeason.DataSource = lstSea.Elements;
+                cboSeason.DisplayMember = "SeasonName";
+                cboSeason.ValueMember = "GISeasonID";
+                cboSeason.DataSource = lstSea.Elements;
 
-            cboSeason.SelectedIndex = -1;
-            LinkListCollections();
+                cboSeason.SelectedIndex = -1;
+                LinkListCollections();
 
-            LinkListEquivalentProducts();
+                LinkListEquivalentProducts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void LinkListEquivalentProducts()
@@ -54,11 +61,18 @@ namespace prjGIUnimage
 
         private void txtSearchProduct_TextChanged(object sender, EventArgs e)
         {
-            string myText = txtSearchProduct.Text.Trim().ToUpper();
+            try
+            {
+                string myText = txtSearchProduct.Text.Trim().ToUpper();
 
-            Ele.GetProducts();
-            Ele.FilterElements(myText);
-            LinkListCollections();
+                Ele.GetProducts();
+                Ele.FilterElements(myText);
+                LinkListCollections();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void LinkListCollections()
@@ -75,13 +89,20 @@ namespace prjGIUnimage
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frTP == null)
+            try
             {
-                clsFrmGlobals.frTP = new frmTablesPermanentes();
-                clsFrmGlobals.frTP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPFromClosed);
-                clsFrmGlobals.frTP.Show();
-                this.Close();
+                if (clsFrmGlobals.frTP == null)
+                {
+                    clsFrmGlobals.frTP = new frmTablesPermanentes();
+                    clsFrmGlobals.frTP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPFromClosed);
+                    clsFrmGlobals.frTP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -92,13 +113,20 @@ namespace prjGIUnimage
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -114,91 +142,119 @@ namespace prjGIUnimage
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Ele.GetProducts();
-            LinkListCollections();
-            cboSeason.SelectedIndex = -1;
-            txtNewProduct.Clear();
-            txtEquivalentProduct.Clear();
-            txtSearchProduct.Clear();
-            radNew.Checked = true;
+            try
+            {
+                Ele.GetProducts();
+                LinkListCollections();
+                cboSeason.SelectedIndex = -1;
+                txtNewProduct.Clear();
+                txtEquivalentProduct.Clear();
+                txtSearchProduct.Clear();
+                radNew.Checked = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (cboSeason.SelectedIndex < 0)
+            try
             {
-                MessageBox.Show("Sélectionnez une saison...");
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(txtNewProduct.Text))
+                if (cboSeason.SelectedIndex < 0)
                 {
-                    MessageBox.Show("Sélectionnez le nouveau produit...");
+                    MessageBox.Show("Sélectionnez une saison...");
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(txtEquivalentProduct.Text))
+                    if (string.IsNullOrEmpty(txtNewProduct.Text))
                     {
-                        MessageBox.Show("Sélectionnez le produit équivalent...");
+                        MessageBox.Show("Sélectionnez le nouveau produit...");
                     }
                     else
                     {
-                        if (MessageBox.Show("Etes-vous sûr de créer cette relation?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                        if (string.IsNullOrEmpty(txtEquivalentProduct.Text))
                         {
-                            clsProductEqui Pequ = new clsProductEqui(NewID, EquID, Convert.ToInt32(cboSeason.SelectedValue));
-                            Pequ.InsertProductEqui();
-                            Ele.GetProducts();
-                            LinkListCollections();
-                            cboSeason.SelectedIndex = -1;
-                            txtNewProduct.Clear();
-                            txtEquivalentProduct.Clear();
-                            txtSearchProduct.Clear();
-                            radNew.Checked = true;
-                            LinkListEquivalentProducts();
+                            MessageBox.Show("Sélectionnez le produit équivalent...");
                         }
                         else
                         {
-                            Ele.GetProducts();
-                            LinkListCollections();
-                            cboSeason.SelectedIndex = -1;
-                            txtNewProduct.Clear();
-                            txtEquivalentProduct.Clear();
-                            txtSearchProduct.Clear();
-                            radNew.Checked = true;
+                            if (MessageBox.Show("Etes-vous sûr de créer cette relation?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                            {
+                                clsProductEqui Pequ = new clsProductEqui(NewID, EquID, Convert.ToInt32(cboSeason.SelectedValue));
+                                Pequ.InsertProductEqui();
+                                Ele.GetProducts();
+                                LinkListCollections();
+                                cboSeason.SelectedIndex = -1;
+                                txtNewProduct.Clear();
+                                txtEquivalentProduct.Clear();
+                                txtSearchProduct.Clear();
+                                radNew.Checked = true;
+                                LinkListEquivalentProducts();
+                            }
+                            else
+                            {
+                                Ele.GetProducts();
+                                LinkListCollections();
+                                cboSeason.SelectedIndex = -1;
+                                txtNewProduct.Clear();
+                                txtEquivalentProduct.Clear();
+                                txtSearchProduct.Clear();
+                                radNew.Checked = true;
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (dgvResult.Rows.Count > 0)
+            try
             {
-                if (MessageBox.Show("Êtes-vous sûr de supprimer cette équivalence?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (dgvResult.Rows.Count > 0)
                 {
-                    int vEleID = Convert.ToInt32(dgvResult.CurrentRow.Cells[0].Value.ToString());
-                    clsProductEqui myPeq = lstPeq.GetEquiProductByID(vEleID);
-                    myPeq.DeleteProductEqui();
-                    LinkListEquivalentProducts();
+                    if (MessageBox.Show("Êtes-vous sûr de supprimer cette équivalence?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        int vEleID = Convert.ToInt32(dgvResult.CurrentRow.Cells[0].Value.ToString());
+                        clsProductEqui myPeq = lstPeq.GetEquiProductByID(vEleID);
+                        myPeq.DeleteProductEqui();
+                        LinkListEquivalentProducts();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void lstProducts_DoubleClick(object sender, EventArgs e)
         {
-            if (radNew.Checked)
+            try
             {
-                txtNewProduct.Text = Ele.GetProductCode(lstProducts.SelectedValue);
-                NewID = Convert.ToInt32(lstProducts.SelectedValue);
-            }
-            else
-            {
-                if (radEquivalent.Checked)
+                if (radNew.Checked)
                 {
-                    txtEquivalentProduct.Text = Ele.GetProductCode(lstProducts.SelectedValue);
-                    EquID = Convert.ToInt32(lstProducts.SelectedValue);
+                    txtNewProduct.Text = Ele.GetProductCode(lstProducts.SelectedValue);
+                    NewID = Convert.ToInt32(lstProducts.SelectedValue);
                 }
+                else
+                {
+                    if (radEquivalent.Checked)
+                    {
+                        txtEquivalentProduct.Text = Ele.GetProductCode(lstProducts.SelectedValue);
+                        EquID = Convert.ToInt32(lstProducts.SelectedValue);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

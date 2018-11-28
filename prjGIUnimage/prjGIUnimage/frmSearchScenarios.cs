@@ -27,49 +27,70 @@ namespace prjGIUnimage
 
         private void frmSearchScenarios_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = txtSearch;
+            try
+            {
+                this.ActiveControl = txtSearch;
 
-            DeactivateTexts();
+                DeactivateTexts();
 
-            lstSea.GetAllSeasons();
-            lstProVO.GetListProductsWithVO();
-            lstStatus.DataByGroup(102);
+                lstSea.GetAllSeasons();
+                lstProVO.GetListProductsWithVO();
+                lstStatus.DataByGroup(102);
 
-            dgvResult.DataSource = lstProVO.Elements;
-            dgvResult.Columns[0].Visible = false;
-            dgvResult.Columns[3].Visible = false;
-            dgvResult.AutoResizeColumns();
+                dgvResult.DataSource = lstProVO.Elements;
+                dgvResult.Columns[0].Visible = false;
+                dgvResult.Columns[3].Visible = false;
+                dgvResult.AutoResizeColumns();
 
-            cboCurrentSaison.DisplayMember = "SeasonName";
-            cboCurrentSaison.ValueMember = "GISeasonID";
-            cboCurrentSaison.DataSource = lstSea.Elements;
-            cboCurrentSaison.SelectedIndex = -1;
+                cboCurrentSaison.DisplayMember = "SeasonName";
+                cboCurrentSaison.ValueMember = "GISeasonID";
+                cboCurrentSaison.DataSource = lstSea.Elements;
+                cboCurrentSaison.SelectedIndex = -1;
 
-            cboStatus.DisplayMember = "DataDesc_fra";
-            cboStatus.ValueMember = "DataValue";
-            cboStatus.DataSource = lstStatus.Elements;
+                cboStatus.DisplayMember = "DataDesc_fra";
+                cboStatus.ValueMember = "DataValue";
+                cboStatus.DataSource = lstStatus.Elements;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void dgvResult_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvResult.CurrentRow != null)
+            try
             {
-                int productID = Convert.ToInt32(dgvResult.CurrentRow.Cells[0].Value);
-                lstScePr.GetListScenariosByProduct(productID);
-                lbxScenarios.DisplayMember = "ScenarioCode";
-                lbxScenarios.ValueMember = "GIScenarioID";
-                lbxScenarios.DataSource = lstScePr.Elements;
+                if (dgvResult.CurrentRow != null)
+                {
+                    int productID = Convert.ToInt32(dgvResult.CurrentRow.Cells[0].Value);
+                    lstScePr.GetListScenariosByProduct(productID);
+                    lbxScenarios.DisplayMember = "ScenarioCode";
+                    lbxScenarios.ValueMember = "GIScenarioID";
+                    lbxScenarios.DataSource = lstScePr.Elements;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void lbxScenarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CleanControls();
-            Counter++;
-            if (lbxScenarios.SelectedIndex >= 0 && Counter > 3)
+            try
             {
-                clsGlobals.GIPar.ScenarioID = Convert.ToInt32(lbxScenarios.SelectedValue);
-                ScenarioTotext(lstScePr.ElementByID(clsGlobals.GIPar.ScenarioID));
+                CleanControls();
+                Counter++;
+                if (lbxScenarios.SelectedIndex >= 0 && Counter > 3)
+                {
+                    clsGlobals.GIPar.ScenarioID = Convert.ToInt32(lbxScenarios.SelectedValue);
+                    ScenarioTotext(lstScePr.ElementByID(clsGlobals.GIPar.ScenarioID));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -116,21 +137,28 @@ namespace prjGIUnimage
 
         private void lbxScenarios_DoubleClick(object sender, EventArgs e)
         {
-            clsGlobals.GIPar.ProductColorID = Convert.ToInt32(dgvResult.CurrentRow.Cells[0].Value);
-            clsGlobals.ParentProductID = clsGlobals.GIPar.ProductColorID;
-            if (clsProductEqui.ExistsEquivalence(clsGlobals.GIPar.ProductColorID))
+            try
             {
-                clsProductEqui myPequ = new clsProductEqui();
-                myPequ.GetProductEquiByPColorID(clsGlobals.GIPar.ProductColorID);
-                clsGlobals.ProductEquiID = myPequ.ProductEquiID;
-                MessageBox.Show("Exite equivalencia avec " + myPequ.CodeEqui + " en " + myPequ.NameSeason);
+                clsGlobals.GIPar.ProductColorID = Convert.ToInt32(dgvResult.CurrentRow.Cells[0].Value);
+                clsGlobals.ParentProductID = clsGlobals.GIPar.ProductColorID;
+                if (clsProductEqui.ExistsEquivalence(clsGlobals.GIPar.ProductColorID))
+                {
+                    clsProductEqui myPequ = new clsProductEqui();
+                    myPequ.GetProductEquiByPColorID(clsGlobals.GIPar.ProductColorID);
+                    clsGlobals.ProductEquiID = myPequ.ProductEquiID;
+                    MessageBox.Show("Exite equivalencia avec " + myPequ.CodeEqui + " en " + myPequ.NameSeason);
+                }
+                if (frOP == null)
+                {
+                    frOP = new frmOrderProducts();
+                    frOP.MdiParent = this.MdiParent;
+                    frOP.FormClosed += new FormClosedEventHandler(frOPFromClosed);
+                    frOP.Show();
+                }
             }
-            if (frOP == null)
+            catch (Exception ex)
             {
-                frOP = new frmOrderProducts();
-                frOP.MdiParent = this.MdiParent;
-                frOP.FormClosed += new FormClosedEventHandler(frOPFromClosed);
-                frOP.Show();
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -141,26 +169,40 @@ namespace prjGIUnimage
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string myText = txtSearch.Text.Trim().ToUpper();
+            try
+            {
+                string myText = txtSearch.Text.Trim().ToUpper();
 
-            lstProVO.GetListProductsWithVO();
-            lstProVO.FilterElements(myText);
+                lstProVO.GetListProductsWithVO();
+                lstProVO.FilterElements(myText);
 
-            dgvResult.DataSource = lstProVO.Elements;
-            dgvResult.Columns[0].Visible = false;
-            dgvResult.Columns[3].Visible = false;
-            dgvResult.AutoResizeColumns();
+                dgvResult.DataSource = lstProVO.Elements;
+                dgvResult.Columns[0].Visible = false;
+                dgvResult.Columns[3].Visible = false;
+                dgvResult.AutoResizeColumns();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -176,13 +218,20 @@ namespace prjGIUnimage
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

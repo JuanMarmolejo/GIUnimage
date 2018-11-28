@@ -29,29 +29,36 @@ namespace prjGIUnimage
 
         private void frmNewScenario_Load(object sender, EventArgs e)
         {
-            DeactivateTexts();
+            try
+            {
+                DeactivateTexts();
 
-            lstStatus.DataByGroup(102);
-            lstSea.GetAllSeasons();
-            lstSecSea.GetAllSeasons();
+                lstStatus.DataByGroup(102);
+                lstSea.GetAllSeasons();
+                lstSecSea.GetAllSeasons();
 
-            cboCurrentSaison.DisplayMember = "SeasonName";
-            cboCurrentSaison.ValueMember = "GISeasonID";
-            cboCurrentSaison.DataSource = lstSea.Elements;
-            cboCurrentSaison.SelectedIndex = -1;
+                cboCurrentSaison.DisplayMember = "SeasonName";
+                cboCurrentSaison.ValueMember = "GISeasonID";
+                cboCurrentSaison.DataSource = lstSea.Elements;
+                cboCurrentSaison.SelectedIndex = -1;
 
-            cboSecondSeason.DisplayMember = "SeasonName";
-            cboSecondSeason.ValueMember = "GISeasonID";
-            cboSecondSeason.DataSource = lstSecSea.Elements;
-            cboSecondSeason.SelectedIndex = -1;
+                cboSecondSeason.DisplayMember = "SeasonName";
+                cboSecondSeason.ValueMember = "GISeasonID";
+                cboSecondSeason.DataSource = lstSecSea.Elements;
+                cboSecondSeason.SelectedIndex = -1;
 
-            cboStatus.DisplayMember = "DataDesc_fra";
-            cboStatus.ValueMember = "DataValue";
-            cboStatus.DataSource = lstStatus.Elements;
+                cboStatus.DisplayMember = "DataDesc_fra";
+                cboStatus.ValueMember = "DataValue";
+                cboStatus.DataSource = lstStatus.Elements;
 
-            lstScn.AllScenarios();
-            LinkListScenarios();
-            clsGlobals.GIPar.ScenarioID = Convert.ToInt32(lstScenarios.SelectedValue);
+                lstScn.AllScenarios();
+                LinkListScenarios();
+                clsGlobals.GIPar.ScenarioID = Convert.ToInt32(lstScenarios.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void DeactivateTexts()
@@ -81,25 +88,39 @@ namespace prjGIUnimage
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -115,9 +136,16 @@ namespace prjGIUnimage
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            ActivateTexts();
-            CleanControls();
-            flagNew = true;
+            try
+            {
+                ActivateTexts();
+                CleanControls();
+                flagNew = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ActivateTexts()
@@ -146,20 +174,27 @@ namespace prjGIUnimage
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            if(clsGlobals.GIPar.ScenarioID == 0)
+            try
             {
-                MessageBox.Show("Il n'y a pas de scénarios.");
-            }
-            else
-            {
-                if (clsFrmGlobals.frAS == null)
+                if (clsGlobals.GIPar.ScenarioID == 0)
                 {
-                    clsFrmGlobals.frAS = new frmAnalysisScenarioCopy();
-                    clsFrmGlobals.frAS.MdiParent = this.MdiParent;
-                    clsFrmGlobals.frAS.FormClosed += new FormClosedEventHandler(frASFromClosed);
-                    clsFrmGlobals.frAS.Show();
-                    this.Close();
+                    MessageBox.Show("Il n'y a pas de scénarios.");
                 }
+                else
+                {
+                    if (clsFrmGlobals.frAS == null)
+                    {
+                        clsFrmGlobals.frAS = new frmAnalysisScenarioCopy();
+                        clsFrmGlobals.frAS.MdiParent = this.MdiParent;
+                        clsFrmGlobals.frAS.FormClosed += new FormClosedEventHandler(frASFromClosed);
+                        clsFrmGlobals.frAS.Show();
+                        this.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -170,22 +205,29 @@ namespace prjGIUnimage
 
         private void btnRecord_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
+            try
             {
-                clsGlobals.GIPar.GetVOParameters();
-                aDiv = TextToScenario();
-                clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
-                clsGlobals.GISeasonID = aDiv.GISeasonID;
-                clsGlobals.OriginOfStoredProc = 1;
-                
-                //abre formulario de espera
-                if (clsFrmGlobals.frES == null)
+                if (ValidateChildren(ValidationConstraints.Enabled))
                 {
-                    clsFrmGlobals.frES = new frmExecutionStoredProcedure();
-                    clsFrmGlobals.frES.MdiParent = this.MdiParent;
-                    clsFrmGlobals.frES.FormClosed += new FormClosedEventHandler(frESFromClosed);
-                    clsFrmGlobals.frES.Show();
+                    clsGlobals.GIPar.GetVOParameters();
+                    aDiv = TextToScenario();
+                    clsGlobals.NextScenarioID = clsScenario.NextScenarioID();
+                    clsGlobals.GISeasonID = aDiv.GISeasonID;
+                    clsGlobals.OriginOfStoredProc = 1;
+
+                    //abre formulario de espera
+                    if (clsFrmGlobals.frES == null)
+                    {
+                        clsFrmGlobals.frES = new frmExecutionStoredProcedure();
+                        clsFrmGlobals.frES.MdiParent = this.MdiParent;
+                        clsFrmGlobals.frES.FormClosed += new FormClosedEventHandler(frESFromClosed);
+                        clsFrmGlobals.frES.Show();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -314,35 +356,56 @@ namespace prjGIUnimage
 
         private void cboCurrentSaison_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtPreviousSeason.Text = lstSea.PreviousSeason(Convert.ToInt32(cboCurrentSaison.SelectedValue));
+            try
+            {
+                txtPreviousSeason.Text = lstSea.PreviousSeason(Convert.ToInt32(cboCurrentSaison.SelectedValue));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void lstScenarios_DoubleClick(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frAS == null)
+            try
             {
-                clsFrmGlobals.frAS = new frmAnalysisScenarioCopy();
-                clsFrmGlobals.frAS.MdiParent = this.MdiParent;
-                clsFrmGlobals.frAS.FormClosed += new FormClosedEventHandler(frASFromClosed);
-                clsFrmGlobals.frAS.Show();
-                this.Close();
+                if (clsFrmGlobals.frAS == null)
+                {
+                    clsFrmGlobals.frAS = new frmAnalysisScenarioCopy();
+                    clsFrmGlobals.frAS.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frAS.FormClosed += new FormClosedEventHandler(frASFromClosed);
+                    clsFrmGlobals.frAS.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void lstScenarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (flagNew)
+            try
             {
-                MessageBox.Show("Vous devez enregistrer les modifications", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                CleanControls();
-                if (lstScenarios.SelectedIndex >= 0)
+                if (flagNew)
                 {
-                    clsGlobals.GIPar.ScenarioID = Convert.ToInt32(lstScenarios.SelectedValue);
-                    ScenarioTotext(lstScn.ElementByID(clsGlobals.GIPar.ScenarioID));
+                    MessageBox.Show("Vous devez enregistrer les modifications", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                else
+                {
+                    CleanControls();
+                    if (lstScenarios.SelectedIndex >= 0)
+                    {
+                        clsGlobals.GIPar.ScenarioID = Convert.ToInt32(lstScenarios.SelectedValue);
+                        ScenarioTotext(lstScn.ElementByID(clsGlobals.GIPar.ScenarioID));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -394,13 +457,20 @@ namespace prjGIUnimage
 
         private void chkSecondSeason_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkSecondSeason.Checked)
+            try
             {
-                cboSecondSeason.Enabled = true;
+                if (chkSecondSeason.Checked)
+                {
+                    cboSecondSeason.Enabled = true;
+                }
+                else
+                {
+                    cboSecondSeason.Enabled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cboSecondSeason.Enabled = false;
+                MessageBox.Show(ex.Message);
             }
         }
     }

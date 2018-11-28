@@ -28,22 +28,36 @@ namespace prjGIUnimage
 
         private void frmPDFPrinting_Load(object sender, EventArgs e)
         {
-            lstScn.AllScenarios();
-            
-            cboScenario.DisplayMember = "ScenarioCode";
-            cboScenario.ValueMember = "GIScenarioID";
-            cboScenario.DataSource = lstScn.Elements;
+            try
+            {
+                lstScn.AllScenarios();
+
+                cboScenario.DisplayMember = "ScenarioCode";
+                cboScenario.ValueMember = "GIScenarioID";
+                cboScenario.DataSource = lstScn.Elements;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -59,12 +73,19 @@ namespace prjGIUnimage
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HeaderInformation = "";
-            HeaderInformation += "Nom du scénario: " + mySce.ScenarioCode + "\n";
-            HeaderInformation += "Season: " + clsSilex.GetNameSeason(mySea.SXSeasonID) + "\n";
-            HeaderInformation += "Date: " + DateTime.Now.ToLongDateString() + "\n";
-            clsPrint myPrint = new clsPrint(dgvResult, HeaderInformation);
-            myPrint.PrintForm();
+            try
+            {
+                HeaderInformation = "";
+                HeaderInformation += "Nom du scénario: " + mySce.ScenarioCode + "\n";
+                HeaderInformation += "Season: " + clsSilex.GetNameSeason(mySea.SXSeasonID) + "\n";
+                HeaderInformation += "Date: " + DateTime.Now.ToLongDateString() + "\n";
+                clsPrint myPrint = new clsPrint(dgvResult, HeaderInformation);
+                myPrint.PrintForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cboScenario_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,11 +106,18 @@ namespace prjGIUnimage
 
         private void btnPrinted_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Êtes-vous sûr de marquer cette liste de VO comme déjà imprimé?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            try
             {
-                clsScProduct.UpdateVoPdfStatus(scenarioID);
-                dgvResult.DataSource = clsListScProduct.GetListVOToPrint(scenarioID);
-                MessageBox.Show("La liste a été mise à jour.");
+                if (MessageBox.Show("Êtes-vous sûr de marquer cette liste de VO comme déjà imprimé?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    clsScProduct.UpdateVoPdfStatus(scenarioID);
+                    dgvResult.DataSource = clsListScProduct.GetListVOToPrint(scenarioID);
+                    MessageBox.Show("La liste a été mise à jour.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

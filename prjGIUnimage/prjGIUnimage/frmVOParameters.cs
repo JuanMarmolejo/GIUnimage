@@ -27,11 +27,18 @@ namespace prjGIUnimage
 
         private void frmVOParameters_Load(object sender, EventArgs e)
         {
-            clsGIParameter myPar = new clsGIParameter();
-            LoadComboBoxes();
-            myPar.GetVOParameters();
-            GIParametersToText(myPar);
-            DeactivateControls();
+            try
+            {
+                clsGIParameter myPar = new clsGIParameter();
+                LoadComboBoxes();
+                myPar.GetVOParameters();
+                GIParametersToText(myPar);
+                DeactivateControls();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void GIParametersToText(clsGIParameter myPar)
@@ -116,14 +123,28 @@ namespace prjGIUnimage
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            ActivateControls();
-            txtRef1.Focus();
+            try
+            {
+                ActivateControls();
+                txtRef1.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            TextToGIParameter().UpdateVOParameter();
-            DeactivateControls();
+            try
+            {
+                TextToGIParameter().UpdateVOParameter();
+                DeactivateControls();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private clsGIParameter TextToGIParameter()
@@ -148,34 +169,55 @@ namespace prjGIUnimage
         }
 
         private void cboBillFrom_SelectedIndexChanged(object sender, EventArgs e)
-        {   
-            if (cboBillFrom.SelectedIndex > 0)
+        {
+            try
             {
-                eleShip.GetShipFrom(Convert.ToInt32(cboBillFrom.SelectedValue));
-                txtShipFrom.Text = eleShip.Full;
+                if (cboBillFrom.SelectedIndex > 0)
+                {
+                    eleShip.GetShipFrom(Convert.ToInt32(cboBillFrom.SelectedValue));
+                    txtShipFrom.Text = eleShip.Full;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void cboDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDivision.SelectedIndex >= 0)
+            try
             {
-                lstCollections.GetCollections(Convert.ToInt32(cboDivision.SelectedValue));
-                cboCollection.DisplayMember = "Full";
-                cboCollection.ValueMember = "ElementID";
-                cboCollection.DataSource = lstCollections.Elements;
+                if (cboDivision.SelectedIndex >= 0)
+                {
+                    lstCollections.GetCollections(Convert.ToInt32(cboDivision.SelectedValue));
+                    cboCollection.DisplayMember = "Full";
+                    cboCollection.ValueMember = "ElementID";
+                    cboCollection.DataSource = lstCollections.Elements;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -191,13 +233,20 @@ namespace prjGIUnimage
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frGP == null)
+            try
             {
-                clsFrmGlobals.frGP = new frmGeneralParameters();
-                clsFrmGlobals.frGP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frGP.FormClosed += new FormClosedEventHandler(frGPFromClosed);
-                clsFrmGlobals.frGP.Show();
-                this.Close();
+                if (clsFrmGlobals.frGP == null)
+                {
+                    clsFrmGlobals.frGP = new frmGeneralParameters();
+                    clsFrmGlobals.frGP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frGP.FormClosed += new FormClosedEventHandler(frGPFromClosed);
+                    clsFrmGlobals.frGP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

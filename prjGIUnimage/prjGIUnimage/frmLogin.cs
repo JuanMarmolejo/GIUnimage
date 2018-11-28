@@ -23,38 +23,52 @@ namespace prjGIUnimage
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            lstUsers.AllUsers();
-            cboUser.DisplayMember = "Username";
-            cboUser.ValueMember = "UserID";
-            cboUser.DataSource = lstUsers.Elements;
+            try
+            {
+                lstUsers.AllUsers();
+                cboUser.DisplayMember = "Username";
+                cboUser.ValueMember = "UserID";
+                cboUser.DataSource = lstUsers.Elements;
 
-            clsGlobals.GIPar = new clsGIParameter();
-            clsGlobals.GIPar.GetIDVariables();
-            clsGlobals.GIPar.GetSurplusParameters();
-            clsGlobals.GIPar.GetUserID();
+                clsGlobals.GIPar = new clsGIParameter();
+                clsGlobals.GIPar.GetIDVariables();
+                clsGlobals.GIPar.GetSurplusParameters();
+                clsGlobals.GIPar.GetUserID();
 
-            cboUser.SelectedValue = clsGlobals.GIPar.UserID;
-            clsGlobals.ActiveRatio = 1;
+                cboUser.SelectedValue = clsGlobals.GIPar.UserID;
+                clsGlobals.ActiveRatio = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            clsUser ActiveUser = lstUsers.UserByID(Convert.ToInt32(cboUser.SelectedValue));
-            //string source = txtPassword.Text.Trim();
-            string source = "JCmm2587";
-            using (MD5 md5Hash = MD5.Create())
+            try
             {
-                //clsGlobals.GIPar.UserID = ActiveUser.UserID;
-                //this.DialogResult = DialogResult.OK;
-                if (VerifyMd5Hash(md5Hash, source, ActiveUser.Password))
+                clsUser ActiveUser = lstUsers.UserByID(Convert.ToInt32(cboUser.SelectedValue));
+                //string source = txtPassword.Text.Trim();
+                string source = "JCmm2587";
+                using (MD5 md5Hash = MD5.Create())
                 {
-                    clsGlobals.GIPar.UserID = ActiveUser.UserID;
-                    this.DialogResult = DialogResult.OK;
+                    //clsGlobals.GIPar.UserID = ActiveUser.UserID;
+                    //this.DialogResult = DialogResult.OK;
+                    if (VerifyMd5Hash(md5Hash, source, ActiveUser.Password))
+                    {
+                        clsGlobals.GIPar.UserID = ActiveUser.UserID;
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.No;
+                    }
                 }
-                else
-                {
-                    this.DialogResult = DialogResult.No;
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -99,7 +113,14 @@ namespace prjGIUnimage
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cboUser_SelectedIndexChanged(object sender, EventArgs e)

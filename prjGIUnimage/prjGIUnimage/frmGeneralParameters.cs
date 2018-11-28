@@ -19,13 +19,20 @@ namespace prjGIUnimage
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frVP == null)
+            try
             {
-                clsFrmGlobals.frVP = new frmVOParameters();
-                clsFrmGlobals.frVP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frVP.FormClosed += new FormClosedEventHandler(frVPFromClosed);
-                clsFrmGlobals.frVP.Show();
-                this.Close();
+                if (clsFrmGlobals.frVP == null)
+                {
+                    clsFrmGlobals.frVP = new frmVOParameters();
+                    clsFrmGlobals.frVP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frVP.FormClosed += new FormClosedEventHandler(frVPFromClosed);
+                    clsFrmGlobals.frVP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -36,13 +43,20 @@ namespace prjGIUnimage
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frMP == null)
+            try
             {
-                clsFrmGlobals.frMP = new frmMenuPpal();
-                clsFrmGlobals.frMP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
-                clsFrmGlobals.frMP.Show();
-                this.Close();
+                if (clsFrmGlobals.frMP == null)
+                {
+                    clsFrmGlobals.frMP = new frmMenuPpal();
+                    clsFrmGlobals.frMP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frMP.FormClosed += new FormClosedEventHandler(frMPFromClosed);
+                    clsFrmGlobals.frMP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -58,13 +72,20 @@ namespace prjGIUnimage
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frTP == null)
+            try
             {
-                clsFrmGlobals.frTP = new frmTablesPermanentes();
-                clsFrmGlobals.frTP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPClosed);
-                clsFrmGlobals.frTP.Show();
-                this.Close();
+                if (clsFrmGlobals.frTP == null)
+                {
+                    clsFrmGlobals.frTP = new frmTablesPermanentes();
+                    clsFrmGlobals.frTP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frTP.FormClosed += new FormClosedEventHandler(frTPClosed);
+                    clsFrmGlobals.frTP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -75,13 +96,20 @@ namespace prjGIUnimage
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (clsFrmGlobals.frSP == null)
+            try
             {
-                clsFrmGlobals.frSP = new frmSurplusParameters();
-                clsFrmGlobals.frSP.MdiParent = this.MdiParent;
-                clsFrmGlobals.frSP.FormClosed += new FormClosedEventHandler(frSPClosed);
-                clsFrmGlobals.frSP.Show();
-                this.Close();
+                if (clsFrmGlobals.frSP == null)
+                {
+                    clsFrmGlobals.frSP = new frmSurplusParameters();
+                    clsFrmGlobals.frSP.MdiParent = this.MdiParent;
+                    clsFrmGlobals.frSP.FormClosed += new FormClosedEventHandler(frSPClosed);
+                    clsFrmGlobals.frSP.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
