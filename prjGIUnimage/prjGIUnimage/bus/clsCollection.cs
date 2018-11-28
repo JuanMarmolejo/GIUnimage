@@ -63,10 +63,12 @@ namespace prjGIUnimage.bus
 
         public string GetCollectionDesc()
         {
+            string qry;
             var query = from col in clsSilex.tblSXCollection.AsEnumerable()
                         where col.Field<int>("CollectionID") == CollectionID
                         select col.Field<string>("CollectionDesc");
-            return query.FirstOrDefault().ToString();
+            qry = query.FirstOrDefault() == null ? "" : query.FirstOrDefault().ToString();
+            return qry;
         }
 
         public string GetCollectionName()
@@ -78,14 +80,18 @@ namespace prjGIUnimage.bus
         }
 
         public string GetDivisionCode()
-        {            
-            var query = from div in clsSilex.tblSXDivision.AsEnumerable()
+        {
+            string qry = "";
+            if (CollectionID > 99)
+            {
+                var query = from div in clsSilex.tblSXDivision.AsEnumerable()
                             from col in clsSilex.tblSXCollection.AsEnumerable()
                             where col.Field<int>("CollectionID") == CollectionID
                             && col.Field<int>("DivisionID") == div.Field<int>("DivisionID")
                             select div.Field<string>("DivisionCode");
-            
-            return query.FirstOrDefault().ToString();
+                qry = query.FirstOrDefault().ToString();
+            }
+            return qry;
         }
 
         public string GetCollectionCode()
@@ -98,7 +104,7 @@ namespace prjGIUnimage.bus
 
         internal void InsertGICollection()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "INSERT INTO " + clsGlobals.Gesin + "tblGICollection ([CollectionID], [GICollectionStatus], [GICollectionComment] " +
                 ",[CreatedByUserID], [CreatedDate]) VALUES( " + this.CollectionID + ", " + "2" + ", '" + this.GICollectionComment + "', " +
                 +clsGlobals.GIPar.UserID + ", GETDATE()" + ")";
@@ -122,7 +128,7 @@ namespace prjGIUnimage.bus
 
         internal void UpdateGICollection()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "UPDATE " + clsGlobals.Gesin + "[tblGICollection] SET" +
                 "[GICollectionStatus] = " + this.GICollectionStatus + ", " +
                 "[GICollectionComment] = '" + this.GICollectionComment + "', " +

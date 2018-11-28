@@ -32,8 +32,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGIScenario] WHERE [ScenarioStatus]!=2 ORDER BY [CreatedDate] DESC";
             DataTable myTb = new DataTable();
-            Conexion.StartSession();
-            myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -65,8 +65,8 @@ namespace prjGIUnimage.bus
         internal int IDLastRecord()
         {
             string sql = "SELECT MAX([GIScenarioID])FROM " + clsGlobals.Gesin + "[tblGIScenario]";
-            Conexion.StartSession();
-            int LastID = Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            int LastID = Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
             Conexion.EndSession();
             return LastID;
         }
@@ -83,8 +83,8 @@ namespace prjGIUnimage.bus
                 "WHERE[ProductColorID]= " + productID + " AND [VOStatus]!=0 " +
                 "ORDER BY CreatedDate DESC";
             DataTable myTb = new DataTable();
-            Conexion.StartSession();
-            myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }

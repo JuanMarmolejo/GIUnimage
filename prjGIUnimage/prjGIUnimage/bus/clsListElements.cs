@@ -84,8 +84,8 @@ namespace prjGIUnimage.bus
                 "ON SC.ProductID = SX.ProductID INNER JOIN " + clsGlobals.Silex + "[tblSXProductGroup] AS PG ON SX.ProductGroupID = PG.ProductGroupID " +
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIScCollection] AS GI ON (GI.CollectionID = SX.CollectionID AND SC.ScenarioID = GI.ScenarioID) WHERE GI.ScenarioID = " + clsGlobals.GIPar.ScenarioID;
             
-            Conexion.StartSession();
-            int Num = Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            int Num = Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
             Conexion.EndSession();
             return Num;
         }
@@ -106,8 +106,8 @@ namespace prjGIUnimage.bus
             }
             sql += flag ? "" : ")";
 
-            Conexion.StartSession();
-            return Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            return Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
         }
 
         internal int GetNumberColors()
@@ -133,8 +133,8 @@ namespace prjGIUnimage.bus
             }
             sql += flag ? "" : ")";
 
-            Conexion.StartSession();
-            return Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            return Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
         }
 
         internal int GetNumberCollections()
@@ -169,8 +169,8 @@ namespace prjGIUnimage.bus
             }
             sql += flag ? "" : ")";
 
-            Conexion.StartSession();
-            return Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            return Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
         }
 
         internal int GetNumberSpecCollection()
@@ -217,8 +217,8 @@ namespace prjGIUnimage.bus
             }
             sql += flag ? "" : ")";
 
-            Conexion.StartSession();
-            return Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            return Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
         }
 
         internal int GetNumberVOSpecCollection()
@@ -267,8 +267,8 @@ namespace prjGIUnimage.bus
 
             sql += " AND [VOStatus]=1";
 
-            Conexion.StartSession();
-            return Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            return Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
         }
 
         internal int GetNumberCommon()
@@ -311,8 +311,8 @@ namespace prjGIUnimage.bus
             }
             sql += flag ? "" : ")";
 
-            Conexion.StartSession();
-            return Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            return Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
         }
 
         internal int GetNumberVOCommon()
@@ -357,8 +357,8 @@ namespace prjGIUnimage.bus
 
             sql += " AND [VOStatus]=1";
 
-            Conexion.StartSession();
-            return Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            return Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
         }
 
         internal int GetNumberIdentify()
@@ -401,8 +401,8 @@ namespace prjGIUnimage.bus
             }
             sql += flag ? "" : ")";
 
-            Conexion.StartSession();
-            return Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            return Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
         }
 
         internal int GetNumberVOIdentify()
@@ -447,8 +447,8 @@ namespace prjGIUnimage.bus
 
             sql += " AND [VOStatus]=1";
 
-            Conexion.StartSession();
-            return Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            return Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
         }
 
         internal string GetProductCode(object selectedValue)
@@ -473,8 +473,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT [VendorID],[DefaultShipFromID],[VendorCode] FROM " + clsGlobals.Silex + "[tblSXVendor] WHERE[VendorStatus] != 9 ORDER BY [VendorCode]";
             DataTable myTb = new DataTable();
-            Conexion.StartSession();
-            myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -483,8 +483,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT [CollectionID],[CollectionCode],[CollectionName] FROM " + clsGlobals.Silex + "[tblSXCollection] WHERE[CollectionStatus] != 9 AND([DivisionID] = "
                 + DivisionID + " OR[CollectionID] = 1 OR[CollectionID] = 50) ORDER BY[CollectionCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -498,8 +498,8 @@ namespace prjGIUnimage.bus
                 sql += "AND GICollectionStatus = " + selectedValue + " ";
             }
             sql += "ORDER BY [CollectionCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -507,8 +507,8 @@ namespace prjGIUnimage.bus
         internal void GetDivisions()
         {
             string sql = "SELECT [DivisionID],[DivisionCode],[DivisionName] FROM " + clsGlobals.Silex + "[tblSXDivision] WHERE[DivStatus] != 9 ORDER BY [DivisionCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -529,16 +529,16 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXCollection] AS C ON D.[DivisionID]=C.[DivisionID] INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS P " +
                 "ON C.CollectionID=P.CollectionID INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC ON P.ProductID=PC.ProductID " +
                 "WHERE[DivStatus] != 9 AND PC.ProductColorID=" + productColorID + " ORDER BY [DivisionCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
 
         internal void GetElementsGlobalRequest()
         {
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(clsGlobals.sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(clsGlobals.sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -687,8 +687,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT [GIProductID], SX.ProductCode, CL.ColorName_fra FROM " + clsGlobals.Gesin + "[tblGIProduct] AS GI INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS SX " +
                 "ON GI.[ProductID]=SX.[ProductID] INNER JOIN " + clsGlobals.Silex + "[tblSXColor] AS CL ON GI.ColorID=CL.ColorID WHERE [ProductStatus] != 9 ORDER BY [ProductCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -697,8 +697,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT [PurchaseTypeID],[PurchaseTypeName_fra],[PurchaseTypeDesc_fra] FROM " + clsGlobals.Silex + "[tblSXPurchaseType] WHERE[PurchaseTypeStatus] != 9 " +
                 "ORDER BY [PurchaseTypeName_fra]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -706,8 +706,8 @@ namespace prjGIUnimage.bus
         internal void GetWhs()
         {
             string sql = "SELECT [WarehouseID],[WarehouseCode],[WarehouseDesc] FROM " + clsGlobals.Silex + "[tblSXWarehouse] WHERE[WarehouseStatus] != 9 ORDER BY [WarehouseCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -717,8 +717,8 @@ namespace prjGIUnimage.bus
             string sql = "SELECT DISTINCT WH.[WarehouseID],[WarehouseCode],[WarehouseDesc] FROM " + clsGlobals.Silex + "[tblSXWarehouse] AS WH " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProductWarehouse] AS PW ON WH.WarehouseID=PW.WarehouseID INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor] AS PC " +
                 "ON PC.ProductID=PW.ProductID WHERE[WarehouseStatus] != 9 AND PC.ProductColorID=" + activeProduct + " ORDER BY [WarehouseCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -826,8 +826,8 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXProduct] AS PD ON PC.ProductID= PD.ProductID " +
                 "WHERE [VOStatus]!=0 " +
                 "ORDER BY [ProductCode], [ColorName_fra]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }

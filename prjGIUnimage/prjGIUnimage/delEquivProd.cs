@@ -20,7 +20,7 @@ namespace prjGIUnimage
         clsListSeason lstSecSea = new clsListSeason();
         clsListScenario lstScn = new clsListScenario();
         DataSet mySet = new DataSet();
-        bool flagNew = false;
+        //bool flagNew = false;
 
         public delEquivProd()
         {
@@ -81,9 +81,9 @@ namespace prjGIUnimage
             DataTable myTb = new DataTable();
             DataSet mySet = new DataSet();
             Object[] args = new Object[] { activeScenario, sXSeasonID, secondSeasonID, sXSeasonPrecID };
-            Conexion.StartSession();
-            mySet = Conexion.GDatos.BringDataSet(clsGlobals.Silex + "spCustomGenerateReqVirtual", args);
-            Conexion.EndSession();
+            //Conexion.StartSession();
+            mySet = Conexion.GDatos.GetDataSet(clsGlobals.Silex + "spCustomGenerateReqVirtual", args);
+            //Conexion.EndSession();
             myTb = mySet.Tables[0];
             dgvResult.DataSource = myTb;
             txtCode.Text = myTb.Rows.Count.ToString();
@@ -138,7 +138,7 @@ namespace prjGIUnimage
         {
             ActivateTexts();
             CleanControls();
-            flagNew = true;
+            //flagNew = true;
         }
 
         private void ActivateTexts()

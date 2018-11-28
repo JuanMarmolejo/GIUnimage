@@ -31,7 +31,7 @@ namespace prjGIUnimage.bus
 
         internal void InsertProductEqui()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "INSERT INTO " + clsGlobals.Gesin + "[tblGIProductEqui]([ProductBaseID],[ProductEquiID],[SeasonID],[ProductEquiStatus],[CreatedByUserID],[CreatedDate])VALUES (" + 
                 ProductBaseID + ", " + ProductEquiID + ", " + SeasonID + ", 0, " + clsGlobals.GIPar.UserID + ", GETDATE())";
             Conexion.GDatos.RunSql(sql);
@@ -54,8 +54,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT [SeasonName_fra]FROM " + clsGlobals.Silex + "[tblSXSeason] AS SX INNER JOIN " + clsGlobals.Gesin + "[tblGISeason] AS GI " +
                 "ON SX.SeasonID=GI.SXSeasonID WHERE [GISeasonID]=" + SeasonID;
-            Conexion.StartSession();
-            string vRes = (string)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            string vRes = (string)Conexion.GDatos.GetScalarValueSql(sql);
 
             return vRes;
         }
@@ -70,8 +70,8 @@ namespace prjGIUnimage.bus
                 "ON GI.ColorID= CL.ColorID " +
                 "WHERE GI.GIProductID= " + productID;
             
-            Conexion.StartSession();
-            string vRes = (string)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            string vRes = (string)Conexion.GDatos.GetScalarValueSql(sql);
 
             return vRes;
         }
@@ -80,7 +80,7 @@ namespace prjGIUnimage.bus
         {
             string sql = "UPDATE " + clsGlobals.Gesin + "[tblGIProductEqui]SET[ProductEquiStatus]=9,[DeletedByUserID]=" + clsGlobals.GIPar.UserID + 
                 ",[DeletedDate]=GETDATE()WHERE [GIProductEquiID]=" + GIProductEquiID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -92,8 +92,8 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIProduct] AS GIP " +
                 "ON PE.[ProductBaseID]= GIProductID " +
                 "WHERE[ProductColorID]= " + productColorID + " AND [ProductEquiStatus]!=9";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             if (myTb.Rows.Count > 0)
             {
@@ -111,8 +111,8 @@ namespace prjGIUnimage.bus
                 "FROM " + clsGlobals.Gesin + "[tblGIProductEqui] AS PE " +
                 "INNER JOIN " + clsGlobals.Gesin + "[tblGIProduct] AS GIP ON PE.[ProductBaseID]= GIProductID " +
                 "WHERE[ProductColorID]= " + productColorID;
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             this.CopyDataRow(myTb.Rows[0]);
         }

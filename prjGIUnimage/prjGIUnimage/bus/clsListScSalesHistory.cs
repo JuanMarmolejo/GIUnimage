@@ -38,8 +38,8 @@ namespace prjGIUnimage.bus
                 "[RetailPrice],[AmountCI1],[AmountCI2],[QtyInvBF],[QtyInvAF],[QtyAchat],[VOStatus]" +
                 "FROM " + clsGlobals.Gesin + "[tblGIScSalesHistory] AS SH " +
                 "WHERE[ProductColorID]=" + activeProduct + " AND SH.ScenarioID=" + activeScenario + " AND [CatID]=100 ORDER BY [DimCode],[SizeOrder]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -59,8 +59,8 @@ namespace prjGIUnimage.bus
         internal void GetSalesHistory(int scenarioID)
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGIScSalesHistory] WHERE[CatCode]='REG' AND[ScenarioID]=" + scenarioID;
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }

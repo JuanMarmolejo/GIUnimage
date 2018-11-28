@@ -80,15 +80,15 @@ namespace prjGIUnimage.bus
         internal void GetScenarioByID(int activeScenario)
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGIScenario] WHERE [GIScenarioID]=" + activeScenario;
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             CopyDatarow(myTb.Rows[0]);
         }
 
         internal void InsertScenario()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "INSERT INTO " + clsGlobals.Gesin + "[tblGIScenario] ( " +
                 "[ScenarioCode] " +
                 ",[ScenarioDesc] " +
@@ -146,7 +146,7 @@ namespace prjGIUnimage.bus
         {
             string sql = "UPDATE " + clsGlobals.Gesin + "[tblGIScenario] SET [ModifiedByUserID] = " + clsGlobals.GIPar.UserID + ", [ModifiedDate] = GETDATE() " +
                 "WHERE [GIScenarioID]=" + scenarioID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -159,7 +159,7 @@ namespace prjGIUnimage.bus
                 VendorID + ", [VendorSiteID] = " + VendorSiteID + ", [PurchaseTypeID] = " + PurchaseTypeID + ", [DivisionID] = " + DivisionID + 
                 ", [CollectionID] = " + CollectionID + ", [VOSeasonID] = " + VOSeasonID + ", [VONote] = '" + VONote + "', [VOMessage] = '" + VOMessage +
                 "', [ModifiedByUserID] = " + clsGlobals.GIPar.UserID + ", [ModifiedDate] = GETDATE() WHERE [GIScenarioID]=" + clsGlobals.GIPar.ScenarioID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -168,10 +168,10 @@ namespace prjGIUnimage.bus
         {
             int next = new int();
             string sql = "SELECT MAX([GIScenarioID]) FROM " + clsGlobals.Gesin + "[tblGIScenario]";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             try
             {
-                next = Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql)) + 1;
+                next = Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql)) + 1;
             }
             catch
             {
@@ -185,8 +185,8 @@ namespace prjGIUnimage.bus
         {
             string sql = clsGlobals.useSilex + " SELECT * FROM " + clsGlobals.Gesin + "[tblGIScenario] WHERE[GISeasonID] = " + this.GISeasonID +
                 " AND[ScenarioStatus] = 2 AND[ScenarioCode] = '" + this.ScenarioCode + "'";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             if (myTb.Rows.Count > 0)
             {
@@ -204,7 +204,7 @@ namespace prjGIUnimage.bus
         {
             string sql = "INSERT INTO " + clsGlobals.Gesin + "[tblGIScenario] ([ScenarioCode],[GISeasonID],[ScenarioStatus],[CreatedByUserID],[CreatedDate])VALUES('" + 
                 this.ScenarioCode + "'," + this.GISeasonID + "," + this.ScenarioStatus + "," + clsGlobals.GIPar.UserID + ",GETDATE())";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -213,8 +213,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT MAX([GIScenarioID]) FROM " + clsGlobals.Gesin + "[tblGIScenario] WHERE[ScenarioCode] = '" + this.ScenarioCode + 
                 "' AND[GISeasonID] = " + this.GISeasonID + " AND[ScenarioStatus] = 2";
-            Conexion.StartSession();
-            int scenarioID = (int)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            int scenarioID = (int)Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return scenarioID;
         }
@@ -225,8 +225,8 @@ namespace prjGIUnimage.bus
                 "WHERE[ScenarioCode] = 'Avant Fiscal' " +
                 "AND [GISeasonID] = " + this.GISeasonID + " " +
                 "AND [ScenarioStatus] = 2";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             if (myTb.Rows.Count > 0)
             {
@@ -246,8 +246,8 @@ namespace prjGIUnimage.bus
                 "WHERE[ScenarioCode] = 'Après Fiscal' " +
                 "AND [GISeasonID] = " + this.GISeasonID + " " +
                 "AND [ScenarioStatus] = 2";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             if (myTb.Rows.Count > 0)
             {

@@ -19,8 +19,8 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXcOLOR] AS CL ON PC.ColorID= CL.ColorID " +
                 "WHERE[VOStatus]= 1 AND[VoPdfStatus]= 0 AND[ScenarioID]= " + scenarioID + " " +
                 "ORDER BY [VOCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             return myTb;
         }

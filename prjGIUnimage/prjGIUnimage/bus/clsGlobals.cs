@@ -12,6 +12,12 @@ namespace prjGIUnimage
 {
     class clsGlobals
     {
+        //Connection string
+        public static string myServerName = "POSTE269";
+        public static string myDatabase = "sxUnimageDev";
+        public static string myUser = "sa";
+        public static string myPassword = "gluesoft";
+
         //Bases de datos Dev JuanK
         public static string Silex = "[sxUnimageDev].[dbo].";
         public static string useSilex = "USE [sxUnimageDev]";

@@ -39,7 +39,7 @@ namespace prjGIUnimage.bus
                 clsGlobals.GIPar.UserID + ", [ModifiedDate]=GETDATE() " +
                 "WHERE[ScenarioID] = " + ScenarioID + " AND[ProductColorID] = " + parentProductID + " " +
                 "AND[DimID] = " + DimID + " AND[SizeDesc] = '" + SizeDesc + "'";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -88,7 +88,7 @@ namespace prjGIUnimage.bus
                 "," + this.ProductDimID + "," + this.ProductCatID + "," + this.SizeOrder + ",'" + this.SizeDesc + "'," + this.ColorID + "," +
                 this.DimID + "," + this.CatID + "," + this.ProductGroupID + "," + this.ProductSubGroupID + "," +
                 this.QtyAvailable + ", 0," + clsGlobals.GIPar.UserID + ",GETDATE())";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -99,8 +99,8 @@ namespace prjGIUnimage.bus
                 "FROM " + clsGlobals.Gesin + "[tblGIProductAvailableOS] " +
                 "WHERE[ScenarioID] = " + scenarioID + " AND [ProductColorID] = " + parentProductID + " " +
                 "AND [DimID] = " + dimID + " AND [SizeDesc] = '" + sizeDesc + "'";
-            Conexion.StartSession();
-            double Qty = (double)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            double Qty = (double)Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return Qty;
         }

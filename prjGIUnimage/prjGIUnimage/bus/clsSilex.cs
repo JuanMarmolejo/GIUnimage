@@ -21,25 +21,25 @@ namespace prjGIUnimage.bus
 
         public static void UpDateCollection()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "SELECT * FROM " + clsGlobals.Silex + "[tblSXCollection] WHERE [CollectionStatus]!=9";
-            tblSXCollection = Conexion.GDatos.BringDataTableSql(sql);
+            tblSXCollection = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
         }
 
         public static void UpDateDivision()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "SELECT * FROM " + clsGlobals.Silex + "[tblSXDivision] WHERE [DivStatus]!=9";
-            tblSXDivision = Conexion.GDatos.BringDataTableSql(sql);
+            tblSXDivision = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
         }
 
         internal static void UpDateProduct()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "SELECT * FROM " + clsGlobals.Silex + "[tblSXProduct] WHERE [ProductStatus]!=9 AND [VirtualStatus]=0";
-            tblSXProduct = Conexion.GDatos.BringDataTableSql(sql);
+            tblSXProduct = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
         }
 
@@ -47,7 +47,7 @@ namespace prjGIUnimage.bus
         {
             DataSet mySet = new DataSet();
             Object[] args = new Object[] { activeScenario, sXSeasonID, secondSeasonID, sXSeasonPrecID };
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.ExecuteStoredProcedure(clsGlobals.Silex + "spCustomGenerateReq", args);
             Conexion.GDatos.ExecuteStoredProcedure(clsGlobals.Silex + "spCustomGenerateReqVirtual", args);
             Conexion.EndSession();
@@ -55,24 +55,24 @@ namespace prjGIUnimage.bus
 
         internal static void UpDateScSalesHistory()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGIScSalesHistory]";
-            tblGIScSalesHistory = Conexion.GDatos.BringDataTableSql(sql);
+            tblGIScSalesHistory = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
         }
 
         internal static void UpDateProductColor()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "SELECT * FROM " + clsGlobals.Silex + "[tblSXProductColor] WHERE[ProductColorStatus]!=9";
-            tblSXProductColor = Conexion.GDatos.BringDataTableSql(sql);
+            tblSXProductColor = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
         }
 
         internal static void RunStoredProcedure(int gIVOID)
         {
             Object[] args = new Object[] { gIVOID };
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.ExecuteStoredProcedure(clsGlobals.Gesin + "spGICreateVO", args);
             Conexion.EndSession();
         }
@@ -101,17 +101,17 @@ namespace prjGIUnimage.bus
 
         public static void UpDateSeasons()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "SELECT * FROM " + clsGlobals.Silex + "[tblSXSeason]";
-            tblSXSeason = Conexion.GDatos.BringDataTableSql(sql);
+            tblSXSeason = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
         }
 
         internal static void UpDateColor()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "SELECT * FROM " + clsGlobals.Silex + "[tblSXColor] WHERE [ColorStatus]!=9";
-            tblSXColor = Conexion.GDatos.BringDataTableSql(sql);
+            tblSXColor = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
         }
 
@@ -159,8 +159,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT [DataDesc_fra]FROM " + clsGlobals.Silex + "[tblSXData] AS DT INNER JOIN " + clsGlobals.Silex + "[tblSXProductColor]ON [ProductColorStatus]=[DataValue]" +
                 "WHERE DataGroupID=119 AND [ProductColorID]=" + productColorID;
-            Conexion.StartSession();
-            string status = Conexion.GDatos.BringScalarValueSql(sql).ToString();
+            //Conexion.StartSession();
+            string status = Conexion.GDatos.GetScalarValueSql(sql).ToString();
             Conexion.EndSession();
 
             return status;
@@ -171,17 +171,17 @@ namespace prjGIUnimage.bus
             string sql = "SELECT [ProductColorID] " +
                 "FROM " + clsGlobals.Gesin + "[tblGIProduct] " +
                 "WHERE[GIProductID] = " + productBaseID;
-            Conexion.StartSession();
-            var productColorID = Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            var productColorID = Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return Convert.ToInt32(productColorID);
         }
 
         public static void UpDateProductAvailableOS()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGIProductAvailableOS]";
-            tblGIProductAvailableOS = Conexion.GDatos.BringDataTableSql(sql);
+            tblGIProductAvailableOS = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
         }
 

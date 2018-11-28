@@ -36,8 +36,8 @@ namespace prjGIUnimage
             else
             {
                 string sql = "SELECT[FirstName]FROM " + clsGlobals.Silex + "[tblSXUser]WHERE[UserID]=" + UserID;
-                Conexion.StartSession();
-                string UserName = (string)Conexion.GDatos.BringScalarValueSql(sql);
+                //Conexion.StartSession();
+                string UserName = (string)Conexion.GDatos.GetScalarValueSql(sql);
                 Conexion.EndSession();
                 return UserName;
             }

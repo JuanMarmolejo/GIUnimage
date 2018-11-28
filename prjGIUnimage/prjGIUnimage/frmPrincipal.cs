@@ -37,6 +37,7 @@ namespace prjGIUnimage
             clsGlobals.GIPar.SetUserID();
             if (Application.OpenForms.Count == 1)
             {
+                Conexion.EndSession();
                 Application.Exit();
             }
         }

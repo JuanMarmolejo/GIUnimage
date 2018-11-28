@@ -46,7 +46,7 @@ namespace prjGIUnimage.bus
                 "','" + this.VODetailNote + "'," + this.DimID + "," + this.CatID + "," + this.ProductGroupID + "," + this.ProductSubGroupID + "," +
                 this.ColorID + "," + this.SeasonID + ",'" + this.Dim + "','" + this.Size + "'," + this.SizeOrder + "," + this.OrderQty + "," +
                 this.VODetailStatus + "," + this.OrderQty + "," + clsGlobals.GIPar.UserID + ",GETDATE()," + this.ProductWarehouseID + ")";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -57,8 +57,8 @@ namespace prjGIUnimage.bus
                 "FROM " + clsGlobals.Silex + "[tblSXProductWarehouse] " +
                 "WHERE[ProductID] = " + productID + " " +
                 "AND [WarehouseID] = " + defaultWarehouseID;
-            Conexion.StartSession();
-            int PwID = (int)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            int PwID = (int)Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return PwID;
         }
@@ -71,8 +71,8 @@ namespace prjGIUnimage.bus
                 "SELECT DISTINCT[DefaultWarehouseID] " +
                 "FROM " + clsGlobals.Gesin + "[tblGIScProduct] " +
                 "WHERE[ProductID] = " + productID + ") ";
-            Conexion.StartSession();
-            int PwID = (int)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            int PwID = (int)Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return PwID;
         }
@@ -88,7 +88,7 @@ namespace prjGIUnimage.bus
                 "','" + this.VODetailNote + "'," + this.DimID + "," + this.CatID + "," + this.ProductGroupID + "," + this.ProductSubGroupID + "," +
                 this.ColorID + "," + this.SeasonID + ",'" + this.Dim + "','" + this.Size + "'," + this.SizeOrder + "," + this.OrderQty + "," +
                 this.VODetailStatus + "," + this.OrderQty + "," + clsGlobals.GIPar.UserID + ",GETDATE()," + this.ProductWarehouseID + ")";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -102,13 +102,13 @@ namespace prjGIUnimage.bus
                 "ON COST.CostCardDetailID = DET.CostCardDetailID " +
                 "WHERE [ProductColorID]= " + productColorID + " " +
                 "AND [CompProductColorID] IS NOT NULL ";
-            Conexion.StartSession();
-            productColorID = (int)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            productColorID = (int)Conexion.GDatos.GetScalarValueSql(sql);
             sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGIScSalesHistory] " +
                 "WHERE[CatCode] = 'REG' " +
                 "AND[ScenarioID] = " + clsGlobals.GIPar.ScenarioID + " " +
                 "AND[ProductColorID] = " + productColorID + " ";
-            myTb = Conexion.GDatos.BringDataTableSql(sql);
+            myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             DataRow myRow = myTb.Rows[0];
 

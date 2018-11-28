@@ -34,7 +34,7 @@ namespace prjGIUnimage.bus
 
         internal void InsertScCollection(clsCollection ele)
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "INSERT INTO " + clsGlobals.Gesin + "[tblGIScCollection]([ScenarioID],[GICollectionID],[ScCollectionStatus],[ScCollectionComment],[CollectionID]" +
                 ",[GICollectionStatus],[GICollectionComment],[CreatedByUserID],[CreatedDate])VALUES(" + this.ScenarioID + "," + ele.GICollectionID +
                 "," + this.ScCollectionStatus + ",'" + this.ScCollectionComment + "'," + ele.CollectionID + "," + ele.GICollectionStatus + ",'" + 

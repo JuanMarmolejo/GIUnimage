@@ -38,8 +38,8 @@ namespace prjGIUnimage.bus
         internal void GetSeasonByID(int gISeasonID)
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGISeason]WHERE[GISeasonID]=" + gISeasonID;
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             try
             {
@@ -68,7 +68,7 @@ namespace prjGIUnimage.bus
                     "SET[StatusAfterFiscal] = 1, [ModifiedByUserID] = " + clsGlobals.GIPar.UserID + ",[ModifiedDate]=GETDATE() " +
                     "WHERE[GISeasonID]=" + gISeasonID;
             }
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }

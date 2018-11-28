@@ -34,7 +34,7 @@ namespace prjGIUnimage
 
         internal void SaveListInvFiscal(bool flag)
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             foreach(clsInvFiscal ele in Elements)
             {
                 ele.InsertInvFiscal(flag);

@@ -91,7 +91,7 @@ namespace prjGIUnimage
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -148,7 +148,7 @@ namespace prjGIUnimage
             else
             {
                 CleanControls();
-                if (lstCollections.SelectedIndex >= 0)
+                if (lstCollections.SelectedIndex >= 0 && lstCol.Quantity > 0)
                 {
                     current = Convert.ToInt32(lstCollections.SelectedValue);
                     CollectionTotext(lstCol.CollectionByID(current));
@@ -253,7 +253,7 @@ namespace prjGIUnimage
             {
                 eleCol.GetElementsCollection(cboFilter.SelectedIndex);
                 LinkListCollections();
-                if (eleCol.Quantity > 0)
+                if (eleCol.Quantity > 0 && lstCol.Quantity > 0)
                 {
                     CollectionTotext(lstCol.CollectionByID(current));
                 }

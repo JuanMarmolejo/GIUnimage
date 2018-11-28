@@ -31,8 +31,8 @@ namespace prjGIUnimage.bus
         public void AllUsers()
         {
             DataTable myTb = new DataTable();
-            Conexion.StartSession();
-            myTb = Conexion.GDatos.BringDataTableSql("SELECT [UserID],[FirstName],[LastName],[Username],[Password],[UserStatus] " +
+            Conexion.StartSession(clsGlobals.myServerName, clsGlobals.myDatabase, clsGlobals.myUser, clsGlobals.myPassword);
+            myTb = Conexion.GDatos.GetDataTableSql("SELECT [UserID],[FirstName],[LastName],[Username],[Password],[UserStatus] " +
                 "FROM " + clsGlobals.Silex + "[tblSXUser] WHERE [UserStatus]=0 AND [Password] IS NOT NULL ORDER BY [Username]");
             Elements = CopyDataTable(myTb);
             Conexion.EndSession();

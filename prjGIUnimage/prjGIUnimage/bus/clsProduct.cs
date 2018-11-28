@@ -121,7 +121,7 @@ namespace prjGIUnimage.bus
 
         internal void UpdateGIProduct()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "UPDATE " + clsGlobals.Gesin + "[tblGIProduct] SET   " +
                 "[ProductComment] = '" + this.ProductComment + "' " +
                 ",[SurplusRate] = " + this.SurplusRate + " " +
@@ -135,7 +135,7 @@ namespace prjGIUnimage.bus
 
         public void InsertGIProduct()
         {
-            Conexion.StartSession();
+            //Conexion.StartSession();
             string sql = "INSERT INTO " + clsGlobals.Gesin + "[tblGIProduct] ( " +
                 "[ProductID]" +
                 ",[ColorID] " +
@@ -162,8 +162,8 @@ namespace prjGIUnimage.bus
             string sql = "SELECT [ProductColorID] " +
                 "FROM " + clsGlobals.Gesin + "[tblGIProduct] " +
                 "WHERE [GIProductID] = " + gIProductID;
-            Conexion.StartSession();
-            int productColorID = Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            //Conexion.StartSession();
+            int productColorID = Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
             Conexion.EndSession();
 
             return productColorID;

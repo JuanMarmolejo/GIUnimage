@@ -56,8 +56,8 @@ namespace prjGIUnimage.bus
         internal void GetShipFrom(int VendorID)
         {
             string sql = "SELECT [VendorSiteID],[SiteName],[SiteAddress1] FROM " + clsGlobals.Silex + "[tblSXVendorSite] WHERE[VendorID] = " + VendorID;
-            Conexion.StartSession();
-            DataTable MyTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable MyTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             CopyDataRow(MyTb.Rows[0]);
         }
@@ -65,8 +65,8 @@ namespace prjGIUnimage.bus
         internal int GetVendorSiteID(int vendorID)
         {
             string sql = "SELECT [VendorSiteID] FROM " + clsGlobals.Silex + "[tblSXVendorSite] WHERE [VendorID]=" + vendorID;
-            Conexion.StartSession();
-            var Id = Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            var Id = Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return Convert.ToInt32(Id);
         }
@@ -76,10 +76,10 @@ namespace prjGIUnimage.bus
             string sql = "SELECT DISTINCT[ProductColorID] FROM " + clsGlobals.Silex + "[tblSXCostCardComp] AS COST " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXCostCardDetail] AS DET ON COST.CostCardDetailID=DET.CostCardDetailID " +
                 "WHERE [CompProductColorID]= " + productColorID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             try
             {
-                DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+                DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
                 Conexion.EndSession();
                 if (myTb.Rows.Count > 0)
                 {

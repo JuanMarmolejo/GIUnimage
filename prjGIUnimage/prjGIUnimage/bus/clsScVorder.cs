@@ -50,10 +50,10 @@ namespace prjGIUnimage.bus
                 "," + this.PurchaseTypeID + ",'" + this.ReferenceNo1 + "','" + this.ReferenceNo2 + "','" + this.ExpShippingDate + "','" + 
                 this.ExpArrivalDate + "'," + this.OrderTotalQty + "," + this.VOStatus + "," + clsGlobals.GIPar.UserID + ",GETDATE(),'" + 
                 this.VONote + "','" + this.VOMessage + "',0)";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             sql = "SELECT MAX([GIVOID])FROM " + clsGlobals.Gesin + "[tblGIScVorder]";
-            int giVOID = Convert.ToInt32(Conexion.GDatos.BringScalarValueSql(sql));
+            int giVOID = Convert.ToInt32(Conexion.GDatos.GetScalarValueSql(sql));
             Conexion.EndSession();
             return giVOID;
         }
@@ -61,8 +61,8 @@ namespace prjGIUnimage.bus
         internal void GetVoCodeBy(int giVOID)
         {
             string sql = "SELECT [VOCode] FROM " + clsGlobals.Gesin + "[tblGIScVorder] WHERE[GIVOID] = " + giVOID;
-            Conexion.StartSession();
-            this.VOCode = (string)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            this.VOCode = (string)Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             this.GIVOID = giVOID;
         }

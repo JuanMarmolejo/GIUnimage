@@ -39,8 +39,8 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXCollection] AS SXCol ON SXPro.[CollectionID]=SXCol.[CollectionID] INNER JOIN " + clsGlobals.Silex + "[tblSXProductGroup] AS SXPgr " +
                 "ON SXPro.ProductGroupID=SXPgr.ProductGroupID INNER JOIN " + clsGlobals.Silex + "[tblSXData] AS SXDat ON SXDat.[DataValue]=SXPclr.[ProductColorStatus] " +
                 "AND [DataGroupID]=119 AND SXPclr.[ProductColorStatus] !=9 ORDER BY [ProductCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -62,8 +62,8 @@ namespace prjGIUnimage.bus
             }
             sql += "AND SXPclr.[ProductColorStatus] !=9 AND SXPro.[ProductCode] LIKE '%" +
                 text + "%' ORDER BY [ProductCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -89,8 +89,8 @@ namespace prjGIUnimage.bus
                 "ON SXPro.[CollectionID]=SXCol.[CollectionID] INNER JOIN " + clsGlobals.Silex + "[tblSXProductGroup] AS SXPgr ON SXPro.ProductGroupID=SXPgr.ProductGroupID " +
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXData] AS SXDat ON SXDat.[DataValue]=SXPro.ProductStatus AND [DataGroupID]=168 AND GIProductStatus=" + selectedValue +
                 " AND ProductCode like '%" + text + "%' ORDER BY [ProductCode]";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }
@@ -98,8 +98,8 @@ namespace prjGIUnimage.bus
         internal void GetActiveElements()
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGIProduct]WHERE[GIProductStatus]!=1";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTableSimple(myTb);
         }
@@ -124,8 +124,8 @@ namespace prjGIUnimage.bus
                 "INNER JOIN " + clsGlobals.Silex + "[tblSXColor] AS C ON PC.[ColorID]= C.[ColorID] " +
                 "WHERE[ProductStatus]!=9 AND[VirtualStatus]= 0 AND[ProductColorStatus]!=9";
             
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopySXDataTable(myTb);
         }

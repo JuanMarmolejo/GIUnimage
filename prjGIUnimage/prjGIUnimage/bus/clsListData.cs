@@ -46,8 +46,8 @@ namespace prjGIUnimage.bus
                 "WHERE datagroupID = "+ datagroupID + " " +
                 "ORDER BY[DataSort]";
             
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }

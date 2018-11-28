@@ -62,7 +62,7 @@ namespace prjGIUnimage.bus
                 ",[ModifiedByUserID] = " + clsGlobals.GIPar.UserID +
                 ",[ModifiedDate] = GETDATE()" +
                 "WHERE[GIParameterID]=100";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -86,7 +86,7 @@ namespace prjGIUnimage.bus
                 "',[ModifiedByUserID] = " + clsGlobals.GIPar.UserID +
                 ",[ModifiedDate] = GETDATE()" +
                 "WHERE[GIParameterID]=100";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -98,7 +98,7 @@ namespace prjGIUnimage.bus
                 ",[ActiveScenarioID] = " + ScenarioID +
                 ",[ActiveProductID] = " + ProductColorID +
                 "WHERE[GIParameterID] = 100 ";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -107,8 +107,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT [SurplusRateUnique],[SurplusRateCommon],[SurplusRateIdentified],[SurplusRateOS]FROM " + clsGlobals.Gesin + "[tblGIParameter] " +
                 "WHERE[GIParameterID]=100";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             DataRow rw = myTb.Rows[0];
             Conexion.EndSession();
 
@@ -122,8 +122,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT [ReferenceNo1],[ReferenceNo2],[ExpShippingDate],[ExpArrivalDate],[VendorID],[VendorSiteID],[PurchaseTypeID]," +
                 "[DefaultWarehouseID],[DivisionID],[CollectionID],[SeasonID],[VONote],[VOMessage] FROM " + clsGlobals.Gesin + "[tblGIParameter] WHERE[GIParameterID]=100";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             DataRow rw = myTb.Rows[0];
             Conexion.EndSession();
             ReferenceNo1 = Convert.ToString(rw["ReferenceNo1"]);
@@ -144,8 +144,8 @@ namespace prjGIUnimage.bus
         internal void GetIDVariables()
         {
             string sql = "SELECT [ActiveUserID],[ActiveScenarioID],[ActiveProductID]FROM " + clsGlobals.Gesin + "[tblGIParameter]WHERE [GIParameterID]=100";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             DataRow rw = myTb.Rows[0];
             UserID = Convert.ToInt32(rw["ActiveUserID"]);

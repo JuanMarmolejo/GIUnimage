@@ -32,8 +32,8 @@ namespace prjGIUnimage.bus
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGIProductEqui] WHERE [ProductEquiStatus]!=9";
             DataTable myTb = new DataTable();
-            Conexion.StartSession();
-            myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            myTb = Conexion.GDatos.GetDataTableSql(sql);
             Elements = CopyDataTable(myTb);
             Conexion.EndSession();
         }

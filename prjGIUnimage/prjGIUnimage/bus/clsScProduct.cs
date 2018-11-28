@@ -57,7 +57,7 @@ namespace prjGIUnimage.bus
                 "," + clsGlobals.GIPar.PurchaseTypeID + "," + clsGlobals.GIPar.DefaultWarehouseID + "," + clsGlobals.GIPar.DivisionID + ","
                 + clsGlobals.GIPar.CollectionID + "," + clsGlobals.GIPar.SeasonID + ",'" + clsGlobals.GIPar.VONote + "','" + clsGlobals.GIPar.VOMessage +
                 "',0,0," + clsGlobals.GIPar.UserID + ",GETDATE())";
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -71,8 +71,8 @@ namespace prjGIUnimage.bus
                 "[DeletedDate]FROM " + clsGlobals.Gesin + "[tblGIScProduct]WHERE [ProductColorID]=" + activeProduct + " AND [ScenarioID]=" + 
                 activeScenario;
             
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             DataRow rw = myTb.Rows[0];
 
@@ -115,8 +115,8 @@ namespace prjGIUnimage.bus
         internal string GetGIProducStatus()
         {
             string sql = "SELECT [DataDesc_fra]FROM " + clsGlobals.Gesin + "[tblGIData]WHERE DataGroupID=101 AND[DataValue]=" + GIProductStatus;
-            Conexion.StartSession();
-            string vRes = Conexion.GDatos.BringScalarValueSql(sql).ToString();
+            //Conexion.StartSession();
+            string vRes = Conexion.GDatos.GetScalarValueSql(sql).ToString();
             Conexion.EndSession();
             return vRes;
         }
@@ -181,7 +181,7 @@ namespace prjGIUnimage.bus
                 "',[VoPdfStatus]= " + VoPdfStatus +
                 ",[ModifiedByUserID]= " + clsGlobals.GIPar.UserID +
                 ",[ModifiedDate]= GETDATE() WHERE[ScenarioID]= " + ScenarioID + " AND[ProductColorID]= " + ProductColorID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -194,7 +194,7 @@ namespace prjGIUnimage.bus
                 "AND [ProductID]=" + tmp.ProductID + " " +
                 "AND [ProductColorID]=" + tmp.ProductColorID + " " +
                 "AND [ColorID]=" + tmp.ColorID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             sql = "SELECT [ScProductID] " +
                 "FROM " + clsGlobals.Gesin + "[tblGIScProduct]" +
@@ -202,7 +202,7 @@ namespace prjGIUnimage.bus
                 "AND [ProductID]=" + tmp.ProductID + " " +
                 "AND [ProductColorID]=" + tmp.ProductColorID + " " +
                 "AND [ColorID]=" + tmp.ColorID;
-            int pdtID = (int)Conexion.GDatos.BringScalarValueSql(sql);
+            int pdtID = (int)Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return pdtID;
         }
@@ -212,7 +212,7 @@ namespace prjGIUnimage.bus
             string sql = "UPDATE " + clsGlobals.Gesin + "[tblGIScProduct] " +
                 "SET[VOCode] = '" + vOCode + "' " +
                 "WHERE[ScProductID] = " + scProductID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -223,8 +223,8 @@ namespace prjGIUnimage.bus
                 "WHERE[ProductColorID] = " + this.ProductColorID + " " +
                 "AND [ScenarioID] = " + this.ScenarioID + " " +
                 "AND [VOStatus] = 1";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             if (myTb.Rows.Count > 0)
             {
@@ -241,7 +241,7 @@ namespace prjGIUnimage.bus
             string sql = "UPDATE " + clsGlobals.Gesin + "[tblGIScProduct] " +
                 "SET[VOStatus] = " + vOStatus + ", [ModifiedByUserID]=" + clsGlobals.GIPar.UserID + ", [ModifiedDate]=GETDATE() " +
                 "WHERE[ScProductID]=" + this.ScProductID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
             VOStatus = vOStatus;
@@ -252,7 +252,7 @@ namespace prjGIUnimage.bus
             string sql = "UPDATE " + clsGlobals.Gesin + "[tblGIScProduct] " +
                 "SET[VoPdfStatus] = 1 " +
                 "WHERE[VOStatus] = 1 AND[VoPdfStatus] = 0 AND[ScenarioID] = " + scenarioID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -260,8 +260,8 @@ namespace prjGIUnimage.bus
         internal bool HasBeenModified()
         {
             string sql = "SELECT [ModifiedDate] FROM " + clsGlobals.Gesin + "[tblGIScProduct] WHERE ScProductID = " + this.ScProductID;
-            Conexion.StartSession();
-            object temp = Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            object temp = Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             try
             {

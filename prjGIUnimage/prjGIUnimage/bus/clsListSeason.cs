@@ -31,8 +31,8 @@ namespace prjGIUnimage.bus
         internal void GetAllSeasons()
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGISeason] ORDER BY [SXSeasonID] DESC";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
             UpdateSeasonsNames();
@@ -90,8 +90,8 @@ namespace prjGIUnimage.bus
         internal void GetNotGeneratedAfiscal()
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGISeason] WHERE[StatusAfterFiscal] = 0 ORDER BY[SXSeasonID] DESC";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
             UpdateSeasonsNames();
@@ -100,8 +100,8 @@ namespace prjGIUnimage.bus
         internal void GetNotGeneratedBefiscal()
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGISeason] WHERE[StatusBeforeFiscal] = 0 ORDER BY[SXSeasonID] DESC";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
             UpdateSeasonsNames();

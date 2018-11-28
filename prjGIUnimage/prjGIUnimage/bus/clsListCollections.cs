@@ -31,8 +31,8 @@ namespace prjGIUnimage.bus
         public void AllCollections()
         {
             DataTable myTb = new DataTable();
-            Conexion.StartSession();
-            myTb = Conexion.GDatos.BringDataTableSql("select * from " + clsGlobals.Gesin + "tblGICollection where GICollectionStatus != 9 order by [CollectionID]");
+            //Conexion.StartSession();
+            myTb = Conexion.GDatos.GetDataTableSql("select * from " + clsGlobals.Gesin + "tblGICollection where GICollectionStatus != 9 order by [CollectionID]");
             Elements = CopyDataTable(myTb);
             Conexion.EndSession();
         }
@@ -54,8 +54,8 @@ namespace prjGIUnimage.bus
             string sql = "SELECT [CollectionID], col.[DivisionID], [CollectionCode], [CollectionStatus], div.[DivisionCode], [CollectionName], " +
                 "[CollectionDesc]FROM " + clsGlobals.Silex + "[tblSXCollection] AS col INNER JOIN " + clsGlobals.Silex + "[tblSXDivision] AS div ON col.DivisionID = div.DivisionID " +
                 "WHERE[CollectionStatus] != 9";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Elements = CopySXDataTable(myTb);
             Conexion.EndSession();
         }
@@ -92,8 +92,8 @@ namespace prjGIUnimage.bus
         internal void GetActiveElements()
         {
             string sql = "SELECT * FROM " + clsGlobals.Gesin + "[tblGICollection] WHERE [GICollectionStatus]!=1";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             Elements = CopyDataTable(myTb);
         }

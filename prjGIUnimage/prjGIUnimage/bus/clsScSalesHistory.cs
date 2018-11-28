@@ -130,8 +130,8 @@ namespace prjGIUnimage.bus
                 this.ProductColorID + " AND [ProductDimID]=" + this.ProductDimID + " AND [ProductCatID]=" + this.ProductCatID +
                 " AND [SizeDesc]='" + this.SizeDesc + "' AND [ColorID]=" + this.ColorID + " AND [DimID]=" + this.DimID + " AND [CatID]=" +
                 this.CatID + " AND [ProductGroupID]=" + this.ProductGroupID + " AND [ProductSubGroupID]=" + this.ProductSubGroupID + "";
-            Conexion.StartSession();
-            double Qty = (double)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            double Qty = (double)Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return Qty;
         }
@@ -143,8 +143,8 @@ namespace prjGIUnimage.bus
                 this.ProductColorID + " AND [ProductDimID]=" + this.ProductDimID + " AND [ProductCatID]=" + this.ProductCatID +
                 " AND [SizeDesc]='" + this.SizeDesc + "' AND [ColorID]=" + this.ColorID + " AND [DimID]=" + this.DimID + " AND [CatID]=" +
                 this.CatID + " AND [ProductGroupID]=" + this.ProductGroupID + " AND [ProductSubGroupID]=" + this.ProductSubGroupID + "";
-            Conexion.StartSession();
-            double Qty = (double)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            double Qty = (double)Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return Qty;
         }
@@ -152,8 +152,8 @@ namespace prjGIUnimage.bus
         internal static DataTable GetVirtualProducts(int scenarioID)
         {
             string sql = "SELECT * FROM[sxUnimageDevGI].[dbo].[tblGIreqVirtual] WHERE[CatCode] = 'REG' AND[ScenarioID] = " + scenarioID;
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             return myTb;
         }
@@ -228,7 +228,7 @@ namespace prjGIUnimage.bus
             string sql = "UPDATE " + clsGlobals.Gesin + "[tblGIScSalesHistory] " +
                 "SET[QtyAchat] = " + orderQty + " " +
                 "WHERE[ScSalesHistoryID] = " + scSalesHistoryID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -280,7 +280,7 @@ namespace prjGIUnimage.bus
                 ",[QtyVOOpen1]=" + this.QtyVOOpen1 + ",[QtyCO1]=" + this.QtyCO1 + ",[QtyVI2]=" + this.QtyVI2 + ",[QtyCI2a]=" + this.QtyCI2a + 
                 ",[QtyCI2b]=" + this.QtyCI2b + ",[QtyCI2ToInvoice]=" + this.QtyCI2ToInvoice + ",[QtyVOOpen2]=" + this.QtyVOOpen2 + ",[QtyCO2]=" + this.QtyCO2 + " " +
                 "WHERE [ScSalesHistoryID]= " + this.ScSalesHistoryID;
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
@@ -301,8 +301,8 @@ namespace prjGIUnimage.bus
                 "AND [ScenarioID]= " + clsGlobals.GIPar.ScenarioID + " " +
                 "AND [DimID]= " + proBase.DimID + " " +
                 "AND [SizeDesc]= '" + proBase.SizeDesc + "'";
-            Conexion.StartSession();
-            DataTable myTb = Conexion.GDatos.BringDataTableSql(sql);
+            //Conexion.StartSession();
+            DataTable myTb = Conexion.GDatos.GetDataTableSql(sql);
             Conexion.EndSession();
             if (myTb.Rows.Count > 0)
             {
@@ -324,8 +324,8 @@ namespace prjGIUnimage.bus
                 "AND[ProductCatID] = " + ele.ProductCatID + " " +
                 "AND[SizeDesc] = '" + ele.Size + "'";
             
-            Conexion.StartSession();
-            int tmpID = (int)Conexion.GDatos.BringScalarValueSql(sql);
+            //Conexion.StartSession();
+            int tmpID = (int)Conexion.GDatos.GetScalarValueSql(sql);
             Conexion.EndSession();
             return tmpID;
         }
@@ -356,7 +356,7 @@ namespace prjGIUnimage.bus
                 this.AmountCI2.ToString("R", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")) + "," + 
                 this.QtyInvBF + "," + this.QtyInvAF + "," + this.QtyAchat + "," + this.VOStatus + ")";
 
-            Conexion.StartSession();
+            //Conexion.StartSession();
             Conexion.GDatos.RunSql(sql);
             Conexion.EndSession();
         }
